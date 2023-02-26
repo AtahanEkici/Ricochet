@@ -112,8 +112,9 @@ public class WallGenerate : MonoBehaviour
         BottomWall.transform.localScale = new Vector3(BottomWall.transform.localScale.x, TopDistance, BottomWall.transform.localScale.z);
         BottomWall.transform.SetParent(transform);
         BottomWall.name = "BottomWall";
-        Walls[3] = BottomWall;
         BottomWall.AddComponent<BottomWall>();
+        BottomWall.AddComponent<AudioSource>();
+        Walls[3] = BottomWall;
     }
     private void GetOrthographicBounds() // Get Camera Bounds //
     {

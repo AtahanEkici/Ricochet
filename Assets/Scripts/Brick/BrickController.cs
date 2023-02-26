@@ -21,6 +21,10 @@ public class BrickController : MonoBehaviour
         GetForeignReferences();
         LevelManager.Instance.AddToBricks(gameObject);
     }
+    public int GetHealth()
+    {
+        return health;
+    }
     private void BeforeDestroy()
     {
         LevelManager.Instance.RemoveFromBricks(gameObject);

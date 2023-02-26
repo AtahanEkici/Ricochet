@@ -5,10 +5,10 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Instance { get; private set; }
 
     [Header("Total Block Count")]
-    [SerializeField] private List<GameObject> bricks;
+    [SerializeField] private List<GameObject> bricks = new();
 
     [Header("Total Ball Count")]
-    [SerializeField] private List<GameObject> balls;
+    [SerializeField] private List<GameObject> balls = new();
     private void Awake()
     {
         CheckInstance();

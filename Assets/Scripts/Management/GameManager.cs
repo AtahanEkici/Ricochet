@@ -26,11 +26,19 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public static void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+    public static void ResumeGame()
+    {
+        Time.timeScale = 1;
+    }
     private void SetRefreshRateAccordingToDevice()
     { 
         Application.targetFrameRate = Screen.currentResolution.refreshRate;
         RefreshRate = Application.targetFrameRate;
-        QualitySettings.vSyncCount = 1;
+        //QualitySettings.vSyncCount = 1;
     }
     private void GetForeignReferences()
     {

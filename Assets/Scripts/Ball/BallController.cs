@@ -1,8 +1,12 @@
 using UnityEngine;
 public class BallController : MonoBehaviour
 {
-    [Header("Last Collided Object")]
-    [SerializeField] private GameObject LastCollided = null;
+    [Header("Tags")]
+    [SerializeField] private const string WallTag = "Wall";
+    [SerializeField] private const string BallTag = "Ball";
+    [SerializeField] private const string PlatformTag = "Platform";
+    [SerializeField] private const string BrickTag = "Brick";
+    [SerializeField] private const string BottomWallName = "BottomWall";
 
     [Header("Speed Constraints")]
     [SerializeField] private float MaxSpeed = 5f;
@@ -10,6 +14,7 @@ public class BallController : MonoBehaviour
 
     [Header("Local Components")]
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private AudioSource Audio_Source;
 
     [Header("Damage Attribute")]
     [SerializeField] private int DamageNumber = 1;
@@ -31,6 +36,7 @@ public class BallController : MonoBehaviour
     private void GetLocalReferences()
     {
         rb = GetComponent<Rigidbody2D>();
+        Audio_Source = GetComponent<AudioSource>();
     }
     private void GetForeignReferences()
     {
@@ -53,9 +59,32 @@ public class BallController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(LastCollided != collision.gameObject)
+        GameObject go = collision.gameObject;
+
+        if(go.CompareTag(WallTag) && go.name != BottomWallName)
         {
-            LastCollided = collision.gameObject;
+            Audio_Source.PlayOneShot(AudioManager.WallHit);
+        }
+        else if(go.CompareTag(PlatformTag))
+        {
+            Audio_Source.PlayOneShot(AudioManager.PlatformHit);
+        }
+        else if (go.CompareTag(BrickTag))
+        {
+            BrickController bc = go.GetComponent<BrickController>();
+            
+            if (bc == null) { return; }
+
+            else if(bc.GetHealth() > 0)
+            {
+
+                Audio_Source.PlayOneShot(AudioManager.Dent);
+            }
+
+            else
+            {
+                Audio_Source.PlayOneShot(AudioManager.BrickDestroy); 
+            }
         }
     }
 }
