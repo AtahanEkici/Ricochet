@@ -113,6 +113,7 @@ public class WallGenerate : MonoBehaviour
         BottomWall.transform.SetParent(transform);
         BottomWall.name = "BottomWall";
         Walls[3] = BottomWall;
+        BottomWall.AddComponent<BottomWall>();
     }
     private void GetOrthographicBounds() // Get Camera Bounds //
     {
