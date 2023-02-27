@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEngine;
+[DefaultExecutionOrder(-900)]
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance = null;
     public static AudioManager Instance { get; private set; }
+    private AudioManager(){ }
 
     [Header("Audio Clips")]
     [SerializeField] private List<AudioClip> AudioClips = new();
@@ -43,9 +43,10 @@ public class AudioManager : MonoBehaviour
     }
     private void CheckInstance()
     {
-        if(instance == null)
+        if(Instance == null)
         {
-            instance = this;
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {

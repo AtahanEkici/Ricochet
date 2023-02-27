@@ -101,7 +101,7 @@ public class PlatformController : MonoBehaviour
         
         if(WallGenerator == null)
         {
-            WallGenerator = WallGenerate.instance;
+            WallGenerator = WallGenerate.Instance;
         }
 
         float haltOfThePlatform = transform.localScale.y;

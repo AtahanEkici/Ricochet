@@ -1,7 +1,8 @@
 using UnityEngine;
 public class WallGenerate : MonoBehaviour
 {
-    public static WallGenerate instance = null;
+    public static WallGenerate Instance { get; private set; }
+    private WallGenerate() { }
 
     [Header("Draw Debugging Rays")]
     [SerializeField] private bool DebugMode = false;
@@ -34,9 +35,9 @@ public class WallGenerate : MonoBehaviour
     }
     private void CheckInstance()
     {
-        if(instance == null)
+        if(Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {

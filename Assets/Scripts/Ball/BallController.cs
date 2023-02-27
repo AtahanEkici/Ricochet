@@ -9,7 +9,7 @@ public class BallController : MonoBehaviour
     [SerializeField] private const string BottomWallName = "BottomWall";
 
     [Header("Speed Constraints")]
-    [SerializeField] private float MaxSpeed = 5f;
+    [SerializeField] private float MaxSpeed = 10f;
     [SerializeField] private float MinSpeed = 5f;
 
     [Header("Local Components")]
@@ -23,9 +23,12 @@ public class BallController : MonoBehaviour
     {
         GetLocalReferences();
     }
+    private void OnEnable()
+    {
+        LevelManager.AddToBalls(gameObject);
+    }
     private void Start()
     {
-        LevelManager.Instance.AddToBalls(gameObject);
         GetForeignReferences();
         rb.AddForce(Vector2.down, ForceMode2D.Impulse);
     }
@@ -49,8 +52,9 @@ public class BallController : MonoBehaviour
     private void SpeedCheck()
     {
         rb.velocity = ClampMagnitude(rb.velocity, MaxSpeed, MinSpeed);
+        Debug.Log("Ball Velocity: "+rb.velocity.ToString());
     }
-    private static Vector3 ClampMagnitude(Vector2 v, float max, float min)
+    private static Vector2 ClampMagnitude(Vector2 v, float max, float min)
     {
         float sm = v.sqrMagnitude;
         if (sm > (float)max * (float)max) return v.normalized * max;

@@ -9,6 +9,7 @@ TagManager:
   - Ball
   - Particle
   - Brick
+  - Canvas
   layers:
   - Default
   - TransparentFX

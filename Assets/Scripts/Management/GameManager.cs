@@ -1,11 +1,18 @@
 using UnityEngine;
+[DefaultExecutionOrder(-1100)]
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance = null;
     public static GameManager Instance { get; private set; }
+    private GameManager(){}
 
     [Header("Screen Operations")]
     [SerializeField] private int RefreshRate = 60;
+
+    [Header("Canvas Container")]
+    [SerializeField] private GameObject GameOverPanel;
+    [SerializeField] private GameObject LevelPassedPanel;
+    [SerializeField] private GameObject SettingsPanel;
+    [SerializeField] private GameObject ScorePanel;
     private void Awake()
     {
         CheckInstance();
@@ -17,9 +24,9 @@ public class GameManager : MonoBehaviour
     }
     private void CheckInstance()
     {
-        if(instance == null)
+        if(Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {

@@ -36,7 +36,7 @@ public class BottomWall : MonoBehaviour
     {
         GameObject Go = Instantiate(DestroyParticle, go.transform.position, go.transform.rotation);
         SetColorToParticle(Go);
-        LevelManager.Instance.RemoveFromBalls(go);
+        LevelManager.RemoveFromBalls(go);
         PlayDeathSound();
     }
     private void OnCollisionEnter2D(Collision2D collision)

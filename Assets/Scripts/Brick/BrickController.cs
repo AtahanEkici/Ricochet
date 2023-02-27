@@ -1,25 +1,48 @@
+using System;
 using UnityEngine;
 public class BrickController : MonoBehaviour
 {
     private readonly string BallTag = "Ball";
 
-    [Header("Foreign Componenets")]
+    [Header("Asset's Path")]
     [SerializeField] private static readonly string ParticlePath = "Particles/BrickDestroy";
+
+    [Header("Foreign Components")]
     [SerializeField] private GameObject DestroyParticle;
+    [SerializeField] private LevelManager level_manager;
 
     [Header("Local Components")]
     [SerializeField] private Rigidbody2D rb;
 
     [Header("Health Info")]
     [SerializeField] private int health = 1;
+
+    [Header("Point Info")]
+    [SerializeField] private const int point = 1;
+    [SerializeField] private int total_point = 1;
     private void Awake()
     {
         GetLocalReferences();
     }
+    private void OnEnable()
+    {
+        AddBricksToList();
+    }
     private void Start()
     {
+        //AddBricksToList();
         GetForeignReferences();
-        LevelManager.Instance.AddToBricks(gameObject);
+    }
+    private void AddBricksToList()
+    {
+        try
+        {
+            LevelManager.AddToBricks(gameObject);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.StackTrace);
+        }
     }
     public int GetHealth()
     {
@@ -27,9 +50,10 @@ public class BrickController : MonoBehaviour
     }
     private void BeforeDestroy()
     {
-        LevelManager.Instance.RemoveFromBricks(gameObject);
+        LevelManager.RemoveFromBricks(gameObject);
         GameObject Go = Instantiate(DestroyParticle, transform.position, Quaternion.identity);
         SetColorToParticle(Go);
+        SliderController.UpdateSlider();
     }
     private void GetLocalReferences()
     {
@@ -37,10 +61,15 @@ public class BrickController : MonoBehaviour
         {
             rb = GetComponent<Rigidbody2D>();
         }
+
+        total_point = health * point;
     }
     private void GetForeignReferences()
     {
-        DestroyParticle = Resources.Load<GameObject>(ParticlePath) as GameObject;
+        if(DestroyParticle == null)
+        {
+            DestroyParticle = Resources.Load<GameObject>(ParticlePath) as GameObject;
+        } 
     }
     private void Damage(int amount)
     {
@@ -51,11 +80,6 @@ public class BrickController : MonoBehaviour
             BeforeDestroy();
             Destroy(gameObject);
         }
-    }
-    private void SetColorToParticle(GameObject go, Color color)
-    {
-        ParticleSystem ps = go.GetComponent<ParticleSystem>();
-        ps.GetComponent<Renderer>().material.color = color;
     }
     private void SetColorToParticle(GameObject go)
     {

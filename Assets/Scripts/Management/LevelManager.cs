@@ -1,98 +1,125 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+[DefaultExecutionOrder(-1000)]
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager Instance { get; private set; }
+    private static LevelManager instance;
 
     [Header("Total Block Count")]
-    [SerializeField] private List<GameObject> bricks = new();
+    [SerializeField] private List<GameObject> bricks;
 
     [Header("Total Ball Count")]
-    [SerializeField] private List<GameObject> balls = new();
+    [SerializeField] private List<GameObject> balls;
+
+    public static LevelManager Instance { get { return instance; } }
     private void Awake()
     {
         CheckInstance();
+        bricks = new List<GameObject>();
+        balls = new List<GameObject>();
     }
+
     private void Start()
     {
-        
+
     }
-    public void AddToBalls(GameObject go)
+
+    public static void AddToBalls(GameObject go)
     {
         if (go.GetComponent<BallController>() != null)
         {
-            balls.Add(go);
+            instance.balls.Add(go);
         }
     }
-    public void RemoveFromBalls(GameObject go)
-    {
-        int instance = go.GetInstanceID();
 
-        for (int i = 0; i < balls.Count; i++)
+    public static void RemoveFromBalls(GameObject go)
+    {
+        int instanceID = go.GetInstanceID();
+
+        for (int i = 0; i < instance.balls.Count; i++)
         {
-            if (balls[i].GetInstanceID() == instance)
+            if (instance.balls[i].GetInstanceID() == instanceID)
             {
-                balls.RemoveAt(i);
+                instance.balls.RemoveAt(i);
             }
         }
         CheckBalls();
     }
-    public void AddToBricks(GameObject go)
+
+    public static void AddToBricks(GameObject go)
     {
         if (go.GetComponent<BrickController>() != null)
         {
-            bricks.Add(go);
+            instance.bricks.Add(go);
         }
     }
-    public void RemoveFromBricks(GameObject go)
-    {
-        int instance = go.GetInstanceID();
 
-        for(int i=0;i<bricks.Count;i++)
+    public static void RemoveFromBricks(GameObject go)
+    {
+        int instanceID = go.GetInstanceID();
+
+        for (int i = 0; i < instance.bricks.Count; i++)
         {
-            if (bricks[i].GetInstanceID() == instance)
+            if (instance.bricks[i].GetInstanceID() == instanceID)
             {
-                bricks.RemoveAt(i);
+                instance.bricks.RemoveAt(i);
             }
         }
         CheckBricks();
     }
-    private void RemoveAllFromBricks()
+
+    private static void RemoveAllFromBricks()
     {
-        bricks.Clear();
+        instance.bricks.Clear();
     }
-    private void RemoveallFromBalls()
+
+    private static void RemoveallFromBalls()
     {
-        balls.Clear();
+        instance.balls.Clear();
     }
-    private void CheckBricks()
+
+    private static void CheckBricks()
     {
-        if(bricks.Count <= 0 && balls.Count > 0) // Level Passed //
+        if (instance.bricks.Count <= 0 && instance.balls.Count > 0) // Level Passed //
         {
             Debug.Log("Level Passed");
         }
     }
-    private void CheckBalls()
+
+    private static void CheckBalls()
     {
-        if(balls.Count <= 0) // Game Over //
+        if (instance.balls.Count <= 0) // Game Over //
         {
             Debug.Log("Game Over");
         }
     }
-    public int GetBrickCount()
+
+    public static int GetBrickCount()
     {
-        return bricks.Count;
+        return instance.bricks.Count;
     }
+
+    public static int GetBallCount()
+    {
+        return instance.balls.Count;
+    }
+
     private void CheckInstance()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    public static void LoadLevel(string SceneName)
+    {
+        SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Single);
     }
 }
