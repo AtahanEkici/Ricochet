@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlatformController : MonoBehaviour
@@ -33,7 +32,6 @@ public class PlatformController : MonoBehaviour
     [SerializeField] private int numFrames = 10;
     [SerializeField] private float[] deltaTimeArray;
     [SerializeField] private int index;
-
     private void Awake()
     {
         GetLocalReferences();

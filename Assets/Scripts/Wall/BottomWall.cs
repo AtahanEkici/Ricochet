@@ -8,6 +8,9 @@ public class BottomWall : MonoBehaviour
 
     [Header("Audio Source")]
     [SerializeField] private AudioSource audioSource;
+
+    [Header("Camera Shake")]
+    [SerializeField] Vector3 DeathShaker = new(100, 90, 0.5f);
     private void Start()
     {
         GetLocalReferences();
@@ -38,6 +41,7 @@ public class BottomWall : MonoBehaviour
         SetColorToParticle(Go);
         LevelManager.RemoveFromBalls(go);
         PlayDeathSound();
+        CameraShake.Instance.InduceStress(DeathShaker);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

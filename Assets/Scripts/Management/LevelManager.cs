@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,11 +19,18 @@ public class LevelManager : MonoBehaviour
         CheckInstance();
         bricks = new List<GameObject>();
         balls = new List<GameObject>();
+        SceneManager.sceneUnloaded += OnSceneUnLoaded;
     }
 
-    private void Start()
+    private void OnSceneUnLoaded(Scene scene)
     {
+        RemoveAllFromBricks();
+        RemoveAllFromBalls();
+    }
 
+    private void OnSceneLoaded(Scene scene, LoadSceneMode arg1)
+    {
+        
     }
 
     public static void AddToBalls(GameObject go)
@@ -74,7 +82,7 @@ public class LevelManager : MonoBehaviour
         instance.bricks.Clear();
     }
 
-    private static void RemoveallFromBalls()
+    private static void RemoveAllFromBalls()
     {
         instance.balls.Clear();
     }
@@ -117,9 +125,12 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     public static void LoadLevel(string SceneName)
     {
         SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Single);
+    }
+    private void OnDestroy()
+    {
+        SceneManager.sceneUnloaded += OnSceneUnLoaded;
     }
 }

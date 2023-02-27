@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 public class BallController : MonoBehaviour
 {
@@ -6,7 +7,7 @@ public class BallController : MonoBehaviour
     [SerializeField] private const string BallTag = "Ball";
     [SerializeField] private const string PlatformTag = "Platform";
     [SerializeField] private const string BrickTag = "Brick";
-    [SerializeField] private const string BottomWallName = "BottomWall";
+    [SerializeField] private const string BottomWallName = "Bottom";
 
     [Header("Speed Constraints")]
     [SerializeField] private float MaxSpeed = 10f;
@@ -19,6 +20,11 @@ public class BallController : MonoBehaviour
     [Header("Damage Attribute")]
     [SerializeField] private int DamageNumber = 1;
 
+    [Header("Before Collided")]
+    [SerializeField] private GameObject BeforeCollided = null;
+    [SerializeField] private int LoopThreshold = 1;
+    [SerializeField] private int LoopCounter = 0;
+
     private void Awake()
     {
         GetLocalReferences();
@@ -30,11 +36,57 @@ public class BallController : MonoBehaviour
     private void Start()
     {
         GetForeignReferences();
-        rb.AddForce(Vector2.down, ForceMode2D.Impulse);
     }
     private void LateUpdate()
     {
         SpeedCheck();
+    }
+    private void CheckloopingBehaviour(GameObject collidedObject) 
+    {
+        try
+        {
+            if(BeforeCollided == null)
+            {
+                BeforeCollided = collidedObject;
+                return;
+            }
+            else if (BeforeCollided != collidedObject)
+            {
+                if ((BeforeCollided.name.Contains("Left") && collidedObject.name.Contains("Right")) || (BeforeCollided.name.Contains("Right") && collidedObject.name.Contains("Left")))
+                {
+                    if (++LoopCounter >= LoopThreshold)
+                    {
+                        SendBallToPlatform();
+                        LoopCounter = 0;
+                    }
+                }
+                BeforeCollided = collidedObject;
+            }
+        }
+        catch(Exception e)
+        {
+            Debug.Log(e.StackTrace + " " + e.Message);
+        }
+    }
+    public float GetMinSpeed()
+    {
+        return MinSpeed;
+    }
+    public float GetMaxSpeed()
+    {
+        return MaxSpeed;
+    }
+    private void SendBallToPlatform()
+    {
+        GameObject Platform = FindFirstObjectByType<PlatformController>().gameObject;
+        Vector2 PlatformVector = Platform.transform.position;
+        Vector2 ToPlatform = PlatformVector - (Vector2)transform.position;
+        Debug.DrawRay(transform.position, ToPlatform, Color.cyan,2f);
+        Debug.Log("Sending Ball To Platform");
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0;
+        rb.AddForce(ToPlatform,ForceMode2D.Impulse);
+
     }
     private void GetLocalReferences()
     {
@@ -52,7 +104,6 @@ public class BallController : MonoBehaviour
     private void SpeedCheck()
     {
         rb.velocity = ClampMagnitude(rb.velocity, MaxSpeed, MinSpeed);
-        Debug.Log("Ball Velocity: "+rb.velocity.ToString());
     }
     private static Vector2 ClampMagnitude(Vector2 v, float max, float min)
     {
@@ -65,9 +116,11 @@ public class BallController : MonoBehaviour
     {
         GameObject go = collision.gameObject;
 
-        if(go.CompareTag(WallTag) && go.name != BottomWallName)
+        CheckloopingBehaviour(go);
+
+        if (go.CompareTag(WallTag) && go.name != BottomWallName)
         {
-            Audio_Source.PlayOneShot(AudioManager.WallHit);
+            Audio_Source.PlayOneShot(AudioManager.WallHit);  
         }
         else if(go.CompareTag(PlatformTag))
         {

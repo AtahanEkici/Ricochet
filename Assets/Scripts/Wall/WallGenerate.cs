@@ -1,4 +1,5 @@
 using UnityEngine;
+[DefaultExecutionOrder(-100)]
 public class WallGenerate : MonoBehaviour
 {
     public static WallGenerate Instance { get; private set; }
@@ -94,25 +95,25 @@ public class WallGenerate : MonoBehaviour
         GameObject LeftWall = WallObject;
         LeftWall.transform.position = left;
         LeftWall.transform.localScale = new Vector3(LeftWall.transform.localScale.x, LeftDistance, LeftWall.transform.localScale.z);
-        LeftWall.name = "LeftWall";
+        LeftWall.name = "Left";
         Walls[0] = LeftWall;
 
         GameObject RightWal = Instantiate(WallObject, right, Quaternion.Euler(Vector3.zero));
         RightWal.transform.localScale = new Vector3(RightWal.transform.localScale.x, LeftDistance, RightWal.transform.localScale.z);
         RightWal.transform.SetParent(transform);
-        RightWal.name = "RightWal";
+        RightWal.name = "Right";
         Walls[1] = RightWal;
 
         GameObject TopWall = Instantiate(WallObject, top, Quaternion.Euler(0,0,90));
         TopWall.transform.localScale = new Vector3(TopWall.transform.localScale.x, TopDistance, TopWall.transform.localScale.z);
         TopWall.transform.SetParent(transform);
-        TopWall.name = "TopWall";
+        TopWall.name = "Top";
         Walls[2] = TopWall;
 
         GameObject BottomWall = Instantiate(WallObject, bottom, Quaternion.Euler(0, 0, 90));
         BottomWall.transform.localScale = new Vector3(BottomWall.transform.localScale.x, TopDistance, BottomWall.transform.localScale.z);
         BottomWall.transform.SetParent(transform);
-        BottomWall.name = "BottomWall";
+        BottomWall.name = "Bottom";
         BottomWall.AddComponent<BottomWall>();
         BottomWall.AddComponent<AudioSource>();
         Walls[3] = BottomWall;

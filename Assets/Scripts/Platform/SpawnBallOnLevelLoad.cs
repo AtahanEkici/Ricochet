@@ -1,0 +1,55 @@
+using UnityEngine;
+public class SpawnBallOnLevelLoad : MonoBehaviour
+{
+    [Header("Is Game Started ?")]
+    [SerializeField] private bool IsStarted = false;
+
+    [SerializeField] private Collider2D PlatformCollider;
+
+    [Header("Ball Variables")]
+    [SerializeField] private GameObject Ball;
+    [SerializeField] private GameObject InstantiatedBall;
+    [SerializeField] private const string BallPath = "Ball/Ball";
+    [SerializeField] private Collider2D BallCollider;
+
+    private void Awake()
+    {
+        GetResources();
+    }
+    private void OnEnable()
+    {
+        SpawnBall();
+    }
+    private void Update()
+    {
+        StartGame();
+    }
+    private void SpawnBall()
+    {
+        Vector3 PlatformPosition = transform.position;
+        Vector3 DesiredPosition = new Vector3((PlatformPosition.x), (PlatformPosition.y + transform.localScale.x), PlatformPosition.z);
+        InstantiatedBall = Instantiate(Ball, DesiredPosition, Quaternion.identity);
+        GameManager.PauseGame();
+        BallCollider = InstantiatedBall.GetComponent<Collider2D>();
+        BallCollider.enabled = false;
+    }
+    private void GetResources()
+    {
+        Ball = Resources.Load<GameObject>(BallPath) as GameObject;
+
+        PlatformCollider = GetComponent<Collider2D>();
+    }
+    private void StartGame()
+    {
+        if (IsStarted) { return; }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            IsStarted = true;
+            Rigidbody2D ball_rigidbody = InstantiatedBall.GetComponent<Rigidbody2D>();
+            ball_rigidbody.AddForce(Vector2.up * 10f, ForceMode2D.Impulse);
+            GameManager.ResumeGame();
+            BallCollider.enabled = true;
+        }
+    }
+}
