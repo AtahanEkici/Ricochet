@@ -22,7 +22,7 @@ public class BallController : MonoBehaviour
 
     [Header("Before Collided")]
     [SerializeField] private GameObject BeforeCollided = null;
-    [SerializeField] private int LoopThreshold = 1;
+    [SerializeField] private int LoopThreshold = 2;
     [SerializeField] private int LoopCounter = 0;
 
     private void Awake()
@@ -54,18 +54,22 @@ public class BallController : MonoBehaviour
             {
                 if ((BeforeCollided.name.Contains("Left") && collidedObject.name.Contains("Right")) || (BeforeCollided.name.Contains("Right") && collidedObject.name.Contains("Left")))
                 {
-                    if (++LoopCounter >= LoopThreshold)
+                    if (LoopCounter++ >= LoopThreshold)
                     {
-                        SendBallToPlatform();
+                        SendBallBackToPlatform();
                         LoopCounter = 0;
                     }
+                }
+                else
+                {
+                    LoopCounter = 0;
                 }
                 BeforeCollided = collidedObject;
             }
         }
         catch(Exception e)
         {
-            Debug.Log(e.StackTrace + " " + e.Message);
+            Debug.Log(e.StackTrace + " -BallController- " + e.Message);
         }
     }
     public float GetMinSpeed()
@@ -76,7 +80,7 @@ public class BallController : MonoBehaviour
     {
         return MaxSpeed;
     }
-    private void SendBallToPlatform()
+    private void SendBallBackToPlatform()
     {
         GameObject Platform = FindFirstObjectByType<PlatformController>().gameObject;
         Vector2 PlatformVector = Platform.transform.position;
@@ -132,7 +136,7 @@ public class BallController : MonoBehaviour
             
             if (bc == null) { return; }
 
-            else if(bc.GetHealth() > 0)
+            else if(bc.GetHealth() > 1)
             {
 
                 Audio_Source.PlayOneShot(AudioManager.Dent);

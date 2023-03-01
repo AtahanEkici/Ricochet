@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,6 +12,7 @@ public class SliderController : MonoBehaviour
     [Header("Local Components")]
     [SerializeField] private Slider slider;
     [SerializeField] private GameObject FillArea;
+    [SerializeField] private TextMeshProUGUI SliderPercentageText;
 
     [Header("Slider Info")]
     [SerializeField] private static float new_value = 0f;
@@ -59,12 +61,16 @@ public class SliderController : MonoBehaviour
         {
             FillArea = transform.GetChild(1).gameObject;
         }
+
+        if(SliderPercentageText == null)
+        {
+            SliderPercentageText = transform.GetChild(transform.childCount-1).gameObject.GetComponent<TextMeshProUGUI>();
+        }
     }
     private void SceneLoadOperations()
     {
         try
         {
-            GetForeignRreferences();
             InitialBrickCount = LevelManager.GetBrickCount();
             UpdateSlider();
         }
@@ -73,19 +79,11 @@ public class SliderController : MonoBehaviour
             Debug.Log(e.StackTrace +" : "+ e.Message);
         } 
     }
-    private void GetForeignRreferences()
-    {
-        
-    }
     private void LerpSlider()
     {
         if (slider.value == new_value) { return; }
         slider.value = Mathf.Lerp(slider.value, new_value, Time.unscaledDeltaTime * SliderSpeed);
-    }
-    private static int GetBricksCount()
-    {
-        int count = FindObjectsOfType<BrickController>().Length;
-        return count;
+        SliderPercentageText.text = "%" + (int)slider.value;
     }
     public static void UpdateSlider()
     {        

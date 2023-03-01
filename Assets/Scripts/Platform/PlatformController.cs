@@ -1,13 +1,21 @@
 using UnityEngine;
-
 public class PlatformController : MonoBehaviour
 {
+    private const string BallTag = "Ball";
+
+    [Header("Auto Aim")]
+    [SerializeField] private bool AutoAim = false;
+
     [Header("Draw Debugging Rays")]
     [SerializeField] private bool isDebugging = false;
     [SerializeField] private float RayHeight = 10f;
 
     [Header("Controller Position")]
     [SerializeField] private Vector2 MousePosition = Vector2.zero;
+
+    [Header("Movement Direction")]
+    [SerializeField] private bool GoingLeft = false;
+    [SerializeField] private bool GoingRight = false;
 
     [Header("Movement")]
     [SerializeField] private Vector3 MovementVector = Vector3.zero;
@@ -27,7 +35,7 @@ public class PlatformController : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private WallGenerate WallGenerator;
 
-    [Header("SmoothDeltaTime")]
+    [Header("SmoothFixedDeltaTime")]
     [SerializeField] private float smoothFixedDeltaTime = 0f;
     [SerializeField] private int numFrames = 10;
     [SerializeField] private float[] deltaTimeArray;
@@ -110,24 +118,74 @@ public class PlatformController : MonoBehaviour
     }
     private void MovePlatformToMouseCoordinates()
     {
-        if (!Input.GetMouseButton(0)) { return; }
+        if (!Input.GetMouseButton(0)) { GoingLeft = false; GoingRight = false; return; }
 
         Vector2 pos = rb.position;
 
         if (pos != MousePosition)
         {
             MovementVector = Vector2.MoveTowards(new(pos.x, 0f), new(MousePosition.x, 0f), Platform_Move_Speed * smoothFixedDeltaTime);
-            if(MovementVector.x < -StopOffset || MovementVector.x > StopOffset) { return; }
+
+            float Posx = MovementVector.x;
+            float MouseX = MousePosition.x;
+
+            if (Posx < -StopOffset || Posx > StopOffset) { return; }
             rb.MovePosition(MovementVector);
+
+            if(MouseX > Posx) // Going Left //
+            {
+                GoingRight = true;
+                GoingLeft = false;
+            }
+            else // Going Right //
+            {
+                GoingRight = false;
+                GoingLeft = true;
+            }
         }
     }
     private void GetMousePosition()
     {
         MousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
     }
+    private void SendBallToClosestBrick(GameObject go)
+    {
+        Rigidbody2D rb2d = go.GetComponent<Rigidbody2D>();
 
+        rb2d.velocity = Vector2.zero;
+        rb2d.angularVelocity = 0f;
+        Vector2 owntransform = go.transform.position;
+        Vector2 ClosestBrick = LevelManager.Instance.GetClosestBrickCoordinates(owntransform);
+        Vector2 ToClosest = ClosestBrick - owntransform;
+        rb2d.AddForce(ToClosest,ForceMode2D.Impulse);
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject CollidedObject = collision.gameObject;
+
+        if(AutoAim)
+        {
+            if(CollidedObject.CompareTag(BallTag))
+            {
+                SendBallToClosestBrick(CollidedObject);
+            }
+        }
+        else
+        {
+            if(CollidedObject.CompareTag(BallTag))
+            {
+                Rigidbody2D ballsRigidbody = CollidedObject.GetComponent<Rigidbody2D>();
+                float BallsMass = ballsRigidbody.mass;
+
+                if (GoingLeft && GoingRight == false) // Going Left //
+                {
+                    ballsRigidbody.AddForce(leftish * BallsMass, ForceMode2D.Impulse);
+                }
+                else if (GoingRight && GoingLeft == false) // Going Right //
+                {
+                    ballsRigidbody.AddForce(rightish * BallsMass, ForceMode2D.Impulse);
+                }
+            }
+        }
     }
 }

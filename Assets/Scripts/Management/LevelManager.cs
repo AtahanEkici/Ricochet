@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,6 +5,12 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     private static LevelManager instance;
+
+    [Header("Current Level")]
+    [SerializeField] private static string LevelName = "";
+
+    [Header("Max Level")]
+    [SerializeField] private static int MaxLevel = 15;
 
     [Header("Total Block Count")]
     [SerializeField] private List<GameObject> bricks;
@@ -17,22 +22,22 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         CheckInstance();
+
         bricks = new List<GameObject>();
         balls = new List<GameObject>();
-        SceneManager.sceneUnloaded += OnSceneUnLoaded;
-    }
 
+        SceneManager.sceneUnloaded += OnSceneUnLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
     private void OnSceneUnLoaded(Scene scene)
     {
         RemoveAllFromBricks();
         RemoveAllFromBalls();
     }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode arg1)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode sceneLoad)
     {
-        
+        LevelName = scene.name;
     }
-
     public static void AddToBalls(GameObject go)
     {
         if (go.GetComponent<BallController>() != null)
@@ -40,7 +45,6 @@ public class LevelManager : MonoBehaviour
             instance.balls.Add(go);
         }
     }
-
     public static void RemoveFromBalls(GameObject go)
     {
         int instanceID = go.GetInstanceID();
@@ -54,7 +58,6 @@ public class LevelManager : MonoBehaviour
         }
         CheckBalls();
     }
-
     public static void AddToBricks(GameObject go)
     {
         if (go.GetComponent<BrickController>() != null)
@@ -62,7 +65,6 @@ public class LevelManager : MonoBehaviour
             instance.bricks.Add(go);
         }
     }
-
     public static void RemoveFromBricks(GameObject go)
     {
         int instanceID = go.GetInstanceID();
@@ -76,43 +78,55 @@ public class LevelManager : MonoBehaviour
         }
         CheckBricks();
     }
-
     private static void RemoveAllFromBricks()
     {
         instance.bricks.Clear();
     }
-
-    private static void RemoveAllFromBalls()
+    private void RemoveAllFromBalls()
     {
         instance.balls.Clear();
     }
+    public Vector2 GetClosestBrickCoordinates(Vector2 ObjectLocation)
+    {
+        float min = float.MaxValue;
+        int index = 0;
 
+        for (int i = 0; i < bricks.Count; i++)
+        {
+            float distance = Vector2.Distance(ObjectLocation,(Vector2)bricks[i].transform.position);
+
+            if (distance > min)
+            {
+                min = distance;
+                index = i;
+            }
+        }
+        return (Vector2)bricks[index].transform.position;
+    }
     private static void CheckBricks()
     {
         if (instance.bricks.Count <= 0 && instance.balls.Count > 0) // Level Passed //
         {
+            GameManager.Instance.LevelPassed();
             Debug.Log("Level Passed");
         }
     }
-
     private static void CheckBalls()
     {
         if (instance.balls.Count <= 0) // Game Over //
         {
             Debug.Log("Game Over");
+            GameManager.Instance.GameOver();
         }
     }
-
     public static int GetBrickCount()
     {
         return instance.bricks.Count;
     }
-
     public static int GetBallCount()
     {
         return instance.balls.Count;
     }
-
     private void CheckInstance()
     {
         if (instance == null)
@@ -125,12 +139,31 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public static void LevelPassed()
+    {
+        int level = int.Parse(LevelName);
+        Debug.Log("Passed Level: " + level.ToString());
+        level++;
+        Debug.Log("loading Scene: " + level.ToString() + "");
+
+        if(level > MaxLevel)
+        {
+            Debug.Log("Max Level Reached");
+        }
+
+        LoadLevel(level.ToString());
+    }
+    public static void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+    }
     public static void LoadLevel(string SceneName)
     {
-        SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync(SceneName);
     }
     private void OnDestroy()
     {
-        SceneManager.sceneUnloaded += OnSceneUnLoaded;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneUnloaded -= OnSceneUnLoaded;
     }
 }

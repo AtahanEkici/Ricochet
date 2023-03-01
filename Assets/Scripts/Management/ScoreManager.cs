@@ -9,9 +9,11 @@ public class ScoreManager : MonoBehaviour
 
     private const string total_score = "_Score";
 
+    [Header("Audio Source")]
+    [SerializeField] private AudioSource audioSource;
+
     [Header("Score Board")]
     [SerializeField] private static TextMeshProUGUI ScoreUI;
-    [SerializeField] private const string ScoreText = "SCORE: ";
     [SerializeField] private static int Score = 0;
 
     [Header("Scene Info")]
@@ -46,11 +48,23 @@ public class ScoreManager : MonoBehaviour
     }
     private void GetLocalReferences()
     {
-        ScoreUI = transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+        if (ScoreUI == null)
+        {
+            ScoreUI = transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+        }
+
+        if(audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+            
+        }
     }
     private void GetForeignReferences()
     {
-        
+        if(audioSource.clip == null)
+        {
+            audioSource.clip = AudioManager.ButtonPush;
+        }  
     }
     private static void CheckScore()
     {

@@ -1,10 +1,13 @@
 using UnityEngine;
 public class BottomWall : MonoBehaviour
 {
+    private readonly string BallTag = "Ball";
+    private readonly string DestroyParticlePath = "Particles/BallDestroy";
+    private readonly string FlameParticlePath = "Particles/Flame";
+
     [Header("Ball Info")]
     [SerializeField] private GameObject DestroyParticle;
-    [SerializeField] private readonly string BallTag = "Ball";
-    [SerializeField] private readonly string ParticlePath = "Particles/BallDestroy";
+    [SerializeField] private GameObject FlameParticle;
 
     [Header("Audio Source")]
     [SerializeField] private AudioSource audioSource;
@@ -23,7 +26,8 @@ public class BottomWall : MonoBehaviour
     }
     private void GetForeignReferences()
     {
-        DestroyParticle = Resources.Load<GameObject>(ParticlePath) as GameObject;
+        DestroyParticle = Resources.Load<GameObject>(DestroyParticlePath) as GameObject;
+        FlameParticle = Resources.Load<GameObject>(FlameParticlePath) as GameObject;
     }
     private void PlayDeathSound()
     {
@@ -37,11 +41,12 @@ public class BottomWall : MonoBehaviour
     }
     private void BeforeDestroy(GameObject go)
     {
-        GameObject Go = Instantiate(DestroyParticle, go.transform.position, go.transform.rotation);
-        SetColorToParticle(Go);
-        LevelManager.RemoveFromBalls(go);
         PlayDeathSound();
+        GameObject DestoroyedParticle = Instantiate(DestroyParticle, go.transform.position, go.transform.rotation);
+        SetColorToParticle(DestoroyedParticle);
+        LevelManager.RemoveFromBalls(go);
         CameraShake.Instance.InduceStress(DeathShaker);
+        Instantiate(FlameParticle, go.transform.position, go.transform.rotation);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

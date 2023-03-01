@@ -54,6 +54,7 @@ public class BrickController : MonoBehaviour
         GameObject Go = Instantiate(DestroyParticle, transform.position, Quaternion.identity);
         SetColorToParticle(Go);
         SliderController.UpdateSlider();
+        ScoreManager.UpdateScore(total_point);
     }
     private void GetLocalReferences()
     {

@@ -1,7 +1,11 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 [DefaultExecutionOrder(-1100)]
 public class GameManager : MonoBehaviour
 {
+    private const string CanvasTag = "Canvas";
+    private const string StartMenuName = "StartMenu";
     public static GameManager Instance { get; private set; }
     private GameManager(){}
 
@@ -9,6 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int RefreshRate = 60;
 
     [Header("Canvas Container")]
+    [SerializeField] private GameObject StartMenuPanel;
+    [SerializeField] private GameObject MainCanvas;
     [SerializeField] private GameObject GameOverPanel;
     [SerializeField] private GameObject LevelPassedPanel;
     [SerializeField] private GameObject SettingsPanel;
@@ -17,10 +23,20 @@ public class GameManager : MonoBehaviour
     {
         CheckInstance();
         SetRefreshRateAccordingToDevice();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    private void Start()
+    private void OnEnable()
     {
         GetForeignReferences();
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode sceneLoad)
+    {
+        UISettings(scene);
+    }
+
+    private void Start()
+    {
+        
     }
     private void CheckInstance()
     {
@@ -41,6 +57,80 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
     }
+    private void UISettings(Scene scene)
+    {
+        if(scene.name == StartMenuName)
+        {
+            ScorePanel.SetActive(false);
+            GameOverPanel.SetActive(false);
+            LevelPassedPanel.SetActive(false);
+            SettingsPanel.SetActive(false);
+        }
+        else
+        {
+            ScorePanel.SetActive(true);
+            GameOverPanel.SetActive(false);
+            LevelPassedPanel.SetActive(false);
+            SettingsPanel.SetActive(false);
+        }
+    }
+    private void GetCanvasRefrences()
+    {
+        if(MainCanvas == null)
+        {
+            MainCanvas = GameObject.FindGameObjectWithTag(CanvasTag);
+        }
+        if(ScorePanel == null)
+        {
+            ScorePanel = MainCanvas.transform.GetChild(0).gameObject;
+        }
+        if(GameOverPanel == null)
+        {
+            GameOverPanel = MainCanvas.transform.GetChild(1).gameObject;
+        }
+        if (LevelPassedPanel == null)
+        {
+            LevelPassedPanel = MainCanvas.transform.GetChild(2).gameObject;
+        }
+        if (SettingsPanel == null)
+        {
+            SettingsPanel = MainCanvas.transform.GetChild(3).gameObject;
+        }
+    }
+    public void GameOver()
+    {
+        PauseGame();
+        ScorePanel.SetActive(false);
+        LevelPassedPanel.SetActive(false);
+        SettingsPanel.SetActive(false);
+        GameOverPanel.SetActive(true);
+    }
+    public void LevelPassed()
+    {
+        PauseGame();
+        ScorePanel.SetActive(false);
+        LevelPassedPanel.SetActive(true);
+        SettingsPanel.SetActive(false);
+        GameOverPanel.SetActive(false);
+    }
+    public void OpenSettings()
+    {
+        Debug.Log("Opened Settings");
+        PauseGame();
+        ScorePanel.SetActive(false);
+        LevelPassedPanel.SetActive(false);
+        SettingsPanel.SetActive(true);
+        GameOverPanel.SetActive(false);
+    }
+    public void CloseSettings()
+    {
+        Debug.Log("Closed Settings");
+        ResumeGame();
+        ScorePanel.SetActive(false);
+        LevelPassedPanel.SetActive(false);
+        SettingsPanel.SetActive(false);
+        GameOverPanel.SetActive(false);
+    }
     private void SetRefreshRateAccordingToDevice()
     { 
         Application.targetFrameRate = Screen.currentResolution.refreshRate;
@@ -49,6 +139,6 @@ public class GameManager : MonoBehaviour
     }
     private void GetForeignReferences()
     {
-
+        GetCanvasRefrences();
     }
 }
