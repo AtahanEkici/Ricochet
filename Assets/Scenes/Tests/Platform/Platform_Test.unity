@@ -653,6 +653,7 @@ GameObject:
   - component: {fileID: 207379251}
   - component: {fileID: 207379250}
   - component: {fileID: 207379252}
+  - component: {fileID: 207379253}
   m_Layer: 5
   m_Name: CloseSettingsButton
   m_TagString: Untagged
@@ -774,6 +775,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &207379253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207379248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c3d5206ef3e3ef46b8bec0c66a5d245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLeft: 0
+  Probability: 0.5
+  trans: {fileID: 0}
+  RotationSpeed: 50
+  MaxAngle: 0.1
+  RightAngle: 0
+  LeftAngle: 0
+  Left: {x: 0, y: 0, z: 0.1305262, w: 0.9914449}
+  Right: {x: 0, y: 0, z: -0.1305262, w: 0.9914449}
 --- !u!1 &213478804
 GameObject:
   m_ObjectHideFlags: 0
@@ -3666,8 +3688,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 12019c2337a03c24dbe051c71e550952, type: 2}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.19607843}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

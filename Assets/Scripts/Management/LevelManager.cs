@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,6 +6,10 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     private static LevelManager instance;
+
+    [Header("Congradulations Particle")]
+    [SerializeField] private const string BsParticlePath = "Particles/randombullshitgo";
+    [SerializeField] private static GameObject CongradulationsParticle;
 
     [Header("Current Level")]
     [SerializeField] private static string LevelName = "";
@@ -107,6 +112,7 @@ public class LevelManager : MonoBehaviour
     {
         if (instance.bricks.Count <= 0 && instance.balls.Count > 0) // Level Passed //
         {
+            SpawnParticlesOnLevelPassed();
             GameManager.Instance.LevelPassed();
             Debug.Log("Level Passed");
         }
@@ -141,6 +147,7 @@ public class LevelManager : MonoBehaviour
     }
     public static void LevelPassed()
     {
+        Debug.Log("Level Passed called"); 
         int level = int.Parse(LevelName);
         Debug.Log("Passed Level: " + level.ToString());
         level++;
@@ -150,8 +157,26 @@ public class LevelManager : MonoBehaviour
         {
             Debug.Log("Max Level Reached");
         }
-
         LoadLevel(level.ToString());
+    }
+    private static void SpawnParticlesOnLevelPassed()
+    {
+        try
+        {
+            BallController[] balls = FindObjectsOfType<BallController>();
+
+            CongradulationsParticle = Resources.Load<GameObject>(BsParticlePath) as GameObject;
+
+            for (int i = 0; i < balls.Length; i++)
+            {
+                Color ballColor = balls[i].gameObject.GetComponent<Renderer>().material.color;
+                Instantiate(CongradulationsParticle,balls[i].transform.position,Quaternion.identity).GetComponent<ParticleSystem>().GetComponent<Renderer>().material.color = ballColor;
+            } 
+        }
+        catch(Exception e)
+        {
+            Debug.Log(e.StackTrace + " >>> " + e.Message);
+        }
     }
     public static void RestartLevel()
     {
