@@ -115,18 +115,16 @@ public class GameManager : MonoBehaviour
     }
     public void OpenSettings()
     {
-        Debug.Log("Opened Settings");
         PauseGame();
+        SettingsPanel.SetActive(true);
         ScorePanel.SetActive(false);
         LevelPassedPanel.SetActive(false);
-        SettingsPanel.SetActive(true);
         GameOverPanel.SetActive(false);
     }
     public void CloseSettings()
     {
-        Debug.Log("Closed Settings");
         ResumeGame();
-        ScorePanel.SetActive(false);
+        ScorePanel.SetActive(true);
         LevelPassedPanel.SetActive(false);
         SettingsPanel.SetActive(false);
         GameOverPanel.SetActive(false);

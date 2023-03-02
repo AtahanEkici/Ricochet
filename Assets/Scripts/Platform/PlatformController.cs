@@ -4,7 +4,10 @@ public class PlatformController : MonoBehaviour
     private const string BallTag = "Ball";
 
     [Header("Auto Aim")]
-    [SerializeField] private bool AutoAim = false;
+    [SerializeField] public bool AutoAim = false;
+
+    [Header("Auto Pilot")]
+    [SerializeField] public bool AutoPilot = false;
 
     [Header("Draw Debugging Rays")]
     [SerializeField] private bool isDebugging = false;
@@ -47,6 +50,7 @@ public class PlatformController : MonoBehaviour
     private void Start()
     {
         GetForeignReferences();
+        CheckRemebrance();
     }
     private void FixedUpdate()
     {
@@ -72,6 +76,11 @@ public class PlatformController : MonoBehaviour
             sum += deltaTimeArray[i];
         }
         smoothFixedDeltaTime = sum / numFrames;
+    }
+    private void CheckRemebrance()
+    {
+        Settings.AutoAim_Status = AutoAim;
+        Settings.AutoPilot_Status = AutoPilot;
     }
     private void Debugging()
     {
@@ -119,6 +128,8 @@ public class PlatformController : MonoBehaviour
     private void MovePlatformToMouseCoordinates()
     {
         if (!Input.GetMouseButton(0)) { GoingLeft = false; GoingRight = false; return; }
+
+        if (AutoPilot) { return; }
 
         Vector2 pos = rb.position;
 

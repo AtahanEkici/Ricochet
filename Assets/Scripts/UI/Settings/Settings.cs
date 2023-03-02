@@ -1,32 +1,33 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class Settings : MonoBehaviour
 {
     public static Settings Instance { get; private set; }
     private Settings() { }
-    [Header("Rememeberance")]
+    [Header("Rememberance")]
     private const string AutoAim_PlayerPrefs = "AutoAim";
     private const string AutoPilot_PlayerPrefs = "AutoPilot";
-    private const string DesiredFPS_PlayerPrefs = "DesiredFPS";
     private const string Vsync_PlayerPrefs = "Vsync";
     private const string MasterAudio = "MasterAudio";
 
     [Header("Remembered Values")]
-    [SerializeField] private bool AutoAim_Status = false;
-    [SerializeField] private bool AutoPilot_Status = false;
-    [SerializeField] private int DesiredFPS_Status = 30;
-    [SerializeField] private bool Vsync_Status = false;
+    [SerializeField] public static bool AutoAim_Status = false;
+    [SerializeField] public static bool AutoPilot_Status = false;
     [SerializeField] private float MasterAudio_Status = 1f;
 
     [Header("Local Components")]
     [SerializeField] private Toggle AutoAimToggle;
-    [SerializeField] private Toggle AutoPilot;
-    [SerializeField] private Toggle Vsync;
-    [SerializeField] private Toggle ShowFPSToggle;
-    [SerializeField] private Slider DesiredFPS;
-    [SerializeField] private Slider AudioVolume;
+    [SerializeField] private Toggle AutoPilotToggle;
+    [SerializeField] private Toggle VsyncToggle;
+    [SerializeField] private Slider AudioVolumeSlider;
+    [SerializeField] private TextMeshProUGUI audioText;
     [SerializeField] private Button CloseButton;
+
+    [Header("Foreign Componenets")]
+    [SerializeField] private AudioListener Audio_Listener;
+    [SerializeField] private PlatformController platform;
     private void Awake()
     {
         CheckInstance();
@@ -34,11 +35,13 @@ public class Settings : MonoBehaviour
     }
     private void OnEnable()
     {
+        GetForeignReferences();
         DelegateTogglesAndSliders();
+        GetValues();
     }
     private void Start()
     {
-        GetValues();
+        
     }
     private void CheckInstance()
     {
@@ -65,25 +68,36 @@ public class Settings : MonoBehaviour
         {
             AutoAimToggle = transform.GetChild(0).GetComponent<Toggle>();
         }
-        if (AutoPilot == null)
+        if (AutoPilotToggle == null)
         {
-            AutoPilot = transform.GetChild(1).GetComponent<Toggle>();
+            AutoPilotToggle = transform.GetChild(1).GetComponent<Toggle>();
         }
-        if (Vsync == null)
+        if (VsyncToggle == null)
         {
-            Vsync = transform.GetChild(2).GetComponent<Toggle>();
+            VsyncToggle = transform.GetChild(2).GetComponent<Toggle>();
         }
-        if (DesiredFPS == null)
+        if(AudioVolumeSlider == null)
         {
-            DesiredFPS = transform.GetChild(3).GetComponent<Slider>();
-        }
-        if(AudioVolume == null)
-        {
-            AudioVolume = transform.GetChild(4).GetComponent<Slider>();
+            AudioVolumeSlider = transform.GetChild(3).GetComponent<Slider>();
         }
         if(CloseButton == null)
         {
-            CloseButton = transform.GetChild(5).GetComponent<Button>();
+            CloseButton = transform.GetChild(4).GetComponent<Button>();
+        }
+        if(audioText == null)
+        {
+            audioText = AudioVolumeSlider.GetComponentInChildren<TextMeshProUGUI>();
+        }
+        if(platform == null)
+        {
+            platform = FindFirstObjectByType<PlatformController>();
+        }
+    }
+    private void GetForeignReferences()
+    {
+        if(Audio_Listener == null)
+        {
+            Audio_Listener = Camera.main.GetComponent<AudioListener>();
         }
     }
     private void GetValues()
@@ -92,42 +106,65 @@ public class Settings : MonoBehaviour
         {
                 case 0:
                     AutoAim_Status = false;
-                    break;
+                AutoAimToggle.isOn = false;
+                platform.AutoAim = AutoAim_Status;
+                break;
+
                 case 1:
                     AutoAim_Status = true;
-                    break;
+                AutoAimToggle.isOn = true;
+                platform.AutoAim = AutoAim_Status;
+                break;
+
                 default:
                     AutoAim_Status = false;
-                    break;
+                AutoAimToggle.isOn = false;
+                platform.AutoAim = AutoAim_Status;
+                break;
         }
 
         switch (PlayerPrefs.GetInt(AutoPilot_PlayerPrefs, 0))
         {
             case 0:
                 AutoPilot_Status = false;
+                AutoPilotToggle.isOn = false;
+                platform.AutoPilot = AutoPilot_Status;
                 break;
+
             case 1:
                 AutoPilot_Status = true;
+                AutoPilotToggle.isOn = true;
+                platform.AutoPilot = AutoPilot_Status;
                 break;
+
             default:
                 AutoAim_Status = false;
+                AutoPilotToggle.isOn = false;
+                platform.AutoPilot = AutoPilot_Status;
                 break;
         }
 
         switch (PlayerPrefs.GetInt(Vsync_PlayerPrefs, 0))
         {
             case 0:
-                Vsync_Status = false;
+                QualitySettings.vSyncCount = 0;
+                VsyncToggle.isOn = false;
                 break;
+
             case 1:
-                Vsync_Status = true;
+                QualitySettings.vSyncCount = 1;
+                VsyncToggle.isOn = true;
                 break;
+
             default:
-                Vsync_Status = false;
+                QualitySettings.vSyncCount = 0;
+                VsyncToggle.isOn = false;
                 break;
         }
-        DesiredFPS_Status = PlayerPrefs.GetInt(DesiredFPS_PlayerPrefs, 30);
-        MasterAudio_Status = PlayerPrefs.GetInt(MasterAudio, 0);
+
+        MasterAudio_Status = PlayerPrefs.GetFloat(MasterAudio, 1f);
+        AudioListener.volume = MasterAudio_Status;
+        AudioVolumeSlider.value = MasterAudio_Status;
     }
     private void DelegateTogglesAndSliders()
     {
@@ -136,24 +173,19 @@ public class Settings : MonoBehaviour
             OnAutoAimChanged(AutoAimToggle);
         });
 
-        AutoPilot.onValueChanged.AddListener(delegate
+        AutoPilotToggle.onValueChanged.AddListener(delegate
         {
-            OnAutoPilotChanged(AutoPilot);
+            OnAutoPilotChanged(AutoPilotToggle);
         });
 
-        Vsync.onValueChanged.AddListener(delegate
+        VsyncToggle.onValueChanged.AddListener(delegate
         {
-            VsyncChanged(Vsync);
+            VsyncChanged(VsyncToggle);
         });
 
-        DesiredFPS.onValueChanged.AddListener(delegate
+        AudioVolumeSlider.onValueChanged.AddListener(delegate
         {
-            DesiredFPSSliderChanged(DesiredFPS);
-        });
-
-        AudioVolume.onValueChanged.AddListener(delegate
-        {
-            AudioVolumeChanged(AudioVolume);
+            AudioVolumeChanged(AudioVolumeSlider);
         });
 
         CloseButton.onClick.AddListener(delegate
@@ -173,7 +205,7 @@ public class Settings : MonoBehaviour
             AutoAim_Status = false;
             PlayerPrefs.SetInt(AutoAim_PlayerPrefs, 0);
         }
-        Debug.Log("Auto Aim Changed " + AutoAim_Status + "");
+        platform.AutoAim = AutoAim_Status;
     }
     private void OnAutoPilotChanged(Toggle toggle)
     {
@@ -187,36 +219,32 @@ public class Settings : MonoBehaviour
             AutoPilot_Status = false;
             PlayerPrefs.SetInt(AutoPilot_PlayerPrefs, 0);
         }
-        Debug.Log("Auto Pilot Changed " + AutoPilot_Status + "");
+        platform.AutoPilot = AutoPilot_Status;
     }
     private void VsyncChanged(Toggle toggle)
     {
         if (toggle.isOn)
         {
-            Vsync_Status = true;
             PlayerPrefs.SetInt(Vsync_PlayerPrefs, 1);
+            QualitySettings.vSyncCount = 1;
         }
         else
         {
-            Vsync_Status = false;
             PlayerPrefs.SetInt(Vsync_PlayerPrefs, 0);
+            QualitySettings.vSyncCount = 0;
         }
-        Debug.Log("Vsync Changed " + Vsync_Status + "");
-    }
-    private void DesiredFPSSliderChanged(Slider slider)
-    {
-        Debug.Log("Show DesiredFPS Slider Changed: "+ slider.value + "");
-
-        
     }
     private void AudioVolumeChanged(Slider slider)
     {
-        Debug.Log("Audio Volume Slider Changed  " + slider.value + "");
+        MasterAudio_Status = slider.value;
+        AudioListener.volume = MasterAudio_Status;
+
+        audioText.text = "Volume: %" + (int)(MasterAudio_Status * 100);
+
+        PlayerPrefs.SetFloat(MasterAudio, MasterAudio_Status);
     }
     private void MenuCloseButtonPressed()
     {
-        Debug.Log("Menu Close Pressed");
-
         PlayerPrefs.Save();
     }
 }
