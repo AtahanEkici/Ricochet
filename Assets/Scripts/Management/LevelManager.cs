@@ -147,7 +147,6 @@ public class LevelManager : MonoBehaviour
     }
     public static void LevelPassed()
     {
-        Debug.Log("Level Passed called"); 
         int level = int.Parse(LevelName);
         Debug.Log("Passed Level: " + level.ToString());
         level++;
