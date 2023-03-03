@@ -63,6 +63,7 @@ public class CameraShake : MonoBehaviour
         if (_instance != null && _instance != this)
         {
             Destroy(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {

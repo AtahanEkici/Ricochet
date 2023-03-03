@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private const string CanvasTag = "Canvas";
-    private const string StartMenuName = "StartMenu";
+    public const string StartMenuName = "StartMenu";
     public static GameManager Instance { get; private set; }
     private GameManager(){}
 
@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject LevelPassedPanel;
     [SerializeField] private GameObject SettingsPanel;
     [SerializeField] private GameObject ScorePanel;
+
+    [Header("Other Container")]
+    [SerializeField] private GameObject Platform;
+    [SerializeField] private GameObject WallGenerator;
     private void Awake()
     {
         CheckInstance();
@@ -32,17 +36,14 @@ public class GameManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode sceneLoad)
     {
         UISettings(scene);
-    }
-
-    private void Start()
-    {
-        
+        OtherSettings(scene);
     }
     private void CheckInstance()
     {
         if(Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -57,8 +58,19 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
     }
+    private void OtherSettings(Scene scene)
+    {
+        if(scene.name == StartMenuName) 
+        {
+            Platform.SetActive(false);
+            WallGenerator.SetActive(false);
+        }
+    }
     private void UISettings(Scene scene)
     {
+        if(scene.name == StartMenuName) { MainCanvas.SetActive(false); return; }
+        else { MainCanvas.SetActive(true); }
+
         if(scene.name == StartMenuName)
         {
             ScorePanel.SetActive(false);
@@ -138,5 +150,15 @@ public class GameManager : MonoBehaviour
     private void GetForeignReferences()
     {
         GetCanvasRefrences();
+        
+        if(Platform == null)
+        {
+            Platform = FindFirstObjectByType<PlatformController>().gameObject;
+        }
+
+        if(WallGenerator == null)
+        {
+            WallGenerator = FindFirstObjectByType<WallGenerate>().gameObject;
+        }
     }
 }

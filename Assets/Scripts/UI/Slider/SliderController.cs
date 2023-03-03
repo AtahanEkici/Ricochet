@@ -29,7 +29,7 @@ public class SliderController : MonoBehaviour
     }
     private void Start()
     {
-        SceneLoadOperations();
+        //SceneLoadOperations();
     }
     private void Update()
     {
@@ -37,7 +37,7 @@ public class SliderController : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode SceneLoad)
     {
-        SceneLoadOperations();
+        SceneLoadOperations(scene);
     }
     private void CheckInstance()
     {
@@ -67,8 +67,10 @@ public class SliderController : MonoBehaviour
             SliderPercentageText = transform.GetChild(transform.childCount-1).gameObject.GetComponent<TextMeshProUGUI>();
         }
     }
-    private void SceneLoadOperations()
+    private void SceneLoadOperations(Scene scene)
     {
+        if(scene.name == GameManager.StartMenuName) { return; }
+
         try
         {
             InitialBrickCount = LevelManager.GetBrickCount();

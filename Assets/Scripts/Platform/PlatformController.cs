@@ -1,6 +1,9 @@
 using UnityEngine;
 public class PlatformController : MonoBehaviour
 {
+    public static PlatformController Instance { get; private set; }
+    private PlatformController() { }
+
     private const string BallTag = "Ball";
 
     [Header("Auto Aim")]
@@ -43,8 +46,12 @@ public class PlatformController : MonoBehaviour
     [SerializeField] private int numFrames = 10;
     [SerializeField] private float[] deltaTimeArray;
     [SerializeField] private int index;
+
+    [Header("Ball ýnformation")]
+    [SerializeField] Transform BallTransform;
     private void Awake()
     {
+        CheckInstance();
         GetLocalReferences();
     }
     private void Start()
@@ -56,6 +63,7 @@ public class PlatformController : MonoBehaviour
     {
         CalculateSmoothDeltaTime();
         MovePlatformToMouseCoordinates();
+        AutoPilotPlatform();
     }
     private void Update()
     {
@@ -65,6 +73,36 @@ public class PlatformController : MonoBehaviour
     private void LateUpdate()
     {
         GetMousePosition();
+    }
+    private void CheckInstance()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void AutoPilotPlatform()
+    {
+        if (!AutoPilot) { return; }
+
+        BallTransform = LevelManager.ReturnABall();
+
+        if (BallTransform == null) { return; }
+
+        Vector2 BallPos = BallTransform.position;
+        Vector2 pos = rb.position;
+
+        MovementVector = Vector2.MoveTowards(new(pos.x, 0f), new(BallPos.x, 0f), Platform_Move_Speed * smoothFixedDeltaTime);
+
+        float Posx = MovementVector.x;
+
+        if (Posx < -StopOffset || Posx > StopOffset) { return; }
+        rb.MovePosition(MovementVector);
     }
     private void CalculateSmoothDeltaTime()
     {

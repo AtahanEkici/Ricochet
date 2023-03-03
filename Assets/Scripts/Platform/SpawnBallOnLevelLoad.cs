@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class SpawnBallOnLevelLoad : MonoBehaviour
 {
     [Header("Is Game Started ?")]
     [SerializeField] private bool IsStarted = false;
 
-    [SerializeField] private Collider2D PlatformCollider;
+    [Header("Platform Controller")]
+    [SerializeField] private PlatformController pc;
 
     [Header("Ball Variables")]
     [SerializeField] private GameObject Ball;
@@ -26,6 +28,8 @@ public class SpawnBallOnLevelLoad : MonoBehaviour
     }
     private void SpawnBall()
     {
+        if (SceneManager.GetActiveScene().name == GameManager.StartMenuName) { return; }
+
         Vector3 PlatformPosition = transform.position;
         Vector3 DesiredPosition = new Vector3((PlatformPosition.x), (PlatformPosition.y + transform.localScale.x), PlatformPosition.z);
         InstantiatedBall = Instantiate(Ball, DesiredPosition, Quaternion.identity);
@@ -35,15 +39,22 @@ public class SpawnBallOnLevelLoad : MonoBehaviour
     }
     private void GetResources()
     {
-        Ball = Resources.Load<GameObject>(BallPath) as GameObject;
-
-        PlatformCollider = GetComponent<Collider2D>();
+        if(Ball == null)
+        {
+            Ball = Resources.Load<GameObject>(BallPath) as GameObject;
+        }
+        if(pc == null)
+        {
+            pc = GetComponent<PlatformController>();
+        }
     }
     private void StartGame()
     {
+        if(SceneManager.GetActiveScene().name == GameManager.StartMenuName) { return; }
+
         if (IsStarted) { return; }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || pc.AutoPilot)
         {
             IsStarted = true;
             Rigidbody2D ball_rigidbody = InstantiatedBall.GetComponent<Rigidbody2D>();

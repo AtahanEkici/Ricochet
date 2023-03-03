@@ -43,6 +43,10 @@ public class LevelManager : MonoBehaviour
     {
         LevelName = scene.name;
     }
+    public static Transform ReturnABall()
+    {
+        return instance.balls[0].transform;
+    }
     public static void AddToBalls(GameObject go)
     {
         if (go.GetComponent<BallController>() != null)
