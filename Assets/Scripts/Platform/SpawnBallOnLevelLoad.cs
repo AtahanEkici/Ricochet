@@ -17,20 +17,17 @@ public class SpawnBallOnLevelLoad : MonoBehaviour
     private void Awake()
     {
         GetResources();
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    private void OnSceneLoaded(Scene scene, LoadSceneMode sceneLoad)
+    private void Start()
     {
-        SpawnBall(scene);
+        SpawnBall();
     }
     private void Update()
     {
         StartGame();
     }
-    private void SpawnBall(Scene scene)
+    private void SpawnBall()
     {
-        if (scene.name == GameManager.StartMenuName) { return; }
-
         Vector3 PlatformPosition = transform.position;
         Vector3 DesiredPosition = new Vector3((PlatformPosition.x), (PlatformPosition.y + transform.localScale.x), PlatformPosition.z);
         InstantiatedBall = Instantiate(Ball, DesiredPosition, Quaternion.identity);
@@ -63,9 +60,5 @@ public class SpawnBallOnLevelLoad : MonoBehaviour
             GameManager.ResumeGame();
             BallCollider.enabled = true;
         }
-    }
-    private void OnDestroy()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

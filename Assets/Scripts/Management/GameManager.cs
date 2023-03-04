@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject ScorePanel;
 
     [Header("Other Container")]
-    [SerializeField] private GameObject Platform;
     [SerializeField] private GameObject WallGenerator;
     private void Awake()
     {
@@ -62,7 +61,6 @@ public class GameManager : MonoBehaviour
     {
         if(scene.name == StartMenuName) 
         {
-            Platform.SetActive(false);
             WallGenerator.SetActive(false);
         }
     }
@@ -149,10 +147,6 @@ public class GameManager : MonoBehaviour
     }
     private void GetForeignReferences()
     {
-        if(Platform == null)
-        {
-            Platform = FindFirstObjectByType<PlatformController>().gameObject;
-        }
 
         if(WallGenerator == null)
         {

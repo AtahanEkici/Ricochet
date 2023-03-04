@@ -37,11 +37,15 @@ public class Settings : MonoBehaviour
     {
         GetForeignReferences();
         DelegateTogglesAndSliders();
-        GetValues();
     }
     private void Start()
     {
-        
+        if (platform == null)
+        {
+            platform = FindFirstObjectByType<PlatformController>();
+        }
+
+        GetValues();
     }
     private void CheckInstance()
     {
@@ -88,10 +92,7 @@ public class Settings : MonoBehaviour
         {
             audioText = AudioVolumeSlider.GetComponentInChildren<TextMeshProUGUI>();
         }
-        if(platform == null)
-        {
-            platform = FindFirstObjectByType<PlatformController>();
-        }
+        
     }
     private void GetForeignReferences()
     {
