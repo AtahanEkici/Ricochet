@@ -842,6 +842,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3722109834507930867, guid: fbd61fc6e4aef7446a0b2007cda3e33f, type: 3}
+      propertyPath: m_RenderingPath
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 3722109835200649482, guid: fbd61fc6e4aef7446a0b2007cda3e33f, type: 3}
       propertyPath: m_Name
       value: CameraHolder

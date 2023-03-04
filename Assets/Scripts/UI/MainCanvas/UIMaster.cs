@@ -10,9 +10,6 @@ public class UIMaster : MonoBehaviour
     [Header("Don't Destroy object On level Load ?")]
     [SerializeField] private bool DontDestroy = true;
 
-    [Header("Level Number Text")]
-    [SerializeField] private TextMeshProUGUI LevelNumberText;
-
     [Header("Local References")]
     [SerializeField] private GameObject ScorePanel;
     [SerializeField] private GameObject GameOver;
@@ -48,6 +45,7 @@ public class UIMaster : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {

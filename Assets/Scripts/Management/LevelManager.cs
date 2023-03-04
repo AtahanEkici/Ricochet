@@ -7,6 +7,10 @@ public class LevelManager : MonoBehaviour
 {
     private static LevelManager instance;
 
+    [Header("Platform Operations")]
+    [SerializeField] private const string PlatformPath = "Platform/Platform";
+    [SerializeField] private GameObject Platform;
+
     [Header("Congradulations Particle")]
     [SerializeField] private const string BsParticlePath = "Particles/randombullshitgo";
     [SerializeField] private static GameObject CongradulationsParticle;
@@ -42,6 +46,18 @@ public class LevelManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode sceneLoad)
     {
         LevelName = scene.name;
+        SpawnPlatformOnLevelLoad(scene);
+    }
+    private void SpawnPlatformOnLevelLoad(Scene scene)
+    {
+        if(scene.name == GameManager.StartMenuName) { return; }
+
+        Platform = Resources.Load<GameObject>(PlatformPath) as GameObject;
+
+        if(FindObjectsOfType<PlatformController>().Length <= 0)
+        {
+            Instantiate(Platform);
+        }
     }
     public static Transform ReturnABall()
     {

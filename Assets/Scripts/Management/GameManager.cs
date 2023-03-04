@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int RefreshRate = 60;
 
     [Header("Canvas Container")]
-    [SerializeField] private GameObject StartMenuPanel;
     [SerializeField] private GameObject MainCanvas;
     [SerializeField] private GameObject GameOverPanel;
     [SerializeField] private GameObject LevelPassedPanel;
@@ -28,6 +27,7 @@ public class GameManager : MonoBehaviour
         CheckInstance();
         SetRefreshRateAccordingToDevice();
         SceneManager.sceneLoaded += OnSceneLoaded;
+        GetCanvasRefrences();
     }
     private void OnEnable()
     {
@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
     {
         if(MainCanvas == null)
         {
-            MainCanvas = GameObject.FindGameObjectWithTag(CanvasTag);
+            MainCanvas = FindFirstObjectByType<UIMaster>().gameObject;
         }
         if(ScorePanel == null)
         {
@@ -149,8 +149,6 @@ public class GameManager : MonoBehaviour
     }
     private void GetForeignReferences()
     {
-        GetCanvasRefrences();
-        
         if(Platform == null)
         {
             Platform = FindFirstObjectByType<PlatformController>().gameObject;
