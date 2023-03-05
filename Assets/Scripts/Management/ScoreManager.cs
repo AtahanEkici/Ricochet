@@ -105,5 +105,6 @@ public class ScoreManager : MonoBehaviour
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        PlayerPrefs.Save();
     }
 }

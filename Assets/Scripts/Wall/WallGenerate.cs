@@ -1,5 +1,5 @@
 using UnityEngine;
-[DefaultExecutionOrder(-100)]
+[DefaultExecutionOrder(-200)]
 public class WallGenerate : MonoBehaviour
 {
     public static WallGenerate Instance { get; private set; }
@@ -14,12 +14,12 @@ public class WallGenerate : MonoBehaviour
     [Header("Camera Bounds")]
     [SerializeField] public Vector3 left = Vector3.zero;
     [SerializeField] public Vector3 right = Vector3.zero;
-    [SerializeField] private Vector3 top = Vector3.zero;
+    [SerializeField] public Vector3 top = Vector3.zero;
     [SerializeField] private Vector3 bottom = Vector3.zero;
 
     [Header("Walls Info")]
     [SerializeField] private GameObject[] Walls = new GameObject[4];
-    [SerializeField] private GameObject WallObject = null;
+    [SerializeField] public GameObject WallObject = null;
     [SerializeField] private float LeftDistance = 5f;
     [SerializeField] private float TopDistance = 10f;
     private void Awake()
@@ -27,7 +27,7 @@ public class WallGenerate : MonoBehaviour
         CheckInstance();
         GetLocalReferences();
     }
-    private void Start()
+    private void OnEnable()
     {
         GetForeignRefrences(); // Get Foreign References in Start //
         GetOrthographicBounds(); // Get Camera Boundaries //
