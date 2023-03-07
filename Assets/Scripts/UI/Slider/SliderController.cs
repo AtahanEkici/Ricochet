@@ -27,10 +27,6 @@ public class SliderController : MonoBehaviour
         GetLocalReferences();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    private void Start()
-    {
-        //SceneLoadOperations();
-    }
     private void Update()
     {
         LerpSlider();
@@ -69,7 +65,7 @@ public class SliderController : MonoBehaviour
     }
     private void SceneLoadOperations(Scene scene)
     {
-        if(scene.name == GameManager.StartMenuName) { return; }
+        if(scene.name == GameManager.StartMenuName) { Debug.Log("Dont Update Slider on Start Menu"); return; }
 
         try
         {
@@ -78,26 +74,28 @@ public class SliderController : MonoBehaviour
         }
         catch(Exception e)
         {
-            Debug.Log(e.StackTrace +" : "+ e.Message);
+            Debug.LogException(e);
         } 
     }
     private void LerpSlider()
     {
         if (slider.value == new_value) { return; }
         slider.value = Mathf.Lerp(slider.value, new_value, Time.unscaledDeltaTime * SliderSpeed);
+
+        if(slider.value >= 99f) { slider.value = 100; }
+
         SliderPercentageText.text = "%" + (int)slider.value;
     }
     public static void UpdateSlider()
     {        
         try
         {
-            float value = (100 * LevelManager.GetBrickCount()) / InitialBrickCount;
-            new_value = value;
+            new_value = (100 * LevelManager.GetBrickCount()) / InitialBrickCount;
         }
         catch(Exception e)
         {
             new_value = 0f;
-            Debug.LogError(e.StackTrace);
+            Debug.LogException(e);
         }
     }
     private void OnDestroy()

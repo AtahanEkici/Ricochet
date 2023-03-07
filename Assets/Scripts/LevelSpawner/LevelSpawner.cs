@@ -16,7 +16,7 @@ public class LevelSpawner : MonoBehaviour
     [Header("Wall Info")]
     [SerializeField] private WallGenerate wg;
     [SerializeField] private Vector3 WallScale = Vector3.zero;
-    [SerializeField] private Vector3 Offset = new Vector3(0.1f,0.1f,0);
+    [SerializeField] private Vector3 X_Offset = new Vector3(0.5f,0.1f,0);
 
     [Header("Spawn Location")]
     [SerializeField] private Vector3 SpawnLocation = Vector3.zero;
@@ -36,13 +36,12 @@ public class LevelSpawner : MonoBehaviour
         GetForeignReferences();
         SpawnObjects();
     }
-    private void Start()
-    {
-        
-    }
     private void SpawnObjects()
     {
         int Rand = Random.Range(0, (Bricks.Count - 1));
+
+        GameObject Master = new GameObject("Master");
+        Master.transform.position = Vector3.zero;
 
         GameObject RandomObject = Bricks[Rand];
 
@@ -53,20 +52,19 @@ public class LevelSpawner : MonoBehaviour
 
         SpawnLocation = new Vector3((TopLeft.x + (ObjectScale.x + WallScale.x)), (TopLeft.y - ObjectScale.x),0f);
 
-        CurrentSpawnPoint = SpawnLocation + Offset;
+        CurrentSpawnPoint = SpawnLocation + X_Offset;
 
-        float DesiredOffset = WallRight.x - (ObjectScale.x + WallScale.x / 2);
-
-        Debug.Log(DesiredOffset);
+        float DesiredOffset = WallRight.x - (ObjectScale.x + (WallScale.x / 2) + X_Offset.x);
 
         while (CurrentSpawnPoint.x < DesiredOffset)
         {
             if(Percentage >= Random.Range(0,100))
             {
-                Instantiate(RandomObject, CurrentSpawnPoint, RandomObject.transform.rotation);
+                GameObject temp = Instantiate(RandomObject, CurrentSpawnPoint, RandomObject.transform.rotation);
+                temp.transform.SetParent(Master.transform);
             }
 
-            CurrentSpawnPoint = new Vector3(CurrentSpawnPoint.x + (ObjectScale.x * 2) + Offset.x, CurrentSpawnPoint.y, 0);
+            CurrentSpawnPoint = new Vector3(CurrentSpawnPoint.x + (ObjectScale.x * 2) + X_Offset.x, CurrentSpawnPoint.y, 0);
         }
     }
     private void GetReferences()

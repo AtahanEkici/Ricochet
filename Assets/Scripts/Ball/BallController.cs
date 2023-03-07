@@ -25,6 +25,9 @@ public class BallController : MonoBehaviour
     [SerializeField] private int LoopThreshold = 2;
     [SerializeField] private int LoopCounter = 0;
 
+    [Header("Platform")]
+    [SerializeField] private PlatformController Platform;
+
     private void Awake()
     {
         GetLocalReferences();
@@ -69,7 +72,7 @@ public class BallController : MonoBehaviour
         }
         catch(Exception e)
         {
-            Debug.Log(e.StackTrace + " -BallController- " + e.Message);
+            Debug.LogException(e);
         }
     }
     public float GetMinSpeed()
@@ -82,10 +85,8 @@ public class BallController : MonoBehaviour
     }
     private void SendBallBackToPlatform()
     {
-        GameObject Platform = FindFirstObjectByType<PlatformController>().gameObject;
-        Vector2 PlatformVector = Platform.transform.position;
-        Vector2 ToPlatform = PlatformVector - (Vector2)transform.position;
-        Debug.DrawRay(transform.position, ToPlatform, Color.cyan,2f);
+        Vector2 PlatformPosition = Platform.transform.position;
+        Vector2 ToPlatform = PlatformPosition - (Vector2)transform.position;
         Debug.Log("Sending Ball To Platform");
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0;
@@ -99,7 +100,10 @@ public class BallController : MonoBehaviour
     }
     private void GetForeignReferences()
     {
-
+        if(Platform == null)
+        {
+            Platform = FindFirstObjectByType<PlatformController>();
+        }
     }
     public int GetDamageNumber()
     {

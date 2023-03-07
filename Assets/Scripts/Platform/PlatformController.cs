@@ -41,12 +41,6 @@ public class PlatformController : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private WallGenerate WallGenerator;
 
-    [Header("SmoothFixedDeltaTime")]
-    [SerializeField] private float smoothFixedDeltaTime = 0f;
-    [SerializeField] private int numFrames = 10;
-    [SerializeField] private float[] deltaTimeArray;
-    [SerializeField] private int index;
-
     [Header("Ball ýnformation")]
     [SerializeField] Transform BallTransform;
     private void Awake()
@@ -61,7 +55,6 @@ public class PlatformController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        CalculateSmoothDeltaTime();
         MovePlatformToMouseCoordinates();
         AutoPilotPlatform();
     }
@@ -96,23 +89,12 @@ public class PlatformController : MonoBehaviour
         Vector2 BallPos = BallTransform.position;
         Vector2 pos = rb.position;
 
-        MovementVector = Vector2.MoveTowards(new(pos.x, 0f), new(BallPos.x, 0f), Platform_Move_Speed * smoothFixedDeltaTime);
+        MovementVector = Vector2.MoveTowards(new(pos.x, 0f), new(BallPos.x, 0f), Time.fixedDeltaTime * Platform_Move_Speed);
 
         float Posx = MovementVector.x;
 
         if (Posx < -StopOffset || Posx > StopOffset) { return; }
         rb.MovePosition(MovementVector);
-    }
-    private void CalculateSmoothDeltaTime()
-    {
-        float sum = 0f;
-        deltaTimeArray[index] = Time.fixedDeltaTime;
-        index = (index + 1) % numFrames;
-        for (int i = 0; i < numFrames; i++)
-        {
-            sum += deltaTimeArray[i];
-        }
-        smoothFixedDeltaTime = sum / numFrames;
     }
     private void CheckRemebrance()
     {
@@ -136,9 +118,6 @@ public class PlatformController : MonoBehaviour
     }
     private void GetLocalReferences()
     {
-        deltaTimeArray = new float[numFrames];
-        index = 0;
-
         if (rb == null)
         {
             rb = GetComponent<Rigidbody2D>();
@@ -168,11 +147,11 @@ public class PlatformController : MonoBehaviour
 
         if (AutoPilot) { return; }
 
-        Vector2 pos = rb.position;
+        Vector2 RigidbodyPos = rb.position;
 
-        if (pos != MousePosition)
+        if (RigidbodyPos != MousePosition)
         {
-            MovementVector = Vector2.MoveTowards(new(pos.x, 0f), new(MousePosition.x, 0f), Platform_Move_Speed * smoothFixedDeltaTime);
+            MovementVector = Vector2.MoveTowards(new(RigidbodyPos.x, 0f), new(MousePosition.x, 0f), Platform_Move_Speed * Time.fixedDeltaTime);
 
             float Posx = MovementVector.x;
             float MouseX = MousePosition.x;

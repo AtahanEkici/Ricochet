@@ -7,6 +7,9 @@ public class LevelManager : MonoBehaviour
 {
     private static LevelManager instance;
 
+    public const string CurrentLevel = "CurrentLevel";
+    public const string MaxReachedLevel = "MaxReachedLevel";
+
     [Header("Platform Operations")]
     [SerializeField] private const string PlatformPath = "Platform/Platform";
     [SerializeField] private GameObject Platform;
@@ -45,12 +48,13 @@ public class LevelManager : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode sceneLoad)
     {
+        CheckRememberedValues(scene);
         LevelName = scene.name;
         SpawnPlatformOnLevelLoad(scene);
     }
     private void SpawnPlatformOnLevelLoad(Scene scene)
     {
-        if(scene.name == GameManager.StartMenuName) { return; }
+        if(scene.name == GameManager.StartMenuName) { Debug.Log("Dont spawn platform on start menu"); return; }
 
         Platform = Resources.Load<GameObject>(PlatformPath) as GameObject;
 
@@ -58,6 +62,30 @@ public class LevelManager : MonoBehaviour
         {
             Instantiate(Platform);
         }
+    }
+    private static void CheckRememberedValues(Scene scene) 
+    {
+        string scene_name = scene.name.ToLower();
+
+        if (scene_name.Contains("menu") || scene_name.Contains("test")) { Debug.Log("Dont Update Remembered Values On Menu Scenes");return; }
+
+        try
+        {
+            PlayerPrefs.SetString(CurrentLevel, scene.name);
+
+            int levelnumber = int.Parse(scene.name);
+            int RememberedLevelNumber = PlayerPrefs.GetInt(MaxReachedLevel, 1);
+
+            if (levelnumber > RememberedLevelNumber)
+            {
+                PlayerPrefs.SetInt(MaxReachedLevel, levelnumber);
+            }
+        }
+        catch(Exception e)
+        {
+            Debug.LogException(e);
+        }
+        
     }
     public static Transform ReturnABall()
     {

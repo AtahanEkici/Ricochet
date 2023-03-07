@@ -296,6 +296,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform
       objectReference: {fileID: 0}
+    - target: {fileID: 1173635022774669148, guid: 164f632f807f8044f87dd2232e178cd0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 164f632f807f8044f87dd2232e178cd0, type: 3}
 --- !u!1001 &846163947
@@ -736,6 +740,10 @@ PrefabInstance:
     - target: {fileID: 3722109835200649482, guid: fbd61fc6e4aef7446a0b2007cda3e33f, type: 3}
       propertyPath: m_Name
       value: CameraHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 3722109835200649482, guid: fbd61fc6e4aef7446a0b2007cda3e33f, type: 3}
+      propertyPath: m_TagString
+      value: GameController
       objectReference: {fileID: 0}
     - target: {fileID: 3722109835200649483, guid: fbd61fc6e4aef7446a0b2007cda3e33f, type: 3}
       propertyPath: m_RootOrder
