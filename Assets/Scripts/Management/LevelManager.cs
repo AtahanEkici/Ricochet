@@ -217,7 +217,9 @@ public class LevelManager : MonoBehaviour
             for (int i = 0; i < balls.Length; i++)
             {
                 Color ballColor = balls[i].gameObject.GetComponent<Renderer>().material.color;
-                Instantiate(CongradulationsParticle,balls[i].transform.position,Quaternion.identity).GetComponent<ParticleSystem>().GetComponent<Renderer>().material.color = ballColor;
+                GameObject Particle = Instantiate(CongradulationsParticle, balls[i].transform.position, balls[i].transform.rotation);
+                Particle.GetComponent<ParticleSystem>().GetComponent<Renderer>().material.color = ballColor;
+                Particle.transform.localScale = balls[i].transform.localScale;
             } 
         }
         catch(Exception e)
