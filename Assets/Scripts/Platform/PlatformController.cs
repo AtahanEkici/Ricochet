@@ -89,12 +89,12 @@ public class PlatformController : MonoBehaviour
         Vector2 BallPos = BallTransform.position;
         Vector2 pos = rb.position;
 
-        MovementVector = Vector2.MoveTowards(new(pos.x, 0f), new(BallPos.x, 0f), Time.fixedDeltaTime * Platform_Move_Speed);
+        MovementVector = Vector2.MoveTowards(new(pos.x, 0f), new(BallPos.x, 0f),Time.fixedDeltaTime);
 
         float Posx = MovementVector.x;
 
         if (Posx < -StopOffset || Posx > StopOffset) { return; }
-        rb.MovePosition(MovementVector);
+        rb.MovePosition(MovementVector.normalized * Platform_Move_Speed);
     }
     private void CheckRemebrance()
     {

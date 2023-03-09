@@ -2,43 +2,50 @@ using UnityEngine;
 
 public class ButtonResizer : MonoBehaviour
 {
-    [SerializeField] private float animationSpeed = 200f;
-    [SerializeField] private float maxScale = 2.5f;
-    [SerializeField] private float minScale = 1.3f;
-    private bool expand = true;
-    private Transform transformCache;
-    private static readonly Vector3 rate = new (0.01f, 0.01f, 0.01f);
+    private bool Expend = true;
+
+    [SerializeField] private float Animation_Speed = 200f;
+
+    [SerializeField] private Vector3 scale;
+    [SerializeField] private Vector3 rate = new Vector3(0.01f, 0.01f, 0.01f);
+
+    [SerializeField] private float MAX_Scale = 2.5f;
+    [SerializeField] private float MIN_Scale = 1.0f;
 
     private void Start()
     {
-        transformCache = transform;
+        scale = gameObject.transform.localScale;
     }
-
     private void Update()
     {
         ScaleAnimation(Time.unscaledDeltaTime);
     }
-
-    private void ScaleAnimation(float deltaTime)
+    private void ScaleAnimation(float a)
     {
-        float x = transformCache.localScale.x;
+        Vector3 LocalScale = gameObject.transform.localScale;
 
-        if (x > maxScale)
+        if (LocalScale.x > MAX_Scale)
         {
-            expand = false;
+            gameObject.transform.localScale = new(MAX_Scale, MAX_Scale, MAX_Scale);
+            Expend = false;
         }
-        else if (x <= minScale)
+        else if (LocalScale.x < MIN_Scale)
         {
-            expand = true;
+            gameObject.transform.localScale = new(MIN_Scale, MIN_Scale, MIN_Scale);
+            Expend = true;
         }
 
-        if (expand)
+        if (Expend == true)
         {
-            transformCache.localScale += deltaTime * animationSpeed * rate;
+            gameObject.transform.localScale += a * Animation_Speed * rate;
+        }
+        else if (Expend == false)
+        {
+            gameObject.transform.localScale -= a * Animation_Speed * rate;
         }
         else
         {
-            transformCache.localScale -= deltaTime * animationSpeed * rate;
+            gameObject.transform.localScale = scale;
         }
     }
 }
