@@ -84,8 +84,11 @@ public class LevelManager : MonoBehaviour
         catch(Exception e)
         {
             Debug.LogException(e);
-        }
-        
+        }   
+    }
+    public static int GetMaxReachedLevel()
+    {
+        return PlayerPrefs.GetInt(MaxReachedLevel, 1);
     }
     public static Transform ReturnABall()
     {

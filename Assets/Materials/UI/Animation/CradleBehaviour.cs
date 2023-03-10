@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 public class CradleBehaviour : MonoBehaviour
 {
     [Header("Direction")]
@@ -22,11 +23,14 @@ public class CradleBehaviour : MonoBehaviour
     [Header("Destinations")]
     [SerializeField] private Quaternion Left = Quaternion.Euler(0,0,15);
     [SerializeField] private Quaternion Right = Quaternion.Euler(0, 0,-15);
+
+    [Header("Does Button have a sound")]
+    [SerializeField] private bool HaveSound = false;
+    [SerializeField] private AudioSource Audio_Source;
+    [SerializeField] private Button thisButton;
     private void Awake()
     {
-        trans = GetComponent<RectTransform>();
-        Right = Quaternion.Inverse(Left);
-        isLeft = Random.value > Probability;
+        GetReferences();
     }
     private void Update()
     {
@@ -53,6 +57,41 @@ public class CradleBehaviour : MonoBehaviour
             {
                 isLeft = false;
             }
+        }
+    }
+    private void GetReferences()
+    {
+        trans = GetComponent<RectTransform>();
+        Right = Quaternion.Inverse(Left);
+        isLeft = Random.value > Probability;
+
+        if(HaveSound && Audio_Source == null)
+        {
+            Audio_Source = GetComponent<AudioSource>();
+        }
+
+        if(HaveSound && thisButton == null)
+        {
+            thisButton = GetComponent<Button>();
+            DelegateButton();
+        }
+    }
+    private void ButtonClick()
+    {
+        if(Audio_Source.clip == null)
+        {
+            Audio_Source.PlayOneShot(AudioManager.ButtonPush);
+        }
+        else
+        {
+            Audio_Source.Play();
+        }  
+    }
+    private void DelegateButton()
+    {
+        if(thisButton != null)
+        {
+            thisButton.onClick.AddListener(ButtonClick);
         }
     }
 }
