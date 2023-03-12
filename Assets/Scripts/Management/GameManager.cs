@@ -3,8 +3,9 @@ using UnityEngine.SceneManagement;
 [DefaultExecutionOrder(-1100)]
 public class GameManager : MonoBehaviour
 {
+    private static GameManager instance;
     public const string StartMenuName = "StartMenu";
-    public static GameManager Instance { get; private set; }
+    public static GameManager Instance { get { return instance; } }
     private GameManager(){}
 
     [Header("Screen Operations")]
@@ -37,9 +38,9 @@ public class GameManager : MonoBehaviour
     }
     private void CheckInstance()
     {
-        if(Instance == null)
+        if(instance == null)
         {
-            Instance = this;
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
