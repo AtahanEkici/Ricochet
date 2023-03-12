@@ -9,7 +9,6 @@ public class BrickController : MonoBehaviour
 
     [Header("Foreign Components")]
     [SerializeField] private GameObject DestroyParticle;
-    [SerializeField] private LevelManager level_manager;
 
     [Header("Local Components")]
     [SerializeField] private Rigidbody2D rb;

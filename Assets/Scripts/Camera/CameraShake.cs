@@ -35,15 +35,14 @@ public class CameraShake : MonoBehaviour
     private void Update()
     {
         float shake = Mathf.Pow(trauma, traumaExponent);
-        transform.localPosition = new Vector3(
+        
+        transform.SetLocalPositionAndRotation(new Vector3(
         maximumTranslationShake.x * (Mathf.PerlinNoise(seed, Time.unscaledTime * frequency) * 2 - 1),
         maximumTranslationShake.y * (Mathf.PerlinNoise(seed + 1, Time.unscaledTime * frequency) * 2 - 1),
-        maximumTranslationShake.z * (Mathf.PerlinNoise(seed + 2, Time.unscaledTime * frequency) * 2 - 1)) * shake;
-
-        transform.localRotation = Quaternion.Euler(new Vector3(
+        maximumTranslationShake.z * (Mathf.PerlinNoise(seed + 2, Time.unscaledTime * frequency) * 2 - 1)) * shake, Quaternion.Euler(new Vector3(
         maximumAngularShake.x * (Mathf.PerlinNoise(seed + 3, Time.unscaledTime * frequency) * 2 - 1),
         maximumAngularShake.y * (Mathf.PerlinNoise(seed + 4, Time.unscaledTime * frequency) * 2 - 1),
-        maximumAngularShake.z * (Mathf.PerlinNoise(seed + 5, Time.unscaledTime * frequency) * 2 - 1)) * shake);
+        maximumAngularShake.z * (Mathf.PerlinNoise(seed + 5, Time.unscaledTime * frequency) * 2 - 1)) * shake));
         trauma = Mathf.Clamp01(trauma - recoverySpeed * Time.unscaledDeltaTime);
     }
     public void InduceStress(float frequency,float ang,float stress)

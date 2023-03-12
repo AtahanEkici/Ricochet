@@ -387,7 +387,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5601532187731786357}
-  - component: {fileID: 5601532187731786358}
   m_Layer: 0
   m_Name: CalculatedWall_5.5 Prefab
   m_TagString: Wall
@@ -414,32 +413,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5601532187731786358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5601532187731786356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 204301c468b4d4140997a1699c15d3ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DebugMode: 0
-  cam: {fileID: 0}
-  left: {x: -12.356454, y: 0, z: 0}
-  right: {x: 12.356454, y: 0, z: 0}
-  top: {x: 0, y: 5.5, z: 0}
-  bottom: {x: 0, y: -5.5, z: 0}
-  Walls:
-  - {fileID: 5601532188080385836}
-  - {fileID: 1629939149482150125}
-  - {fileID: 7468684654826223214}
-  - {fileID: 3859096245690050338}
-  WallObject: {fileID: 5601532188080385836}
-  LeftDistance: 5.5
-  TopDistance: 12.356454
 --- !u!1 &5601532188080385836
 GameObject:
   m_ObjectHideFlags: 0

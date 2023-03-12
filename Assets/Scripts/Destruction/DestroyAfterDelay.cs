@@ -18,9 +18,4 @@ public class DestroyAfterDelay : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    private void OnDestroy()
-    {
-        Debug.Log("GameObject destroyed by: "+this.name+"");
-    }
 }

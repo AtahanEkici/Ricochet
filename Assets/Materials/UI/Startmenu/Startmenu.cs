@@ -48,7 +48,7 @@ public class Startmenu : MonoBehaviour
 
         int MaxReachedlevel = LevelManager.GetMaxReachedLevel();
 
-        Debug.Log(MaxReachedlevel);
+        Debug.Log("Max Reached Level: " +MaxReachedlevel);
 
         for(int i=0;i<LevelButtons.Length;i++)
         {

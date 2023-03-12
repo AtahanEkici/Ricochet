@@ -1,10 +1,8 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 [DefaultExecutionOrder(-1100)]
 public class GameManager : MonoBehaviour
 {
-    private const string CanvasTag = "Canvas";
     public const string StartMenuName = "StartMenu";
     public static GameManager Instance { get; private set; }
     private GameManager(){}
@@ -62,6 +60,10 @@ public class GameManager : MonoBehaviour
         if(scene.name == StartMenuName) 
         {
             WallGenerator.SetActive(false);
+        }
+        else
+        {
+            WallGenerator.SetActive(true);
         }
     }
     private void UISettings(Scene scene)
