@@ -89,12 +89,12 @@ public class PlatformController : MonoBehaviour
         Vector2 BallPos = BallTransform.position;
         Vector2 pos = rb.position;
 
-        MovementVector = Vector2.MoveTowards(new(pos.x, 0f), new(BallPos.x, 0f),Time.fixedDeltaTime);
+        MovementVector = Vector2.MoveTowards(new(pos.x, 0f), new(BallPos.x, 0f),Time.fixedDeltaTime * Platform_Move_Speed);
 
         float Posx = MovementVector.x;
 
         if (Posx < -StopOffset || Posx > StopOffset) { return; }
-        rb.MovePosition(MovementVector.normalized * Platform_Move_Speed);
+        rb.MovePosition(MovementVector);
     }
     private void CheckRemebrance()
     {
@@ -202,7 +202,7 @@ public class PlatformController : MonoBehaviour
             if(CollidedObject.CompareTag(BallTag))
             {
                 Rigidbody2D ballsRigidbody = CollidedObject.GetComponent<Rigidbody2D>();
-                float BallsMass = ballsRigidbody.mass;
+                float BallsMass = ballsRigidbody.mass * 2;
 
                 if (GoingLeft && GoingRight == false) // Going Left //
                 {

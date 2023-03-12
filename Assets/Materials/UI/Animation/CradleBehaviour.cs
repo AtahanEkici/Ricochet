@@ -23,11 +23,6 @@ public class CradleBehaviour : MonoBehaviour
     [Header("Destinations")]
     [SerializeField] private Quaternion Left = Quaternion.Euler(0,0,15);
     [SerializeField] private Quaternion Right = Quaternion.Euler(0, 0,-15);
-
-    [Header("Does Button have a sound")]
-    [SerializeField] private bool HaveSound = false;
-    [SerializeField] private AudioSource Audio_Source;
-    [SerializeField] private Button thisButton;
     private void Awake()
     {
         GetReferences();
@@ -40,7 +35,7 @@ public class CradleBehaviour : MonoBehaviour
     {
        if(!isLeft)
        {
-            trans.rotation = Quaternion.RotateTowards(trans.rotation, Right, Time.smoothDeltaTime * RotationSpeed);
+            trans.rotation = Quaternion.RotateTowards(trans.rotation, Right, Time.unscaledDeltaTime * RotationSpeed);
             RightAngle = Quaternion.Angle(trans.rotation, Right);
 
             if (RightAngle <= MaxAngle)
@@ -50,7 +45,7 @@ public class CradleBehaviour : MonoBehaviour
         }
        else
        {
-            trans.rotation = Quaternion.RotateTowards(trans.rotation, Left, Time.smoothDeltaTime * RotationSpeed);
+            trans.rotation = Quaternion.RotateTowards(trans.rotation, Left, Time.unscaledDeltaTime * RotationSpeed);
             LeftAngle = Quaternion.Angle(trans.rotation, Left);
 
             if (LeftAngle <= MaxAngle)
@@ -64,34 +59,5 @@ public class CradleBehaviour : MonoBehaviour
         trans = GetComponent<RectTransform>();
         Right = Quaternion.Inverse(Left);
         isLeft = Random.value > Probability;
-
-        if(HaveSound && Audio_Source == null)
-        {
-            Audio_Source = GetComponent<AudioSource>();
-        }
-
-        if(HaveSound && thisButton == null)
-        {
-            thisButton = GetComponent<Button>();
-            DelegateButton();
-        }
-    }
-    private void ButtonClick()
-    {
-        if(Audio_Source.clip == null)
-        {
-            Audio_Source.PlayOneShot(AudioManager.ButtonPush);
-        }
-        else
-        {
-            Audio_Source.Play();
-        }  
-    }
-    private void DelegateButton()
-    {
-        if(thisButton != null)
-        {
-            thisButton.onClick.AddListener(ButtonClick);
-        }
     }
 }

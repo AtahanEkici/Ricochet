@@ -379,6 +379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1850083431}
   - component: {fileID: 1850083432}
+  - component: {fileID: 1850083433}
   m_Layer: 3
   m_Name: Post Processing
   m_TagString: GameController
@@ -418,6 +419,19 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   priority: 0
+--- !u!114 &1850083433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850083430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b197fd521e07dda4caf7c7d812e179a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Post_Processing: {fileID: 0}
 --- !u!1 &1988374259
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,6 +470,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   health: 1
   total_point: 1
+  ShakeCoefficient: {x: 50, y: 100, z: 1}
 --- !u!61 &1988374261
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -676,6 +691,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   health: 1
   total_point: 1
+  ShakeCoefficient: {x: 50, y: 100, z: 1}
 --- !u!61 &2038941649
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -852,6 +868,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1428773128946351311, guid: 4748ff93fcb11a14895c1294134de853, type: 3}
+      propertyPath: ShakeCoefficient.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1428773128946351311, guid: 4748ff93fcb11a14895c1294134de853, type: 3}
+      propertyPath: ShakeCoefficient.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1428773128946351311, guid: 4748ff93fcb11a14895c1294134de853, type: 3}
+      propertyPath: ShakeCoefficient.z
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1428773128946351411, guid: 4748ff93fcb11a14895c1294134de853, type: 3}
       propertyPath: m_RootOrder
       value: 7

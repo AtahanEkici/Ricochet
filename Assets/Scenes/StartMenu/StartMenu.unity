@@ -1177,7 +1177,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &799400335
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1252,6 +1252,7 @@ GameObject:
   - component: {fileID: 823808564}
   - component: {fileID: 823808563}
   - component: {fileID: 823808567}
+  - component: {fileID: 823808568}
   m_Layer: 5
   m_Name: GenerativeLevel
   m_TagString: Untagged
@@ -1301,9 +1302,6 @@ MonoBehaviour:
   LeftAngle: 0
   Left: {x: 0, y: 0, z: 0.1305262, w: 0.9914449}
   Right: {x: 0, y: 0, z: -0.1305262, w: 0.9914449}
-  HaveSound: 1
-  Audio_Source: {fileID: 0}
-  thisButton: {fileID: 0}
 --- !u!114 &823808564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1482,6 +1480,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &823808568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823808561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b3fa970ac791f4592c653ab958059a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio_Clip: {fileID: 0}
+  button: {fileID: 0}
 --- !u!1 &826433707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1674,7 +1686,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1173635022774669148, guid: 164f632f807f8044f87dd2232e178cd0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 164f632f807f8044f87dd2232e178cd0, type: 3}
@@ -1687,7 +1699,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3813326828790249726, guid: aa21b69907adfbb49a04fa85425c9f27, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3813326828931946643, guid: aa21b69907adfbb49a04fa85425c9f27, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1699,7 +1711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3813326830388927634, guid: aa21b69907adfbb49a04fa85425c9f27, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3813326830388927638, guid: aa21b69907adfbb49a04fa85425c9f27, type: 3}
       propertyPath: m_Pivot.x
@@ -1787,11 +1799,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3813326830483294464, guid: aa21b69907adfbb49a04fa85425c9f27, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3813326830742687472, guid: aa21b69907adfbb49a04fa85425c9f27, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa21b69907adfbb49a04fa85425c9f27, type: 3}
@@ -3699,6 +3711,7 @@ GameObject:
   - component: {fileID: 1874641267}
   - component: {fileID: 1874641270}
   - component: {fileID: 1874641271}
+  - component: {fileID: 1874641272}
   m_Layer: 5
   m_Name: LevelsButton
   m_TagString: Untagged
@@ -3842,9 +3855,6 @@ MonoBehaviour:
   LeftAngle: 0
   Left: {x: 0, y: 0, z: 0.1305262, w: 0.9914449}
   Right: {x: 0, y: 0, z: -0.1305262, w: 0.9914449}
-  HaveSound: 1
-  Audio_Source: {fileID: 0}
-  thisButton: {fileID: 0}
 --- !u!82 &1874641271
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3941,6 +3951,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1874641272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874641265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b3fa970ac791f4592c653ab958059a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio_Clip: {fileID: 0}
+  button: {fileID: 0}
 --- !u!1001 &1980857146
 PrefabInstance:
   m_ObjectHideFlags: 0

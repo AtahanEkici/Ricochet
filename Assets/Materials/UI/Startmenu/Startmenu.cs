@@ -54,16 +54,15 @@ public class Startmenu : MonoBehaviour
         {
             Button button = LevelButtons[i];
 
-            button.gameObject.AddComponent<CradleBehaviour>();
-            button.onClick.AddListener(delegate { Debug.Log("Pressed: " + button.name + ""); LevelManager.LoadLevel(button.name); });
-
             if (MaxReachedlevel < int.Parse(button.name))
             {
-                //button.interactable = false;
+                button.interactable = false;
             }
             else
             {
-                
+                button.onClick.AddListener(delegate { Debug.Log("Pressed: " + button.name + ""); LevelManager.LoadLevel(button.name); });
+                button.gameObject.AddComponent<CradleBehaviour>();
+                button.gameObject.AddComponent<AudioSpawner>();
             }
         }
     }

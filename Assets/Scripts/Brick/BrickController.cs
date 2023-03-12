@@ -20,6 +20,9 @@ public class BrickController : MonoBehaviour
     [Header("Point Info")]
     [SerializeField] private const int point = 1;
     [SerializeField] private int total_point = 1;
+
+    [Header("CameraShake")]
+    [SerializeField] private static Vector3 ShakeCoefficient = new(2.5f, 90, 0.3f);
     private void Awake()
     {
         GetLocalReferences();
@@ -30,7 +33,6 @@ public class BrickController : MonoBehaviour
     }
     private void Start()
     {
-        //AddBricksToList();
         GetForeignReferences();
     }
     private void AddBricksToList()
@@ -55,6 +57,7 @@ public class BrickController : MonoBehaviour
         SetColorToParticle(Go);
         SliderController.UpdateSlider();
         ScoreManager.UpdateScore(total_point);
+        CameraShake.Instance.InduceStress(ShakeCoefficient);
     }
     private void GetLocalReferences()
     {

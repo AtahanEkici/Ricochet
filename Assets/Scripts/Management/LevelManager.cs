@@ -54,7 +54,7 @@ public class LevelManager : MonoBehaviour
     }
     private void SpawnPlatformOnLevelLoad(Scene scene)
     {
-        if(scene.name == GameManager.StartMenuName) { Debug.Log("Dont spawn platform on start menu"); return; }
+        if(scene.name.ToLower().Contains("menu")) { Debug.Log("Dont spawn platform on menu scenes"); return; }
 
         Platform = Resources.Load<GameObject>(PlatformPath) as GameObject;
 
@@ -67,7 +67,7 @@ public class LevelManager : MonoBehaviour
     {
         string scene_name = scene.name.ToLower();
 
-        if (scene_name.Contains("menu") || scene_name.Contains("test")) { Debug.Log("Dont Update Remembered Values On Menu Scenes");return; }
+        if (scene_name.Contains("menu") || scene_name.Contains("test")) { Debug.Log("Dont Update Remembered Values On Menu & Scenes");return; }
 
         try
         {
@@ -198,6 +198,10 @@ public class LevelManager : MonoBehaviour
     }
     public static void LevelPassed()
     {
+        string sceneName = SceneManager.GetActiveScene().name.ToLower();
+
+        if (sceneName.Contains("test") || sceneName.Contains("menu")) { Debug.Log("Can not Pass Level"); return; }
+
         int level = int.Parse(LevelName);
         Debug.Log("Passed Level: " + level.ToString());
         level++;
