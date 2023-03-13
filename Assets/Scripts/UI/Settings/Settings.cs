@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 public class Settings : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Settings : MonoBehaviour
     private const string AutoPilot_PlayerPrefs = "AutoPilot";
     private const string Vsync_PlayerPrefs = "Vsync";
     private const string MasterAudio = "MasterAudio";
+    private const string PostProcessing = "PostProcessing";
 
     [Header("Remembered Values")]
     [SerializeField] public static bool AutoAim_Status = false;
@@ -22,6 +24,7 @@ public class Settings : MonoBehaviour
     [SerializeField] private Toggle AutoAimToggle;
     [SerializeField] private Toggle AutoPilotToggle;
     [SerializeField] private Toggle VsyncToggle;
+    [SerializeField] private Toggle PostProcessingToggle;
     [SerializeField] private Slider AudioVolumeSlider;
     [SerializeField] private TextMeshProUGUI audioText;
     [SerializeField] private Button CloseButton;
@@ -30,6 +33,7 @@ public class Settings : MonoBehaviour
     [Header("Foreign Componenets")]
     [SerializeField] private AudioListener Audio_Listener;
     [SerializeField] private PlatformController platform;
+    [SerializeField] private PostProcessVolume PostProcess_Manager;
     private void Awake()
     {
         CheckInstance();
@@ -93,6 +97,10 @@ public class Settings : MonoBehaviour
         {
             audioSource = GetComponent<AudioSource>();
         }
+        if(PostProcessingToggle == null)
+        {
+            PostProcessingToggle = transform.GetChild(5).GetComponent<Toggle>();
+        }
     }
     private void GetForeignReferences()
     {
@@ -108,28 +116,34 @@ public class Settings : MonoBehaviour
             platform = FindFirstObjectByType<PlatformController>();
         }
 
-        switch (PlayerPrefs.GetInt(AutoAim_PlayerPrefs, 0))
+        if (PostProcess_Manager == null)
+        {
+            PostProcess_Manager = GameObject.FindGameObjectWithTag(PostProcessing).GetComponent<PostProcessVolume>();
+
+        }
+
+        switch (PlayerPrefs.GetInt(AutoAim_PlayerPrefs, 0))// Auto Aim Player Prefs //
         {
                 case 0:
-                    AutoAim_Status = false;
+                AutoAim_Status = false;
                 AutoAimToggle.isOn = false;
                 platform.AutoAim = AutoAim_Status;
                 break;
 
                 case 1:
-                    AutoAim_Status = true;
+                AutoAim_Status = true;
                 AutoAimToggle.isOn = true;
                 platform.AutoAim = AutoAim_Status;
                 break;
 
                 default:
-                    AutoAim_Status = false;
+                AutoAim_Status = false;
                 AutoAimToggle.isOn = false;
                 platform.AutoAim = AutoAim_Status;
                 break;
         }
 
-        switch (PlayerPrefs.GetInt(AutoPilot_PlayerPrefs, 0))
+        switch (PlayerPrefs.GetInt(AutoPilot_PlayerPrefs, 0)) // Auto Pilot Player Prefs //
         {
             case 0:
                 AutoPilot_Status = false;
@@ -150,7 +164,7 @@ public class Settings : MonoBehaviour
                 break;
         }
 
-        switch (PlayerPrefs.GetInt(Vsync_PlayerPrefs, 0))
+        switch (PlayerPrefs.GetInt(Vsync_PlayerPrefs, 0)) // VSync Player Prefs //
         {
             case 0:
                 QualitySettings.vSyncCount = 0;
@@ -165,6 +179,24 @@ public class Settings : MonoBehaviour
             default:
                 QualitySettings.vSyncCount = 0;
                 VsyncToggle.isOn = false;
+                break;
+        }
+
+        switch (PlayerPrefs.GetInt(PostProcessing, 1)) // PostProcessing Player Prefs //
+        {
+            case 0:
+                PostProcess_Manager.enabled = false;
+                PostProcessingToggle.isOn = false;
+                break;
+
+            case 1:
+                PostProcess_Manager.enabled = true;
+                PostProcessingToggle.isOn = true;
+                break;
+
+            default:
+                PostProcess_Manager.enabled = true;
+                PostProcessingToggle.isOn = true;
                 break;
         }
 
@@ -187,6 +219,11 @@ public class Settings : MonoBehaviour
         VsyncToggle.onValueChanged.AddListener(delegate
         {
             VsyncChanged(VsyncToggle);
+        });
+
+        PostProcessingToggle.onValueChanged.AddListener(delegate
+        {
+            PostProcessingToggleChanged(PostProcessingToggle);
         });
 
         AudioVolumeSlider.onValueChanged.AddListener(delegate
@@ -238,6 +275,19 @@ public class Settings : MonoBehaviour
         {
             PlayerPrefs.SetInt(Vsync_PlayerPrefs, 0);
             QualitySettings.vSyncCount = 0;
+        }
+    }
+    private void PostProcessingToggleChanged(Toggle toggle)
+    {
+        if (toggle.isOn)
+        {
+            PlayerPrefs.SetInt(PostProcessing, 1);
+            PostProcess_Manager.enabled = true;
+        }
+        else
+        {
+            PlayerPrefs.SetInt(PostProcessing, 0);
+            PostProcess_Manager.enabled = false;
         }
     }
     private void AudioVolumeChanged(Slider slider)

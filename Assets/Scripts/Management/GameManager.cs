@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode sceneLoad)
     {
-        //GetCanvasReferences();
         UISettings(scene);
         OtherSettings(scene);
     }
@@ -71,8 +70,8 @@ public class GameManager : MonoBehaviour
     }
     private void UISettings(Scene scene)
     {
-        if(scene.name == StartMenuName) { MainCanvas.SetActive(false); return; }
-        else { MainCanvas.SetActive(true); }
+        if(scene.name == StartMenuName) { CloseAllUI(); return; }
+        else { ScorePanel.SetActive(true); }
 
         if(scene.name == StartMenuName)
         {
@@ -118,6 +117,13 @@ public class GameManager : MonoBehaviour
         ScorePanel.SetActive(false);
         LevelPassedPanel.SetActive(true);
         SettingsPanel.SetActive(false);
+        GameOverPanel.SetActive(false);
+    }
+    public void CloseAllUI()
+    {
+        SettingsPanel.SetActive(false);
+        ScorePanel.SetActive(false);
+        LevelPassedPanel.SetActive(false);
         GameOverPanel.SetActive(false);
     }
     public void OpenSettings()

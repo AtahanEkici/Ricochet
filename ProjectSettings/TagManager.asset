@@ -10,6 +10,7 @@ TagManager:
   - Particle
   - Brick
   - Canvas
+  - PostProcessing
   layers:
   - Default
   - TransparentFX
