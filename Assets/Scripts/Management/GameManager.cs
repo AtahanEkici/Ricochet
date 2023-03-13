@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 [DefaultExecutionOrder(-1100)]
@@ -25,7 +26,7 @@ public class GameManager : MonoBehaviour
         CheckInstance();
         SetRefreshRateAccordingToDevice();
         SceneManager.sceneLoaded += OnSceneLoaded;
-        GetCanvasRefrences();
+        GetCanvasReferences();
     }
     private void OnEnable()
     {
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode sceneLoad)
     {
+        //GetCanvasReferences();
         UISettings(scene);
         OtherSettings(scene);
     }
@@ -87,28 +89,20 @@ public class GameManager : MonoBehaviour
             SettingsPanel.SetActive(false);
         }
     }
-    private void GetCanvasRefrences()
+    private void GetCanvasReferences()
     {
-        if(MainCanvas == null)
+        try
         {
             MainCanvas = FindFirstObjectByType<UIMaster>().gameObject;
-        }
-        if(ScorePanel == null)
-        {
             ScorePanel = MainCanvas.transform.GetChild(0).gameObject;
-        }
-        if(GameOverPanel == null)
-        {
             GameOverPanel = MainCanvas.transform.GetChild(1).gameObject;
-        }
-        if (LevelPassedPanel == null)
-        {
             LevelPassedPanel = MainCanvas.transform.GetChild(2).gameObject;
-        }
-        if (SettingsPanel == null)
-        {
             SettingsPanel = MainCanvas.transform.GetChild(3).gameObject;
         }
+        catch(Exception e)
+        {
+            Debug.LogException(e);
+        }   
     }
     public void GameOver()
     {

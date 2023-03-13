@@ -3,7 +3,7 @@ using UnityEngine.UI;
 public class AudioSpawner : MonoBehaviour
 {
     [Header("Audio Clip")]
-    [SerializeField] private AudioClip audio_Clip;
+    [SerializeField] public AudioClip audio_Clip;
 
     [Header("Button")]
     [SerializeField] private Button button;
@@ -35,13 +35,13 @@ public class AudioSpawner : MonoBehaviour
         if(audio_Clip == null)
         {
             As.PlayOneShot(AudioManager.ButtonPush);
-            temp.AddComponent<DestroyAfterDelay>().timeForDestruction = AudioManager.ButtonPush.length;
+            temp.AddComponent<DestroyAfterDelay>().timeForDestruction = AudioManager.ButtonPush.length * 2;
         }
         else
         {
             As.clip = audio_Clip;
             As.Play();
-            temp.AddComponent<DestroyAfterDelay>().timeForDestruction = audio_Clip.length;
+            temp.AddComponent<DestroyAfterDelay>().timeForDestruction = audio_Clip.length * 2;
         }
 
         

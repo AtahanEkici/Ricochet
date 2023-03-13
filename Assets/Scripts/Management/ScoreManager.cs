@@ -1,6 +1,9 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.Collections;
+
 [DefaultExecutionOrder(-800)]
 public class ScoreManager : MonoBehaviour
 {
@@ -18,11 +21,22 @@ public class ScoreManager : MonoBehaviour
 
     [Header("Scene Info")]
     [SerializeField] private static string SceneName = "";
+
+    [Header("Open Menu Button")]
+    [SerializeField] private Button OpenMenuButton;
     private void Awake()
     {
         CheckInstance();
         GetLocalReferences();
         SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    private void OnEnable()
+    {
+        if(OpenMenuButton == null)
+        {
+            OpenMenuButton = transform.GetChild(2).GetComponent<Button>();
+            OpenMenuButton.onClick.AddListener(OnOpenMenuButtonPressed);
+        }
     }
     private void Start()
     {
@@ -33,6 +47,16 @@ public class ScoreManager : MonoBehaviour
         UpdateSceneName();
         CheckScore();
         UpdateScoreUI();
+    }
+    private void OnOpenMenuButtonPressed()
+    {
+        audioSource.PlayOneShot(AudioManager.FalseClick);
+        StartCoroutine(WaitForAudioClip(audioSource));
+    }
+    public static IEnumerator WaitForAudioClip(AudioSource AS)
+    {
+        yield return new WaitUntil(() => !AS.isPlaying);
+        GameManager.Instance.OpenSettings();
     }
     private void CheckInstance()
     {

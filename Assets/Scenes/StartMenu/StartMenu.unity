@@ -179,9 +179,37 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 548274620421998519, guid: 5c6a86a03b8258d42ac29217e29dbbc8, type: 3}
+      propertyPath: MainCanvas
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 548274620421998519, guid: 5c6a86a03b8258d42ac29217e29dbbc8, type: 3}
+      propertyPath: ScorePanel
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 548274620421998519, guid: 5c6a86a03b8258d42ac29217e29dbbc8, type: 3}
+      propertyPath: RefreshRate
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 548274620421998519, guid: 5c6a86a03b8258d42ac29217e29dbbc8, type: 3}
+      propertyPath: GameOverPanel
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 548274620421998519, guid: 5c6a86a03b8258d42ac29217e29dbbc8, type: 3}
+      propertyPath: SettingsPanel
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 548274620421998519, guid: 5c6a86a03b8258d42ac29217e29dbbc8, type: 3}
+      propertyPath: WallGenerator
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 548274620421998519, guid: 5c6a86a03b8258d42ac29217e29dbbc8, type: 3}
       propertyPath: StartMenuPanel
       value: 
       objectReference: {fileID: 1019137686}
+    - target: {fileID: 548274620421998519, guid: 5c6a86a03b8258d42ac29217e29dbbc8, type: 3}
+      propertyPath: LevelPassedPanel
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c6a86a03b8258d42ac29217e29dbbc8, type: 3}
 --- !u!1001 &412747351
@@ -261,12 +289,28 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3813326830128357915, guid: aa21b69907adfbb49a04fa85425c9f27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3813326830128357915, guid: aa21b69907adfbb49a04fa85425c9f27, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 548274620421998519, guid: 5c6a86a03b8258d42ac29217e29dbbc8, type: 3}
     - target: {fileID: 3813326830128357915, guid: aa21b69907adfbb49a04fa85425c9f27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3813326830128357915, guid: aa21b69907adfbb49a04fa85425c9f27, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OpenSettings
+      objectReference: {fileID: 0}
+    - target: {fileID: 3813326830128357915, guid: aa21b69907adfbb49a04fa85425c9f27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3813326830128357915, guid: aa21b69907adfbb49a04fa85425c9f27, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3813326830388927634, guid: aa21b69907adfbb49a04fa85425c9f27, type: 3}
       propertyPath: m_Name

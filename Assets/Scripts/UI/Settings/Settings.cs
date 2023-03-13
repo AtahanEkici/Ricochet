@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,6 +25,7 @@ public class Settings : MonoBehaviour
     [SerializeField] private Slider AudioVolumeSlider;
     [SerializeField] private TextMeshProUGUI audioText;
     [SerializeField] private Button CloseButton;
+    [SerializeField] private AudioSource audioSource;
 
     [Header("Foreign Componenets")]
     [SerializeField] private AudioListener Audio_Listener;
@@ -39,12 +41,7 @@ public class Settings : MonoBehaviour
         DelegateTogglesAndSliders();
     }
     private void Start()
-    {
-        if (platform == null)
-        {
-            platform = FindFirstObjectByType<PlatformController>();
-        }
-
+    { 
         GetValues();
     }
     private void CheckInstance()
@@ -62,7 +59,7 @@ public class Settings : MonoBehaviour
             catch(Exception e)
             {
                 Destroy(this);
-                Debug.Log(e.StackTrace + "" + e.Message);
+                Debug.LogException(e);
             }  
         }
     }
@@ -92,7 +89,10 @@ public class Settings : MonoBehaviour
         {
             audioText = AudioVolumeSlider.GetComponentInChildren<TextMeshProUGUI>();
         }
-        
+        if(audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
     }
     private void GetForeignReferences()
     {
@@ -103,6 +103,11 @@ public class Settings : MonoBehaviour
     }
     private void GetValues()
     {
+        if (platform == null)
+        {
+            platform = FindFirstObjectByType<PlatformController>();
+        }
+
         switch (PlayerPrefs.GetInt(AutoAim_PlayerPrefs, 0))
         {
                 case 0:
@@ -246,6 +251,14 @@ public class Settings : MonoBehaviour
     }
     private void MenuCloseButtonPressed()
     {
+        audioSource.PlayOneShot(AudioManager.FalseClick);
+        StartCoroutine(WaitForAudioClip(audioSource)); 
+    }
+
+    public static IEnumerator WaitForAudioClip(AudioSource AS)
+    {
+        yield return new WaitUntil(() => !AS.isPlaying);
+        GameManager.Instance.CloseSettings();
         PlayerPrefs.Save();
     }
 }
