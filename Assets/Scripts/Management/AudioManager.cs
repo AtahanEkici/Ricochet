@@ -37,10 +37,6 @@ public class AudioManager : MonoBehaviour
         CheckInstance();
         GetAudioAssets();
     }
-    private void Start()
-    {
-        SetAudiosToMax();
-    }
     private void CheckInstance()
     {
         if(Instance == null)
