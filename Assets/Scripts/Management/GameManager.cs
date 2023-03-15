@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
     public const string StartMenuName = "StartMenu";
+    public const string GenerativeLevel = "GenerativeLevel";
     public static GameManager Instance { get { return instance; } }
     private GameManager(){}
 

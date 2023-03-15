@@ -1,89 +1,36 @@
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-[DefaultExecutionOrder(-100)]
+[DefaultExecutionOrder(-150)]
 public class LevelSpawner : MonoBehaviour
 {
-    public static LevelSpawner Instance { get; private set; }
-    private LevelSpawner() { }
+    [Header("Brick Objects")]
+    [SerializeField] private BrickController[] Bricks;
 
-    [Header("Brick Resources")]
-    [SerializeField] private const string BrickPath = "Bricks";
+    [Header("Spawn Probability")]
+    [SerializeField] private float probability = 0.5f;
 
-    [Header("Brick Info")]
-    [SerializeField] private List<GameObject> Bricks;
-
-    [Header("Wall Info")]
-    [SerializeField] private WallGenerate wg;
-    [SerializeField] private Vector3 WallScale = Vector3.zero;
-    [SerializeField] private Vector3 X_Offset = new Vector3(0.5f,0.1f,0);
-
-    [Header("Spawn Location")]
-    [SerializeField] private Vector3 SpawnLocation = Vector3.zero;
-    [SerializeField] private Vector3 CurrentSpawnPoint = Vector3.zero;
-
-    [Header("Spawn Randomizing")]
-    [Range(25,100)]
-    [SerializeField] private int Percentage = 50;
+    [Header("Max Objects")]
+    [SerializeField] private int InitialObjectCount = 0;
+    //[SerializeField] private int MaxObjectCount = 0;
 
     private void Awake()
     {
-        CheckInstance();
-        GetReferences();
+        GetBricks();
+        RandomizeLevel();
     }
-    private void OnEnable()
+    private void GetBricks()
     {
-        GetForeignReferences();
-        SpawnObjects();
+        Bricks = GetComponentsInChildren<BrickController>();
+        InitialObjectCount = Bricks.Length;
     }
-    private void SpawnObjects()
+
+    private void RandomizeLevel()
     {
-        int Rand = Random.Range(0, (Bricks.Count - 1));
-
-        GameObject Master = new GameObject("Master");
-        Master.transform.position = Vector3.zero;
-
-        GameObject RandomObject = Bricks[Rand];
-
-        Vector3 WallRight = wg.right;
-        Vector3 TopLeft = wg.top + wg.left;
-        Vector3 ObjectScale = RandomObject.transform.localScale;
-        Vector3 WallScale = wg.WallObject.transform.localScale;
-
-        SpawnLocation = new Vector3((TopLeft.x + (ObjectScale.x + WallScale.x)), (TopLeft.y - ObjectScale.x),0f);
-
-        CurrentSpawnPoint = SpawnLocation + X_Offset;
-
-        float DesiredOffset = WallRight.x - (ObjectScale.x + (WallScale.x / 2) + X_Offset.x);
-
-        while (CurrentSpawnPoint.x < DesiredOffset)
+        for(int i=0;i<Bricks.Length;i++)
         {
-            if(Percentage >= Random.Range(0,100))
+            if (probability >= Random.Range(0f, 1f))
             {
-                GameObject temp = Instantiate(RandomObject, CurrentSpawnPoint, RandomObject.transform.rotation);
-                temp.transform.SetParent(Master.transform);
+                Bricks[i].gameObject.SetActive(false);
             }
-
-            CurrentSpawnPoint = new Vector3(CurrentSpawnPoint.x + (ObjectScale.x * 2) + X_Offset.x, CurrentSpawnPoint.y, 0);
-        }
-    }
-    private void GetReferences()
-    {
-            Bricks = Resources.LoadAll<GameObject>(BrickPath).ToList();
-    }
-    private void GetForeignReferences()
-    {
-        WallGenerate wg = WallGenerate.Instance;
-    }
-    private void CheckInstance()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        } 
     }
 }

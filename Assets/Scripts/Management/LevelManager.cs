@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private static string LevelName = "";
 
     [Header("Max Level")]
-    [SerializeField] private static int MaxLevel = 15;
+    [SerializeField] private static int MaxLevel = 9;
 
     [Header("Total Block Count")]
     [SerializeField] private List<GameObject> bricks;
@@ -67,7 +67,7 @@ public class LevelManager : MonoBehaviour
     {
         string scene_name = scene.name.ToLower();
 
-        if (scene_name.Contains("menu") || scene_name.Contains("test")) { Debug.Log("Dont Update Remembered Values On Menu & Scenes");return; }
+        if (scene_name.Contains("menu") || scene_name.Contains("test") || scene_name == GameManager.GenerativeLevel) { Debug.Log("Dont Update Remembered Values On Menu,Test & Generative Scenes"); return; }
 
         try
         {
@@ -164,7 +164,15 @@ public class LevelManager : MonoBehaviour
         if (instance.bricks.Count <= 0 && instance.balls.Count > 0) // Level Passed //
         {
             SpawnParticlesOnLevelPassed();
-            GameManager.Instance.LevelPassed();
+
+            if(SceneManager.GetActiveScene().name == GameManager.GenerativeLevel)
+            {
+                GameManager.Instance.GameOver();
+            }
+            else
+            {
+                GameManager.Instance.LevelPassed();
+            }
             Debug.Log("Level Passed");
         }
     }
@@ -205,13 +213,19 @@ public class LevelManager : MonoBehaviour
         int level = int.Parse(LevelName);
         Debug.Log("Passed Level: " + level.ToString());
         level++;
-        Debug.Log("loading Scene: " + level.ToString() + "");
+        Debug.Log("loading Scene: " + level.ToString());
 
-        if(level > MaxLevel)
+        if(level >= MaxLevel)
         {
             Debug.Log("Max Level Reached");
+            LoadLevel(GameManager.StartMenuName);
+            return;
         }
-        LoadLevel(level.ToString());
+        else
+        {
+            LoadLevel(level.ToString());
+            return;
+        }  
     }
     private static void SpawnParticlesOnLevelPassed()
     {

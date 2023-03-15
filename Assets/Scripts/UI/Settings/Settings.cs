@@ -28,6 +28,7 @@ public class Settings : MonoBehaviour
     [SerializeField] private Slider AudioVolumeSlider;
     [SerializeField] private TextMeshProUGUI audioText;
     [SerializeField] private Button CloseButton;
+    [SerializeField] private Button ToStartMenuButton;
     [SerializeField] private AudioSource audioSource;
 
     [Header("Foreign Componenets")]
@@ -100,6 +101,10 @@ public class Settings : MonoBehaviour
         if(PostProcessingToggle == null)
         {
             PostProcessingToggle = transform.GetChild(5).GetComponent<Toggle>();
+        }
+        if(ToStartMenuButton == null)
+        {
+            ToStartMenuButton = transform.GetChild(6).GetComponent<Button>();
         }
     }
     private void GetForeignReferences()
@@ -235,6 +240,11 @@ public class Settings : MonoBehaviour
         {
             MenuCloseButtonPressed();
         });
+
+        ToStartMenuButton.onClick.AddListener(delegate
+        {
+            ToStartMenuButtonPressed();
+        });
     }
     private void OnAutoAimChanged(Toggle toggle)
     {
@@ -304,11 +314,20 @@ public class Settings : MonoBehaviour
         audioSource.PlayOneShot(AudioManager.FalseClick);
         StartCoroutine(WaitForAudioClip(audioSource)); 
     }
-
+    private void ToStartMenuButtonPressed()
+    {
+        audioSource.PlayOneShot(AudioManager.FalseClick);
+        StartCoroutine(WaitForStartMenu(audioSource));
+    }
     public static IEnumerator WaitForAudioClip(AudioSource AS)
     {
         yield return new WaitUntil(() => !AS.isPlaying);
         GameManager.Instance.CloseSettings();
         PlayerPrefs.Save();
+    }
+    public static IEnumerator WaitForStartMenu(AudioSource AS)
+    {
+        yield return new WaitUntil(() => !AS.isPlaying);
+        LevelManager.LoadLevel(GameManager.StartMenuName);
     }
 }
