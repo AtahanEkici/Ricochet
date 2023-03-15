@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class Settings : MonoBehaviour
 {
@@ -39,14 +40,14 @@ public class Settings : MonoBehaviour
     {
         CheckInstance();
         GetLocalReferences();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void OnEnable()
     {
-        GetForeignReferences();
         DelegateTogglesAndSliders();
     }
-    private void Start()
-    { 
+    private void OnSceneLoaded(Scene scene, LoadSceneMode SceneLoad)
+    {
         GetValues();
     }
     private void CheckInstance()
@@ -107,27 +108,26 @@ public class Settings : MonoBehaviour
             ToStartMenuButton = transform.GetChild(6).GetComponent<Button>();
         }
     }
-    private void GetForeignReferences()
-    {
-        if(Audio_Listener == null)
-        {
-            Audio_Listener = Camera.main.GetComponent<AudioListener>();
-        }
-    }
     private void GetValues()
     {
-        if (platform == null)
+        try
         {
-            platform = FindFirstObjectByType<PlatformController>();
-        }
+            if (platform == null)
+            {
+                platform = FindFirstObjectByType<PlatformController>();
+            }
 
-        if (PostProcess_Manager == null)
-        {
-            PostProcess_Manager = GameObject.FindGameObjectWithTag(PostProcessing).GetComponent<PostProcessVolume>();
+            if (PostProcess_Manager == null)
+            {
+                PostProcess_Manager = GameObject.FindGameObjectWithTag(PostProcessing).GetComponent<PostProcessVolume>();
+            }
 
-        }
+            if (Audio_Listener == null)
+            {
+                Audio_Listener = Camera.main.GetComponent<AudioListener>();
+            }
 
-        switch (PlayerPrefs.GetInt(AutoAim_PlayerPrefs, 0))// Auto Aim Player Prefs //
+            switch (PlayerPrefs.GetInt(AutoAim_PlayerPrefs, 0))// Auto Aim Player Prefs //
         {
                 case 0:
                 AutoAim_Status = false;
@@ -208,6 +208,11 @@ public class Settings : MonoBehaviour
         MasterAudio_Status = PlayerPrefs.GetFloat(MasterAudio, 1f);
         AudioListener.volume = MasterAudio_Status;
         AudioVolumeSlider.value = MasterAudio_Status;
+        }
+        catch(Exception e)
+        {
+            Debug.LogException(e);
+        }
     }
     private void DelegateTogglesAndSliders()
     {
@@ -248,7 +253,12 @@ public class Settings : MonoBehaviour
     }
     private void OnAutoAimChanged(Toggle toggle)
     {
-        if(toggle.isOn)
+        if (platform == null)
+        {
+            platform = FindFirstObjectByType<PlatformController>();
+        }
+
+        if (toggle.isOn)
         {
             AutoAim_Status = true;
             PlayerPrefs.SetInt(AutoAim_PlayerPrefs, 1);
@@ -262,6 +272,11 @@ public class Settings : MonoBehaviour
     }
     private void OnAutoPilotChanged(Toggle toggle)
     {
+        if (platform == null)
+        {
+            platform = FindFirstObjectByType<PlatformController>();
+        }
+
         if (toggle.isOn)
         {
             AutoPilot_Status = true;
@@ -289,6 +304,10 @@ public class Settings : MonoBehaviour
     }
     private void PostProcessingToggleChanged(Toggle toggle)
     {
+        if (PostProcess_Manager == null)
+        {
+            PostProcess_Manager = GameObject.FindGameObjectWithTag(PostProcessing).GetComponent<PostProcessVolume>();
+        }
         if (toggle.isOn)
         {
             PlayerPrefs.SetInt(PostProcessing, 1);

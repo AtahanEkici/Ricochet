@@ -48,9 +48,12 @@ public class PlatformController : MonoBehaviour
         CheckInstance();
         GetLocalReferences();
     }
-    private void Start()
+    private void OnEnable()
     {
         GetForeignReferences();
+    }
+    private void Start()
+    {
         CheckRemebrance();
     }
     private void FixedUpdate()
