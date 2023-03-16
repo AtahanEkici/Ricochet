@@ -44,7 +44,7 @@ public class ScoreManager : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
     {
-        UpdateSceneName();
+        UpdateSceneName(scene);
         CheckScore();
         UpdateScoreUI();
     }
@@ -92,7 +92,7 @@ public class ScoreManager : MonoBehaviour
     }
     private static void CheckScore()
     {
-        string total = (SceneName + total_score).Trim();
+        string total = (SceneName + total_score);
 
         if (PlayerPrefs.HasKey(total))
         {
@@ -110,9 +110,9 @@ public class ScoreManager : MonoBehaviour
             PlayerPrefs.SetInt(total, 0);
         }
     }
-    private void UpdateSceneName()
+    private void UpdateSceneName(Scene scene)
     {
-        SceneName = SceneManager.GetActiveScene().name;
+        SceneName = scene.name;
     }
     private static void UpdateScoreUI()
     {
