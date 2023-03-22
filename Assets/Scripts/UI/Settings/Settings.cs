@@ -268,7 +268,14 @@ public class Settings : MonoBehaviour
             AutoAim_Status = false;
             PlayerPrefs.SetInt(AutoAim_PlayerPrefs, 0);
         }
-        platform.AutoAim = AutoAim_Status;
+        try
+        {
+            platform.AutoAim = AutoAim_Status;
+        }
+        catch(Exception e)
+        {
+            Debug.LogException(e);
+        }
     }
     private void OnAutoPilotChanged(Toggle toggle)
     {
@@ -287,7 +294,14 @@ public class Settings : MonoBehaviour
             AutoPilot_Status = false;
             PlayerPrefs.SetInt(AutoPilot_PlayerPrefs, 0);
         }
-        platform.AutoPilot = AutoPilot_Status;
+        try
+        {
+            platform.AutoPilot = AutoPilot_Status;
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
     }
     private void VsyncChanged(Toggle toggle)
     {

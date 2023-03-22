@@ -94,21 +94,14 @@ public class ScoreManager : MonoBehaviour
     {
         string total = (SceneName + total_score);
 
-        if (PlayerPrefs.HasKey(total))
-        {
-            if (Score > PlayerPrefs.GetInt(total))
+            if (Score > PlayerPrefs.GetInt(total,0))
             {
                 PlayerPrefs.SetInt(total,Score);
             }
             else
             {
-                Score = PlayerPrefs.GetInt(total);
+                Score = PlayerPrefs.GetInt(total,0);
             }
-        }
-        else
-        {
-            PlayerPrefs.SetInt(total, 0);
-        }
     }
     private void UpdateSceneName(Scene scene)
     {
@@ -117,6 +110,8 @@ public class ScoreManager : MonoBehaviour
     private static void UpdateScoreUI()
     {
         if (ScoreUI == null) { return; }
+
+        if(Score < 0) { Score = 0; }
 
         ScoreUI.text = "Score: " + Score.ToString();
     }
