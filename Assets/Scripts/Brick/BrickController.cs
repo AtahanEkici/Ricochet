@@ -3,6 +3,7 @@ using UnityEngine;
 public class BrickController : MonoBehaviour
 {
     private readonly string BallTag = "Ball";
+    private const string PowerUpResourcePath = "PowerUp/x2PowerUp";
 
     [Header("Asset's Path")]
     [SerializeField] private static readonly string ParticlePath = "Particles/BrickDestroy";
@@ -22,6 +23,11 @@ public class BrickController : MonoBehaviour
 
     [Header("CameraShake")]
     [SerializeField] private static Vector3 ShakeCoefficient = new(2.5f, 90, 0.3f);
+
+    [Header("PowerUp Options")]
+    [Range(0f, 100f)]
+    [SerializeField] private static float SpawnProbability = 1f;
+
     private void Awake()
     {
         GetLocalReferences();
@@ -57,6 +63,7 @@ public class BrickController : MonoBehaviour
         SliderController.UpdateSlider();
         ScoreManager.UpdateScore(total_point);
         CameraShake.Instance.InduceStress(ShakeCoefficient);
+        SpawnPowerUp(transform.position);
     }
     private void GetLocalReferences()
     {
@@ -73,6 +80,14 @@ public class BrickController : MonoBehaviour
         {
             DestroyParticle = Resources.Load<GameObject>(ParticlePath) as GameObject;
         } 
+    }
+    private static void SpawnPowerUp(Vector3 ObjectPosition)
+    {
+        if(UnityEngine.Random.Range(0f,100f) > SpawnProbability) { Debug.Log("No luck"); return; }
+
+        GameObject Powerup = Resources.Load<GameObject>(PowerUpResourcePath) as GameObject;
+
+        Instantiate(Powerup, ObjectPosition, Quaternion.identity);
     }
     private void Damage(int amount)
     {
