@@ -215,7 +215,7 @@ public class LevelManager : MonoBehaviour
         level++;
         Debug.Log("loading Scene: " + level.ToString());
 
-        if(level >= MaxLevel)
+        if(level > MaxLevel)
         {
             Debug.Log("Max Level Reached");
             LoadLevel(GameManager.StartMenuName);
