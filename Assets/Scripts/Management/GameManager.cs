@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
     }
     private void SetRefreshRateAccordingToDevice()
     { 
-        Application.targetFrameRate = Screen.currentResolution.refreshRate;
+        Application.targetFrameRate = (int)(Screen.currentResolution.refreshRateRatio.value);
         RefreshRate = Application.targetFrameRate;
         //QualitySettings.vSyncCount = 1;
     }
