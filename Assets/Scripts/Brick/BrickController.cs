@@ -2,17 +2,14 @@ using System;
 using UnityEngine;
 public class BrickController : MonoBehaviour
 {
-    private readonly string BallTag = "Ball";
+    private static readonly string BallTag = "Ball";
     private const string PowerUpResourcePath = "PowerUp/x2PowerUp";
 
     [Header("Asset's Path")]
     [SerializeField] private static readonly string ParticlePath = "Particles/BrickDestroy";
 
     [Header("Foreign Components")]
-    [SerializeField] private GameObject DestroyParticle;
-
-    [Header("Local Components")]
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private static GameObject DestroyParticle;
 
     [Header("Health Info")]
     [SerializeField] private int health = 1;
@@ -67,11 +64,6 @@ public class BrickController : MonoBehaviour
     }
     private void GetLocalReferences()
     {
-        if (rb == null)
-        {
-            rb = GetComponent<Rigidbody2D>();
-        }
-
         total_point = health * point;
     }
     private void GetForeignReferences()
