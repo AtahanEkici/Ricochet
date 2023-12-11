@@ -146,34 +146,53 @@ public class PlatformController : MonoBehaviour
     }
     private void MovePlatformToMouseCoordinates()
     {
-        if (!Input.GetMouseButton(0)) { GoingLeft = false; GoingRight = false; return; }
-
-        if (AutoPilot) { return; }
-
-        Vector2 RigidbodyPos = rb.position;
-
-        if (RigidbodyPos != MousePosition)
+        if (!Input.GetMouseButton(0))
         {
-            MovementVector = Vector2.MoveTowards(new(RigidbodyPos.x, 0f), new(MousePosition.x, 0f), Platform_Move_Speed * Time.fixedDeltaTime);
+            GoingLeft = false;
+            GoingRight = false;
+            return;
+        }
 
-            float Posx = MovementVector.x;
-            float MouseX = MousePosition.x;
+        if (AutoPilot)
+        {
+            return;
+        }
 
-            if (Posx < -StopOffset || Posx > StopOffset) { return; }
-            rb.MovePosition(MovementVector);
+        Vector2 targetPosition = MousePosition;
+        Vector2 currentPosition = rb.position;
 
-            if(MouseX > Posx) // Going Left //
+        // Calculate the direction to move towards
+        Vector2 moveDirection = (targetPosition - currentPosition).normalized;
+
+        // Calculate the new position using physics
+        Vector2 newPosition = Vector2.MoveTowards(currentPosition, targetPosition, Platform_Move_Speed * Time.fixedDeltaTime);
+
+        // Move the Rigidbody to the new position
+        rb.MovePosition(newPosition);
+
+        // Check if we've reached the target
+        if (Vector2.Distance(newPosition, targetPosition) < 0.01f)
+        {
+            GoingRight = false;
+            GoingLeft = false;
+        }
+        else
+        {
+            // Determine the direction based on the x-coordinate
+            float deltaX = targetPosition.x - currentPosition.x;
+            if (deltaX > 0)
             {
                 GoingRight = true;
                 GoingLeft = false;
             }
-            else // Going Right //
+            else
             {
                 GoingRight = false;
                 GoingLeft = true;
             }
         }
     }
+
     private void GetMousePosition()
     {
         MousePosition = cam.ScreenToWorldPoint(Input.mousePosition);

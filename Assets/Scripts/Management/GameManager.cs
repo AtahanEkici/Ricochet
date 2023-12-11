@@ -10,9 +10,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return instance; } }
     private GameManager(){}
 
-    [Header("Screen Operations")]
-    [SerializeField] private int RefreshRate = 60;
-
     [Header("Canvas Container")]
     [SerializeField] private GameObject MainCanvas;
     [SerializeField] private GameObject GameOverPanel;
@@ -144,14 +141,11 @@ public class GameManager : MonoBehaviour
         GameOverPanel.SetActive(false);
     }
     private void SetRefreshRateAccordingToDevice()
-    { 
-        Application.targetFrameRate = (int)(Screen.currentResolution.refreshRateRatio.value);
-        RefreshRate = Application.targetFrameRate;
-        //QualitySettings.vSyncCount = 1;
+    {
+        Application.targetFrameRate = Mathf.RoundToInt((float)Screen.currentResolution.refreshRateRatio.value);
     }
     private void GetForeignReferences()
     {
-
         if(WallGenerator == null)
         {
             WallGenerator = FindFirstObjectByType<WallGenerate>().gameObject;

@@ -32,12 +32,9 @@ public class BallController : MonoBehaviour
     {
         GetLocalReferences();
     }
-    private void OnEnable()
-    {
-        LevelManager.AddToBalls(gameObject);
-    }
     private void Start()
     {
+        LevelManager.AddToBalls(gameObject);
         GetForeignReferences();
     }
     private void LateUpdate()
