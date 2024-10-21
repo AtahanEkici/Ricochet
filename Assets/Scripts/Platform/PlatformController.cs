@@ -41,7 +41,7 @@ public class PlatformController : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private WallGenerate WallGenerator;
 
-    [Header("Ball ýnformation")]
+    [Header("Ball ï¿½nformation")]
     [SerializeField] Transform BallTransform;
     private void Awake()
     {
@@ -117,7 +117,7 @@ public class PlatformController : MonoBehaviour
     }
     private void SpeedCheck()
     {
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, MaxSpeed) ;
+        rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, MaxSpeed) ;
     }
     private void GetLocalReferences()
     {
@@ -201,7 +201,7 @@ public class PlatformController : MonoBehaviour
     {
         Rigidbody2D rb2d = go.GetComponent<Rigidbody2D>();
 
-        rb2d.velocity = Vector2.zero;
+        rb2d.linearVelocity = Vector2.zero;
         rb2d.angularVelocity = 0f;
         Vector2 owntransform = go.transform.position;
         Vector2 ClosestBrick = LevelManager.Instance.GetClosestBrickCoordinates(owntransform);

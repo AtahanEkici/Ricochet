@@ -85,7 +85,7 @@ public class BallController : MonoBehaviour
         Vector2 PlatformPosition = Platform.transform.position;
         Vector2 ToPlatform = PlatformPosition - (Vector2)transform.position;
         Debug.Log("Sending Ball To Platform");
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0;
         rb.AddForce(ToPlatform,ForceMode2D.Impulse);
 
@@ -108,7 +108,7 @@ public class BallController : MonoBehaviour
     }
     private void SpeedCheck()
     {
-        rb.velocity = ClampMagnitude(rb.velocity, MaxSpeed, MinSpeed);
+        rb.linearVelocity = ClampMagnitude(rb.linearVelocity, MaxSpeed, MinSpeed);
     }
     private static Vector2 ClampMagnitude(Vector2 v, float max, float min)
     {

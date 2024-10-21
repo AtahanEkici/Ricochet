@@ -17,12 +17,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject SettingsPanel;
     [SerializeField] private GameObject ScorePanel;
 
+    [Header("Last Resort Frame Rate If All Else Fails")]
+    [SerializeField] private static readonly int LastResortFrameRate = 120;
+
     [Header("Other Container")]
     [SerializeField] private GameObject WallGenerator;
     private void Awake()
     {
         CheckInstance();
-        SetRefreshRateAccordingToDevice();
+        StartUpOperations();
         SceneManager.sceneLoaded += OnSceneLoaded;
         GetCanvasReferences();
     }
@@ -140,9 +143,26 @@ public class GameManager : MonoBehaviour
         SettingsPanel.SetActive(false);
         GameOverPanel.SetActive(false);
     }
-    private void SetRefreshRateAccordingToDevice()
+    private void StartUpOperations()
     {
-        Application.targetFrameRate = Mathf.RoundToInt((float)Screen.currentResolution.refreshRateRatio.value);
+        try
+        {
+            Application.targetFrameRate = (int)Screen.currentResolution.refreshRateRatio.value;
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogException(e);
+            Application.targetFrameRate = LastResortFrameRate;
+        }
+
+        //Debug.Log("Frame Rate is Before Correction is: "+ Application.targetFrameRate + "");
+
+        if (Application.targetFrameRate < 60)
+        {
+            Application.targetFrameRate = LastResortFrameRate;
+        }
+
+        Debug.Log("Frame Rate is Set To: " + Application.targetFrameRate + "");
     }
     private void GetForeignReferences()
     {

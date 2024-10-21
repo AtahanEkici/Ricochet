@@ -58,7 +58,7 @@ public class LevelManager : MonoBehaviour
 
         Platform = Resources.Load<GameObject>(PlatformPath) as GameObject;
 
-        if(FindObjectsOfType<PlatformController>().Length <= 0)
+        if (FindObjectsByType<PlatformController>(FindObjectsSortMode.None).Length <= 0)
         {
             Instantiate(Platform);
         }
@@ -231,7 +231,7 @@ public class LevelManager : MonoBehaviour
     {
         try
         {
-            BallController[] balls = FindObjectsOfType<BallController>();
+            BallController[] balls = FindObjectsByType<BallController>(FindObjectsSortMode.None);
 
             CongradulationsParticle = Resources.Load<GameObject>(BsParticlePath) as GameObject;
 
