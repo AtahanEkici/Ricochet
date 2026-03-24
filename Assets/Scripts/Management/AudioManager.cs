@@ -51,9 +51,9 @@ public class AudioManager : MonoBehaviour
     }
     private void SetAudiosToMax()
     {
-        AudioSource[] audioSources = FindObjectsByType<AudioSource>();
+        AudioSource[] audioSources = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
 
-        for (int i = 0; i < audioSources.Length; i++)
+        for (int i=0;i< audioSources.Length;i++)
         {
             audioSources[i].volume = 1.0f;
         }
