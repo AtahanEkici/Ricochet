@@ -15,6 +15,7 @@ public class Settings : MonoBehaviour
     private const string Vsync_PlayerPrefs = "Vsync";
     private const string MasterAudio = "MasterAudio";
     private const string PostProcessing = "PostProcessing";
+    private const string StartMenu = "StartMenu";
 
     [Header("Remembered Values")]
     [SerializeField] public static bool AutoAim_Status = false;
@@ -48,7 +49,11 @@ public class Settings : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode SceneLoad)
     {
-        GetValues();
+        if(scene.name != StartMenu)
+        {
+            GetValues();
+        }
+        
     }
     private void CheckInstance()
     {
@@ -114,7 +119,7 @@ public class Settings : MonoBehaviour
         {
             if (platform == null)
             {
-                platform = FindFirstObjectByType<PlatformController>();
+                platform =  FindAnyObjectByType<PlatformController>(); //FindFirstObjectByType<PlatformController>();
             }
 
             if (PostProcess_Manager == null)
@@ -255,7 +260,7 @@ public class Settings : MonoBehaviour
     {
         if (platform == null)
         {
-            platform = FindFirstObjectByType<PlatformController>();
+            platform = FindAnyObjectByType<PlatformController>();
         }
 
         if (toggle.isOn)
@@ -281,7 +286,7 @@ public class Settings : MonoBehaviour
     {
         if (platform == null)
         {
-            platform = FindFirstObjectByType<PlatformController>();
+            platform = FindAnyObjectByType<PlatformController>();
         }
 
         if (toggle.isOn)

@@ -58,7 +58,7 @@ public class LevelManager : MonoBehaviour
 
         Platform = Resources.Load<GameObject>(PlatformPath) as GameObject;
 
-        if(FindObjectsOfType<PlatformController>().Length <= 0)
+        if(FindObjectsByType<PlatformController>().Length <= 0)
         {
             Instantiate(Platform);
         }
@@ -103,11 +103,11 @@ public class LevelManager : MonoBehaviour
     }
     public static void RemoveFromBalls(GameObject go)
     {
-        int instanceID = go.GetInstanceID();
+        EntityId instanceID = go.GetEntityId();
 
         for (int i = 0; i < instance.balls.Count; i++)
         {
-            if (instance.balls[i].GetInstanceID() == instanceID)
+            if (instance.balls[i].GetEntityId() == instanceID)
             {
                 instance.balls.RemoveAt(i);
             }
@@ -123,11 +123,11 @@ public class LevelManager : MonoBehaviour
     }
     public static void RemoveFromBricks(GameObject go)
     {
-        int instanceID = go.GetInstanceID();
+        EntityId instanceID = go.GetEntityId();
 
         for (int i = 0; i < instance.bricks.Count; i++)
         {
-            if (instance.bricks[i].GetInstanceID() == instanceID)
+            if (instance.bricks[i].GetEntityId() == instanceID)
             {
                 instance.bricks.RemoveAt(i);
             }
@@ -231,9 +231,9 @@ public class LevelManager : MonoBehaviour
     {
         try
         {
-            BallController[] balls = FindObjectsOfType<BallController>();
+            BallController[] balls = FindObjectsByType<BallController>();
 
-            CongradulationsParticle = Resources.Load<GameObject>(BsParticlePath) as GameObject;
+            CongradulationsParticle = Resources.Load<GameObject>(BsParticlePath);
 
             for (int i = 0; i < balls.Length; i++)
             {

@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
     {
         try
         {
-            MainCanvas = FindFirstObjectByType<UIMaster>().gameObject;
+            MainCanvas = FindAnyObjectByType<UIMaster>().gameObject;
             ScorePanel = MainCanvas.transform.GetChild(0).gameObject;
             GameOverPanel = MainCanvas.transform.GetChild(1).gameObject;
             LevelPassedPanel = MainCanvas.transform.GetChild(2).gameObject;
@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour
     {
         if(WallGenerator == null)
         {
-            WallGenerator = FindFirstObjectByType<WallGenerate>().gameObject;
+            WallGenerator = FindAnyObjectByType<WallGenerate>().gameObject;
         }
     }
 }
