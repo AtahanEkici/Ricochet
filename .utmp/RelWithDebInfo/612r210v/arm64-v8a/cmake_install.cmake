@@ -44,6 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
+  include("F:/Unity Projects/Ricochet/.utmp/RelWithDebInfo/612r210v/arm64-v8a/GameActivity/cmake_install.cmake")
   include("F:/Unity Projects/Ricochet/.utmp/RelWithDebInfo/612r210v/arm64-v8a/FramePacing/cmake_install.cmake")
 
 endif()

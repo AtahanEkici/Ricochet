@@ -6,7 +6,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "F:/Unity Projects/Ricochet/.utmp/RelWithDebInfo/612r210v/armeabi-v7a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeSystem.cmake"
+			"path" : "F:/Unity Projects/Ricochet/.utmp/RelWithDebInfo/612r210v/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeSystem.cmake"
 		},
 		{
 			"isExternal" : true,
@@ -40,11 +40,11 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "F:/Unity Projects/Ricochet/.utmp/RelWithDebInfo/612r210v/armeabi-v7a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCCompiler.cmake"
+			"path" : "F:/Unity Projects/Ricochet/.utmp/RelWithDebInfo/612r210v/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCCompiler.cmake"
 		},
 		{
 			"isGenerated" : true,
-			"path" : "F:/Unity Projects/Ricochet/.utmp/RelWithDebInfo/612r210v/armeabi-v7a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCXXCompiler.cmake"
+			"path" : "F:/Unity Projects/Ricochet/.utmp/RelWithDebInfo/612r210v/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCXXCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -174,17 +174,24 @@
 			"path" : "F:/Unity/6000.4.0f1/Editor/Data/PlaybackEngines/AndroidPlayer/SDK/cmake/3.22.1/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake"
 		},
 		{
+			"path" : "GameActivity/CMakeLists.txt"
+		},
+		{
+			"isExternal" : true,
+			"path" : "F:/Unity Projects/Ricochet/.utmp/RelWithDebInfo/612r210v/prefab/arm64-v8a/prefab/lib/aarch64-linux-android/cmake/game-activity/game-activityConfig.cmake"
+		},
+		{
 			"path" : "FramePacing/CMakeLists.txt"
 		},
 		{
 			"isExternal" : true,
-			"path" : "F:/Unity Projects/Ricochet/.utmp/RelWithDebInfo/612r210v/prefab/armeabi-v7a/prefab/lib/arm-linux-androideabi/cmake/games-frame-pacing/games-frame-pacingConfig.cmake"
+			"path" : "F:/Unity Projects/Ricochet/.utmp/RelWithDebInfo/612r210v/prefab/arm64-v8a/prefab/lib/aarch64-linux-android/cmake/games-frame-pacing/games-frame-pacingConfig.cmake"
 		}
 	],
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "F:/Unity Projects/Ricochet/.utmp/RelWithDebInfo/612r210v/armeabi-v7a",
+		"build" : "F:/Unity Projects/Ricochet/.utmp/RelWithDebInfo/612r210v/arm64-v8a",
 		"source" : "F:/Unity Projects/Ricochet/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp"
 	},
 	"version" : 
