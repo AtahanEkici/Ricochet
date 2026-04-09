@@ -39,6 +39,6 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "F:/Unity/6000.4.0f1/Editor/Data/PlaybackEngines/AndroidPlayer/NDK/toolchains/llvm/prebuilt/windows-x86_64/bin/llvm-objdump.exe")
+  set(CMAKE_OBJDUMP "F:/Unity/6000.4.1f1/Editor/Data/PlaybackEngines/AndroidPlayer/NDK/toolchains/llvm/prebuilt/windows-x86_64/bin/llvm-objdump.exe")
 endif()
 

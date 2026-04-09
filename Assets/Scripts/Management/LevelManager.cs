@@ -58,7 +58,7 @@ public class LevelManager : MonoBehaviour
 
         Platform = Resources.Load<GameObject>(PlatformPath) as GameObject;
 
-        if (FindObjectsByType<PlatformController>(FindObjectsSortMode.None).Length <= 0)
+        if (FindObjectsByType<PlatformController>().Length <= 0)
         {
             Instantiate(Platform);
         }
@@ -92,22 +92,27 @@ public class LevelManager : MonoBehaviour
     }
     public static Transform ReturnABall()
     {
-        return instance.balls[0].transform;
+        return FindAnyBallLocation();
     }
     public static void AddToBalls(GameObject go)
     {
-        if (go.GetComponent<BallController>() != null)
+        if (go.GetComponent<BallController>() != null) 
         {
             instance.balls.Add(go);
         }
     }
+    public static Transform FindAnyBallLocation()
+    {
+        BallController[] bodies = FindObjectsByType<BallController>();
+        return bodies[0].transform;
+    }
     public static void RemoveFromBalls(GameObject go)
     {
-        int instanceID = go.GetInstanceID();
+        EntityId ID = go.GetEntityId();
 
         for (int i = 0; i < instance.balls.Count; i++)
         {
-            if (instance.balls[i].GetInstanceID() == instanceID)
+            if (instance.balls[i].GetEntityId() == ID)
             {
                 instance.balls.RemoveAt(i);
             }
@@ -123,11 +128,11 @@ public class LevelManager : MonoBehaviour
     }
     public static void RemoveFromBricks(GameObject go)
     {
-        int instanceID = go.GetInstanceID();
+        EntityId ID = go.GetEntityId();
 
         for (int i = 0; i < instance.bricks.Count; i++)
         {
-            if (instance.bricks[i].GetInstanceID() == instanceID)
+            if (instance.bricks[i].GetEntityId() == ID)
             {
                 instance.bricks.RemoveAt(i);
             }
@@ -231,7 +236,7 @@ public class LevelManager : MonoBehaviour
     {
         try
         {
-            BallController[] balls = FindObjectsByType<BallController>(FindObjectsSortMode.None);
+            BallController[] balls = FindObjectsByType<BallController>();
 
             CongradulationsParticle = Resources.Load<GameObject>(BsParticlePath) as GameObject;
 

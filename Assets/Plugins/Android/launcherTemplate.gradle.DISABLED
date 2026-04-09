@@ -1,10 +1,15 @@
 apply plugin: 'com.android.application'
+apply from: 'setupSymbols.gradle'
+apply from: '../shared/keepUnitySymbols.gradle'
 
 dependencies {
     implementation project(':unityLibrary')
     }
 
 android {
+    namespace "**NAMESPACE**"
+    ndkPath "**NDKPATH**"
+    ndkVersion "**NDKVERSION**"
     compileSdkVersion **APIVERSION**
     buildToolsVersion '**BUILDTOOLS**'
 
@@ -14,22 +19,23 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion **MINSDKVERSION**
-        targetSdkVersion **TARGETSDKVERSION**
+        minSdk **MINSDK**
+        targetSdk **TARGETSDK**
         applicationId '**APPLICATIONID**'
         ndk {
+            debugSymbolLevel **DEBUGSYMBOLLEVEL**
             abiFilters **ABIFILTERS**
         }
         versionCode **VERSIONCODE**
         versionName '**VERSIONNAME**'
     }
 
-    aaptOptions {
+    androidResources {
         noCompress = **BUILTIN_NOCOMPRESS** + unityStreamingAssets.tokenize(', ')
         ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~"
     }**SIGN**
 
-    lintOptions {
+    lint {
         abortOnError false
     }
 
@@ -43,7 +49,7 @@ android {
             minifyEnabled **MINIFY_RELEASE**
             proguardFiles getDefaultProguardFile('proguard-android.txt')**SIGNCONFIG**
         }
-    }**PACKAGING_OPTIONS****PLAY_ASSET_PACKS****SPLITS**
+    }**PACKAGING****PLAY_ASSET_PACKS****SPLITS**
 **BUILT_APK_LOCATION**
     bundle {
         language {

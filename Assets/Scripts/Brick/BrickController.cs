@@ -3,7 +3,9 @@ using UnityEngine;
 public class BrickController : MonoBehaviour
 {
     private static readonly string BallTag = "Ball";
-    private const string PowerUpResourcePath = "PowerUp/x2PowerUp";
+    private const string x2PowerUP = "PowerUp/x2";
+    private const string div2PowerUP = "PowerUp/div2";
+    private const string Plus1PowerUP = "PowerUp/+1";
 
     [Header("Asset's Path")]
     [SerializeField] private static readonly string ParticlePath = "Particles/BrickDestroy";
@@ -22,8 +24,13 @@ public class BrickController : MonoBehaviour
     [SerializeField] private static Vector3 ShakeCoefficient = new(2.5f, 90, 0.3f);
 
     [Header("PowerUp Options")]
-    [Range(0f, 100f)]
-    [SerializeField] private static float SpawnProbability = 1f;
+    [Range(0, 100)]
+    [SerializeField] private static float SpawnProbability = 5;
+
+    [Header("PowerUps")]
+    [SerializeField] private static GameObject x2;
+    [SerializeField] private static GameObject div2;
+    [SerializeField] private static GameObject plus1;
 
     private void Awake()
     {
@@ -65,21 +72,50 @@ public class BrickController : MonoBehaviour
     private void GetLocalReferences()
     {
         total_point = health * point;
+        x2 = Resources.Load<GameObject>(x2PowerUP);
+        div2 = Resources.Load<GameObject>(div2PowerUP);
+        plus1 = Resources.Load<GameObject>(Plus1PowerUP);
     }
     private void GetForeignReferences()
     {
         if(DestroyParticle == null)
         {
-            DestroyParticle = Resources.Load<GameObject>(ParticlePath) as GameObject;
+            DestroyParticle = Resources.Load<GameObject>(ParticlePath);
         } 
     }
     private static void SpawnPowerUp(Vector3 ObjectPosition)
     {
-        if(UnityEngine.Random.Range(0f,100f) > SpawnProbability) { Debug.Log("No luck"); return; }
+        int roll = UnityEngine.Random.Range(0, 100);
 
-        GameObject Powerup = Resources.Load<GameObject>(PowerUpResourcePath) as GameObject;
+        if (roll >= SpawnProbability)
+        {
+            Debug.Log("No luck");
+            return;
+        }
 
-        Instantiate(Powerup, ObjectPosition, Quaternion.identity);
+        int selected = UnityEngine.Random.Range(1, 3);
+        Debug.Log("Selected: "+selected);
+
+        switch (selected)
+        {
+            case 1:
+                Instantiate(x2, ObjectPosition, Quaternion.identity);
+                break;
+
+            case 2:
+                Instantiate(div2, ObjectPosition, Quaternion.identity);
+                break;
+
+            case 3:
+                /*
+                Instantiate(plus1, ObjectPosition, Quaternion.identity);
+                */
+                break;
+            
+            default:
+                Instantiate(x2, ObjectPosition, Quaternion.identity);
+                break;
+        }
     }
     private void Damage(int amount)
     {

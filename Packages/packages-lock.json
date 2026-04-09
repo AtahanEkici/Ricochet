@@ -130,6 +130,13 @@
         "com.unity.test-framework.performance": "3.0.3"
       }
     },
+    "com.unity.device-simulator.devices": {
+      "version": "1.0.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.ext.nunit": {
       "version": "2.0.5",
       "depth": 2,
@@ -153,11 +160,11 @@
       }
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.22",
+      "version": "2.0.27",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.test-framework": "1.1.9"
+        "com.unity.test-framework": "1.1.33"
       },
       "url": "https://packages.unity.com"
     },
@@ -169,7 +176,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.mobile.android-logcat": {
-      "version": "1.4.3",
+      "version": "1.4.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -191,10 +198,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.postprocessing": {
-      "version": "3.4.0",
+      "version": "3.5.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {
+        "com.unity.modules.imgui": "1.0.0",
         "com.unity.modules.physics": "1.0.0"
       },
       "url": "https://packages.unity.com"

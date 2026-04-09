@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "F:/Unity Projects/Ricochet/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/612r210v/obj/armeabi-v7a/libgame.so"
+			"path" : "F:/Unity Projects/Ricochet/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/612r210v/obj/arm64-v8a/libgame.so"
 		}
 	],
 	"backtrace" : 1,
@@ -56,7 +56,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D__BIONIC_NO_PAGE_SIZE_MACRO -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -Wall -Wextra -pedantic -Werror -O2 -g -DNDEBUG -fPIC"
+					"fragment" : "-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D__BIONIC_NO_PAGE_SIZE_MACRO -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -Wall -Wextra -pedantic -Werror -O2 -g -DNDEBUG -fPIC"
 				}
 			],
 			"defines" : 
@@ -95,7 +95,7 @@
 			],
 			"sysroot" : 
 			{
-				"path" : "F:/Unity/6000.4.0f1/Editor/Data/PlaybackEngines/AndroidPlayer/NDK/toolchains/llvm/prebuilt/windows-x86_64/sysroot"
+				"path" : "F:/Unity/6000.4.1f1/Editor/Data/PlaybackEngines/AndroidPlayer/NDK/toolchains/llvm/prebuilt/windows-x86_64/sysroot"
 			}
 		}
 	],
@@ -105,7 +105,7 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-Wl,--build-id=sha1 -Wl,--no-rosegment -Wl,--no-undefined-version -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments  -Wl,--gc-sections",
+				"fragment" : "-Wl,-z,max-page-size=16384 -Wl,--build-id=sha1 -Wl,--no-rosegment -Wl,--no-undefined-version -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments  -Wl,--gc-sections",
 				"role" : "flags"
 			},
 			{
@@ -115,7 +115,7 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Users\\ataha\\.gradle\\caches\\8.13\\transforms\\1e7cc65d4e74b23bd94dca9ec0ac2eb3\\transformed\\jetified-games-activity-3.0.5\\prefab\\modules\\game-activity_static\\libs\\android.armeabi-v7a\\libgame-activity_static.a",
+				"fragment" : "C:\\Users\\ataha\\.gradle\\caches\\8.13\\transforms\\1e7cc65d4e74b23bd94dca9ec0ac2eb3\\transformed\\jetified-games-activity-3.0.5\\prefab\\modules\\game-activity_static\\libs\\android.arm64-v8a\\libgame-activity_static.a",
 				"role" : "libraries"
 			},
 			{
@@ -136,7 +136,7 @@
 		"language" : "CXX",
 		"sysroot" : 
 		{
-			"path" : "F:/Unity/6000.4.0f1/Editor/Data/PlaybackEngines/AndroidPlayer/NDK/toolchains/llvm/prebuilt/windows-x86_64/sysroot"
+			"path" : "F:/Unity/6000.4.1f1/Editor/Data/PlaybackEngines/AndroidPlayer/NDK/toolchains/llvm/prebuilt/windows-x86_64/sysroot"
 		}
 	},
 	"name" : "game",

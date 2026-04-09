@@ -1,340 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:editor="UnityEditor.UIElements" xmlns:engine="UnityEngine.UIElements" xmlns="UnityEditor.Overlays" elementFormDefault="qualified" targetNamespace="UnityEditor.U2D.Animation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:tns="UnityEditor.U2D.Animation" elementFormDefault="qualified" targetNamespace="UnityEditor.U2D.Animation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="UnityEngine.UIElements.xsd" namespace="UnityEngine.UIElements" />
-  <xs:complexType name="InfluenceWindowType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="InfluenceWindow" substitutionGroup="engine:VisualElement" xmlns:q1="UnityEditor.U2D.Animation" type="q1:InfluenceWindowType" />
-  <xs:complexType name="BoneInspectorPanelType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BoneInspectorPanel" substitutionGroup="engine:VisualElement" xmlns:q2="UnityEditor.U2D.Animation" type="q2:BoneInspectorPanelType" />
-  <xs:complexType name="BoneToolbarType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BoneToolbar" substitutionGroup="engine:VisualElement" xmlns:q3="UnityEditor.U2D.Animation" type="q3:BoneToolbarType" />
-  <xs:complexType name="GenerateGeometryPanelType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="GenerateGeometryPanel" substitutionGroup="engine:VisualElement" xmlns:q4="UnityEditor.U2D.Animation" type="q4:GenerateGeometryPanelType" />
-  <xs:complexType name="GenerateWeightsPanelType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="GenerateWeightsPanel" substitutionGroup="engine:VisualElement" xmlns:q5="UnityEditor.U2D.Animation" type="q5:GenerateWeightsPanelType" />
-  <xs:complexType name="MeshToolbarType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="MeshToolbar" substitutionGroup="engine:VisualElement" xmlns:q6="UnityEditor.U2D.Animation" type="q6:MeshToolbarType" />
-  <xs:complexType name="PastePanelType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="PastePanel" substitutionGroup="engine:VisualElement" xmlns:q7="UnityEditor.U2D.Animation" type="q7:PastePanelType" />
-  <xs:complexType name="PoseToolbarType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="PoseToolbar" substitutionGroup="engine:VisualElement" xmlns:q8="UnityEditor.U2D.Animation" type="q8:PoseToolbarType" />
-  <xs:complexType name="RigToolbarType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="RigToolbar" substitutionGroup="engine:VisualElement" xmlns:q9="UnityEditor.U2D.Animation" type="q9:RigToolbarType" />
-  <xs:complexType name="ToolbarType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="Toolbar" substitutionGroup="engine:VisualElement" xmlns:q10="UnityEditor.U2D.Animation" type="q10:ToolbarType" />
-  <xs:complexType name="WeightInspectorIMGUIPanelType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="WeightInspectorIMGUIPanel" substitutionGroup="engine:VisualElement" xmlns:q11="UnityEditor.U2D.Animation" type="q11:WeightInspectorIMGUIPanelType" />
-  <xs:complexType name="WeightPainterPanelType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="WeightPainterPanel" substitutionGroup="engine:VisualElement" xmlns:q12="UnityEditor.U2D.Animation" type="q12:WeightPainterPanelType" />
-  <xs:complexType name="WeightToolbarType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="WeightToolbar" substitutionGroup="engine:VisualElement" xmlns:q13="UnityEditor.U2D.Animation" type="q13:WeightToolbarType" />
-  <xs:complexType name="BoneReparentToolWindowType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BoneReparentToolWindow" substitutionGroup="engine:VisualElement" xmlns:q14="UnityEditor.U2D.Animation" type="q14:BoneReparentToolWindowType" />
   <xs:complexType name="BoneReparentToolViewType">
     <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
+      <xs:extension xmlns:q1="UnityEngine.UIElements" base="q1:VisualElementType">
+        <xs:choice />
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="BoneReparentToolView" substitutionGroup="engine:VisualElement" xmlns:q15="UnityEditor.U2D.Animation" type="q15:BoneReparentToolViewType" />
+  <xs:element name="BoneReparentToolView" xmlns:q2="UnityEngine.UIElements" substitutionGroup="q2:VisualElement" type="tns:BoneReparentToolViewType" />
+  <xs:complexType name="PivotInspectorPanelType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="UnityEngine.UIElements" base="q3:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PivotInspectorPanel" xmlns:q4="UnityEngine.UIElements" substitutionGroup="q4:VisualElement" type="tns:PivotInspectorPanelType" />
+  <xs:complexType name="PastePanelType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="UnityEngine.UIElements" base="q5:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PastePanel" xmlns:q6="UnityEngine.UIElements" substitutionGroup="q6:VisualElement" type="tns:PastePanelType" />
   <xs:complexType name="VisibilityToolWindowType">
     <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
+      <xs:extension xmlns:q7="UnityEngine.UIElements" base="q7:VisualElementType">
+        <xs:choice />
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="VisibilityToolWindow" substitutionGroup="engine:VisualElement" xmlns:q16="UnityEditor.U2D.Animation" type="q16:VisibilityToolWindowType" />
+  <xs:element name="VisibilityToolWindow" xmlns:q8="UnityEngine.UIElements" substitutionGroup="q8:VisualElement" type="tns:VisibilityToolWindowType" />
+  <xs:complexType name="ToolbarType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="UnityEngine.UIElements" base="q9:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Toolbar" xmlns:q10="UnityEngine.UIElements" substitutionGroup="q10:VisualElement" type="tns:ToolbarType" />
+  <xs:complexType name="InfluenceWindowType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q11="UnityEngine.UIElements" base="q11:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="InfluenceWindow" xmlns:q12="UnityEngine.UIElements" substitutionGroup="q12:VisualElement" type="tns:InfluenceWindowType" />
+  <xs:complexType name="BoneToolbarType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ToolbarType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BoneToolbar" substitutionGroup="tns:Toolbar" type="tns:BoneToolbarType" />
+  <xs:complexType name="BoneInspectorPanelType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q13="UnityEngine.UIElements" base="q13:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BoneInspectorPanel" xmlns:q14="UnityEngine.UIElements" substitutionGroup="q14:VisualElement" type="tns:BoneInspectorPanelType" />
+  <xs:complexType name="MeshToolbarType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ToolbarType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MeshToolbar" substitutionGroup="tns:Toolbar" type="tns:MeshToolbarType" />
+  <xs:complexType name="BoneReparentToolWindowType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q15="UnityEngine.UIElements" base="q15:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BoneReparentToolWindow" xmlns:q16="UnityEngine.UIElements" substitutionGroup="q16:VisualElement" type="tns:BoneReparentToolWindowType" />
+  <xs:complexType name="PoseToolbarType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ToolbarType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PoseToolbar" substitutionGroup="tns:Toolbar" type="tns:PoseToolbarType" />
+  <xs:complexType name="GenerateGeometryPanelType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q17="UnityEngine.UIElements" base="q17:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GenerateGeometryPanel" xmlns:q18="UnityEngine.UIElements" substitutionGroup="q18:VisualElement" type="tns:GenerateGeometryPanelType" />
+  <xs:complexType name="RigToolbarType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ToolbarType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RigToolbar" substitutionGroup="tns:Toolbar" type="tns:RigToolbarType" />
+  <xs:complexType name="WeightToolbarType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ToolbarType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WeightToolbar" substitutionGroup="tns:Toolbar" type="tns:WeightToolbarType" />
+  <xs:complexType name="WeightPainterPanelType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q19="UnityEngine.UIElements" base="q19:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WeightPainterPanel" xmlns:q20="UnityEngine.UIElements" substitutionGroup="q20:VisualElement" type="tns:WeightPainterPanelType" />
+  <xs:complexType name="GenerateWeightsPanelType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q21="UnityEngine.UIElements" base="q21:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GenerateWeightsPanel" xmlns:q22="UnityEngine.UIElements" substitutionGroup="q22:VisualElement" type="tns:GenerateWeightsPanelType" />
+  <xs:complexType name="WeightInspectorIMGUIPanelType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q23="UnityEngine.UIElements" base="q23:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WeightInspectorIMGUIPanel" xmlns:q24="UnityEngine.UIElements" substitutionGroup="q24:VisualElement" type="tns:WeightInspectorIMGUIPanelType" />
 </xs:schema>

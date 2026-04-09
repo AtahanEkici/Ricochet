@@ -8,7 +8,7 @@ public class x2 : MonoBehaviour
     [SerializeField] private Rigidbody2D rb2d;
 
     [Header("Size Growth Multiplier")]
-    [SerializeField] private float SizeGrowthMultiplier = 1.5f;
+    [SerializeField] private float SizeGrowthMultiplier = 1.25f;
     private void Awake()
     {
         GetReferences();

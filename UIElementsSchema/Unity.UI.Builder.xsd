@@ -1,953 +1,499 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:editor="UnityEditor.UIElements" xmlns:engine="UnityEngine.UIElements" xmlns="UnityEditor.Overlays" elementFormDefault="qualified" targetNamespace="Unity.UI.Builder" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:tns="Unity.UI.Builder" elementFormDefault="qualified" targetNamespace="Unity.UI.Builder" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="UnityEngine.UIElements.xsd" namespace="UnityEngine.UIElements" />
-  <xs:complexType name="BuilderPaneType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="title" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BuilderPane" substitutionGroup="engine:VisualElement" xmlns:q1="Unity.UI.Builder" type="q1:BuilderPaneType" />
-  <xs:complexType name="BuilderNewSelectorFieldType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BuilderNewSelectorField" substitutionGroup="engine:VisualElement" xmlns:q2="Unity.UI.Builder" type="q2:BuilderNewSelectorFieldType" />
-  <xs:complexType name="BuilderStyleRowType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BuilderStyleRow" substitutionGroup="engine:VisualElement" xmlns:q3="Unity.UI.Builder" type="q3:BuilderStyleRowType" />
-  <xs:complexType name="BuilderAnchorerType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BuilderAnchorer" substitutionGroup="engine:VisualElement" xmlns:q4="Unity.UI.Builder" type="q4:BuilderAnchorerType" />
-  <xs:complexType name="BuilderMoverType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BuilderMover" substitutionGroup="engine:VisualElement" xmlns:q5="Unity.UI.Builder" type="q5:BuilderMoverType" />
-  <xs:complexType name="BuilderParentTrackerType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BuilderParentTracker" substitutionGroup="engine:VisualElement" xmlns:q6="Unity.UI.Builder" type="q6:BuilderParentTrackerType" />
-  <xs:complexType name="BuilderPlacementIndicatorType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BuilderPlacementIndicator" substitutionGroup="engine:VisualElement" xmlns:q7="Unity.UI.Builder" type="q7:BuilderPlacementIndicatorType" />
-  <xs:complexType name="BuilderResizerType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BuilderResizer" substitutionGroup="engine:VisualElement" xmlns:q8="Unity.UI.Builder" type="q8:BuilderResizerType" />
-  <xs:complexType name="BuilderSelectionIndicatorType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BuilderSelectionIndicator" substitutionGroup="engine:VisualElement" xmlns:q9="Unity.UI.Builder" type="q9:BuilderSelectionIndicatorType" />
-  <xs:complexType name="BuilderTooltipPreviewType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BuilderTooltipPreview" substitutionGroup="engine:VisualElement" xmlns:q10="Unity.UI.Builder" type="q10:BuilderTooltipPreviewType" />
-  <xs:complexType name="BuilderCanvasType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BuilderCanvas" substitutionGroup="engine:VisualElement" xmlns:q11="Unity.UI.Builder" type="q11:BuilderCanvasType" />
-  <xs:complexType name="BuilderCanvasStyleControlsType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BuilderCanvasStyleControls" substitutionGroup="engine:VisualElement" xmlns:q12="Unity.UI.Builder" type="q12:BuilderCanvasStyleControlsType" />
-  <xs:complexType name="BuilderNotificationsType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="BuilderNotifications" substitutionGroup="engine:VisualElement" xmlns:q13="Unity.UI.Builder" type="q13:BuilderNotificationsType" />
-  <xs:complexType name="CheckerboardBackgroundType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="CheckerboardBackground" substitutionGroup="engine:VisualElement" xmlns:q14="Unity.UI.Builder" type="q14:CheckerboardBackgroundType" />
-  <xs:complexType name="CategoryDropdownFieldType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="true" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="label" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="CategoryDropdownField" substitutionGroup="engine:VisualElement" xmlns:q15="Unity.UI.Builder" type="q15:CategoryDropdownFieldType" />
   <xs:complexType name="OverlayPainterHelperElementType">
     <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
+      <xs:extension xmlns:q1="UnityEngine.UIElements" base="q1:ImmediateModeElementType">
+        <xs:choice />
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="OverlayPainterHelperElement" substitutionGroup="engine:VisualElement" xmlns:q16="Unity.UI.Builder" type="q16:OverlayPainterHelperElementType" />
-  <xs:complexType name="FoldoutColorFieldType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="text" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-paths" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="FoldoutColorField" substitutionGroup="engine:VisualElement" xmlns:q17="Unity.UI.Builder" type="q17:FoldoutColorFieldType" />
-  <xs:complexType name="FoldoutFieldType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="text" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-paths" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="FoldoutField" substitutionGroup="engine:VisualElement" xmlns:q18="Unity.UI.Builder" type="q18:FoldoutFieldType" />
-  <xs:complexType name="FoldoutNumberFieldType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="text" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-paths" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="FoldoutNumberField" substitutionGroup="engine:VisualElement" xmlns:q19="Unity.UI.Builder" type="q19:FoldoutNumberFieldType" />
-  <xs:complexType name="FoldoutTransitionFieldType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="text" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-paths" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="FoldoutTransitionField" substitutionGroup="engine:VisualElement" xmlns:q20="Unity.UI.Builder" type="q20:FoldoutTransitionFieldType" />
-  <xs:complexType name="FoldoutWithCheckboxType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="text" type="xs:string" use="optional" />
-        <xs:attribute default="false" name="value" type="xs:boolean" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="FoldoutWithCheckbox" substitutionGroup="engine:VisualElement" xmlns:q21="Unity.UI.Builder" type="q21:FoldoutWithCheckboxType" />
+  <xs:element name="OverlayPainterHelperElement" xmlns:q2="UnityEngine.UIElements" substitutionGroup="q2:ImmediateModeElement" type="tns:OverlayPainterHelperElementType" />
   <xs:complexType name="FontStyleStripType">
     <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="true" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="label" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
+      <xs:extension xmlns:q3="UnityEngine.UIElements" base="q3:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="label" type="xs:string" />
+        <xs:attribute name="value" type="xs:string" />
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="FontStyleStrip" substitutionGroup="engine:VisualElement" xmlns:q22="Unity.UI.Builder" type="q22:FontStyleStripType" />
-  <xs:complexType name="HelpBoxType">
+  <xs:element name="FontStyleStrip" xmlns:q4="UnityEngine.UIElements" substitutionGroup="q4:BindableElement" type="tns:FontStyleStripType" />
+  <xs:complexType name="BuilderTransformerType">
     <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="text" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
+      <xs:extension base="tns:BuilderManipulatorType">
+        <xs:choice />
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="HelpBox" substitutionGroup="engine:VisualElement" xmlns:q23="Unity.UI.Builder" type="q23:HelpBoxType" />
-  <xs:complexType name="LibraryFoldoutType">
+  <xs:complexType name="BuilderManipulatorType">
     <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="text" type="xs:string" use="optional" />
-        <xs:attribute default="false" name="value" type="xs:boolean" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
+      <xs:extension base="tns:BuilderTrackerType">
+        <xs:choice />
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="LibraryFoldout" substitutionGroup="engine:VisualElement" xmlns:q24="Unity.UI.Builder" type="q24:LibraryFoldoutType" />
-  <xs:complexType name="ModalPopupType">
+  <xs:complexType name="BuilderTrackerType">
     <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="title" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
+      <xs:extension xmlns:q5="UnityEngine.UIElements" base="q5:VisualElementType">
+        <xs:choice />
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="ModalPopup" substitutionGroup="engine:VisualElement" xmlns:q25="Unity.UI.Builder" type="q25:ModalPopupType" />
-  <xs:complexType name="PercentSliderType">
+  <xs:element name="BuilderTracker" xmlns:q6="UnityEngine.UIElements" substitutionGroup="q6:VisualElement" type="tns:BuilderTrackerType" />
+  <xs:element name="BuilderManipulator" substitutionGroup="tns:BuilderTracker" type="tns:BuilderManipulatorType" />
+  <xs:element name="BuilderTransformer" substitutionGroup="tns:BuilderManipulator" type="tns:BuilderTransformerType" />
+  <xs:complexType name="FoldoutColorFieldType">
     <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="true" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="label" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
+      <xs:extension base="tns:FoldoutFieldType">
+        <xs:choice />
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="PercentSlider" substitutionGroup="engine:VisualElement" xmlns:q26="Unity.UI.Builder" type="q26:PercentSliderType" />
+  <xs:complexType name="FoldoutFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PersistedFoldoutType">
+        <xs:choice />
+        <xs:attribute name="binding-paths" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:complexType name="PersistedFoldoutType">
     <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="text" type="xs:string" use="optional" />
-        <xs:attribute default="false" name="value" type="xs:boolean" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
+      <xs:extension xmlns:q7="UnityEngine.UIElements" base="q7:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="text" type="xs:string" />
+        <xs:attribute default="true" name="value" type="xs:boolean" />
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="PersistedFoldout" substitutionGroup="engine:VisualElement" xmlns:q27="Unity.UI.Builder" type="q27:PersistedFoldoutType" />
-  <xs:simpleType name="BuilderAttributesTestElement_enum-attr_Type">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="None" />
-      <xs:enumeration value="Good" />
-      <xs:enumeration value="Bad" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:complexType name="BuilderAttributesTestElementType">
+  <xs:element name="PersistedFoldout" xmlns:q8="UnityEngine.UIElements" substitutionGroup="q8:BindableElement" type="tns:PersistedFoldoutType" />
+  <xs:element name="FoldoutField" substitutionGroup="tns:PersistedFoldout" type="tns:FoldoutFieldType" />
+  <xs:element name="FoldoutColorField" substitutionGroup="tns:FoldoutField" type="tns:FoldoutColorFieldType" />
+  <xs:complexType name="BuilderNotificationsType">
     <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="default_value" name="string-attr" type="xs:string" use="optional" />
-        <xs:attribute default="0.1" name="float-attr" type="xs:float" use="optional" />
-        <xs:attribute default="0.1" name="double-attr" type="xs:double" use="optional" />
-        <xs:attribute default="2" name="int-attr" type="xs:int" use="optional" />
-        <xs:attribute default="3" name="long-attr" type="xs:long" use="optional" />
-        <xs:attribute default="false" name="bool-attr" type="xs:boolean" use="optional" />
-        <xs:attribute default="RGBA(1.000, 0.000, 0.000, 1.000)" name="color-attr" type="xs:string" use="optional" />
-        <xs:attribute default="Bad" name="enum-attr" xmlns:q28="Unity.UI.Builder" type="q28:BuilderAttributesTestElement_enum-attr_Type" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
+      <xs:extension xmlns:q9="UnityEngine.UIElements" base="q9:VisualElementType">
+        <xs:choice />
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="BuilderAttributesTestElement" substitutionGroup="engine:VisualElement" xmlns:q29="Unity.UI.Builder" type="q29:BuilderAttributesTestElementType" />
-  <xs:complexType name="DimensionStyleFieldType">
+  <xs:element name="BuilderNotifications" xmlns:q10="UnityEngine.UIElements" substitutionGroup="q10:VisualElement" type="tns:BuilderNotificationsType" />
+  <xs:complexType name="FoldoutNumberFieldType">
     <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="true" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="label" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
+      <xs:extension base="tns:FoldoutFieldType">
+        <xs:choice />
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="DimensionStyleField" substitutionGroup="engine:VisualElement" xmlns:q30="Unity.UI.Builder" type="q30:DimensionStyleFieldType" />
-  <xs:complexType name="ImageStyleFieldType">
+  <xs:element name="FoldoutNumberField" substitutionGroup="tns:FoldoutField" type="tns:FoldoutNumberFieldType" />
+  <xs:complexType name="TextAutoSizeStyleFieldType">
     <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="true" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="label" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
+      <xs:extension xmlns:q11="UnityEngine.UIElements" base="q11:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="label" type="xs:string" />
+        <xs:attribute name="value" type="xs:string" />
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="ImageStyleField" substitutionGroup="engine:VisualElement" xmlns:q31="Unity.UI.Builder" type="q31:ImageStyleFieldType" />
-  <xs:complexType name="IntegerStyleFieldType">
+  <xs:element name="TextAutoSizeStyleField" xmlns:q12="UnityEngine.UIElements" substitutionGroup="q12:BindableElement" type="tns:TextAutoSizeStyleFieldType" />
+  <xs:complexType name="SpacingBoxModelViewType">
     <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="true" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="label" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
+      <xs:extension xmlns:q13="UnityEngine.UIElements" base="q13:VisualElementType">
+        <xs:choice />
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="IntegerStyleField" substitutionGroup="engine:VisualElement" xmlns:q32="Unity.UI.Builder" type="q32:IntegerStyleFieldType" />
-  <xs:complexType name="NumericStyleFieldType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="true" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="label" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="NumericStyleField" substitutionGroup="engine:VisualElement" xmlns:q33="Unity.UI.Builder" type="q33:NumericStyleFieldType" />
-  <xs:complexType name="RotateStyleFieldType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="true" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="label" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="RotateStyleField" substitutionGroup="engine:VisualElement" xmlns:q34="Unity.UI.Builder" type="q34:RotateStyleFieldType" />
-  <xs:complexType name="ScaleStyleFieldType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="true" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="label" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="ScaleStyleField" substitutionGroup="engine:VisualElement" xmlns:q35="Unity.UI.Builder" type="q35:ScaleStyleFieldType" />
-  <xs:complexType name="TextShadowStyleFieldType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="true" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="label" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="TextShadowStyleField" substitutionGroup="engine:VisualElement" xmlns:q36="Unity.UI.Builder" type="q36:TextShadowStyleFieldType" />
-  <xs:complexType name="TransformOriginSelectorType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="TransformOriginSelector" substitutionGroup="engine:VisualElement" xmlns:q37="Unity.UI.Builder" type="q37:TransformOriginSelectorType" />
-  <xs:complexType name="TransformOriginStyleFieldType">
-    <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="true" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="label" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="TransformOriginStyleField" substitutionGroup="engine:VisualElement" xmlns:q38="Unity.UI.Builder" type="q38:TransformOriginStyleFieldType" />
+  <xs:element name="SpacingBoxModelView" xmlns:q14="UnityEngine.UIElements" substitutionGroup="q14:VisualElement" type="tns:SpacingBoxModelViewType" />
   <xs:complexType name="TranslateStyleFieldType">
     <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="true" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="label" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
+      <xs:extension xmlns:q15="UnityEngine.UIElements" base="q15:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="label" type="xs:string" />
+        <xs:attribute default="0" name="value" type="xs:string" />
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="TranslateStyleField" substitutionGroup="engine:VisualElement" xmlns:q39="Unity.UI.Builder" type="q39:TranslateStyleFieldType" />
+  <xs:element name="TranslateStyleField" xmlns:q16="UnityEngine.UIElements" substitutionGroup="q16:BindableElement" type="tns:TranslateStyleFieldType" />
+  <xs:complexType name="LibraryFoldoutType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PersistedFoldoutType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="LibraryFoldout" substitutionGroup="tns:PersistedFoldout" type="tns:LibraryFoldoutType" />
+  <xs:complexType name="NumericStyleFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q17="UnityEngine.UIElements" base="q17:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="label" type="xs:string" />
+        <xs:attribute name="value" type="xs:string" />
+        <xs:attribute default="false" name="show-options" type="xs:boolean" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NumericStyleField" xmlns:q18="UnityEngine.UIElements" substitutionGroup="q18:BindableElement" type="tns:NumericStyleFieldType" />
+  <xs:complexType name="DimensionStyleFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q19="UnityEngine.UIElements" base="q19:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="label" type="xs:string" />
+        <xs:attribute name="value" type="xs:string" />
+        <xs:attribute default="false" name="show-options" type="xs:boolean" />
+        <xs:attribute default="-3.402823E+38" name="min" type="xs:float" />
+        <xs:attribute default="3.402823E+38" name="max" type="xs:float" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DimensionStyleField" xmlns:q20="UnityEngine.UIElements" substitutionGroup="q20:BindableElement" type="tns:DimensionStyleFieldType" />
+  <xs:complexType name="BuilderCanvasStyleControlsType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q21="UnityEngine.UIElements" base="q21:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BuilderCanvasStyleControls" xmlns:q22="UnityEngine.UIElements" substitutionGroup="q22:VisualElement" type="tns:BuilderCanvasStyleControlsType" />
+  <xs:complexType name="TransformOriginStyleFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q23="UnityEngine.UIElements" base="q23:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="label" type="xs:string" />
+        <xs:attribute default="top left" name="value" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TransformOriginStyleField" xmlns:q24="UnityEngine.UIElements" substitutionGroup="q24:BindableElement" type="tns:TransformOriginStyleFieldType" />
+  <xs:complexType name="ScaleStyleFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q25="UnityEngine.UIElements" base="q25:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="label" type="xs:string" />
+        <xs:attribute default="1" name="value" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ScaleStyleField" xmlns:q26="UnityEngine.UIElements" substitutionGroup="q26:BindableElement" type="tns:ScaleStyleFieldType" />
+  <xs:complexType name="BuilderPaneType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q27="UnityEngine.UIElements" base="q27:VisualElementType">
+        <xs:choice />
+        <xs:attribute default="Pane Title" name="title" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BuilderPane" xmlns:q28="UnityEngine.UIElements" substitutionGroup="q28:VisualElement" type="tns:BuilderPaneType" />
   <xs:complexType name="TextAlignStripType">
     <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="true" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="label" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
+      <xs:extension xmlns:q29="UnityEngine.UIElements" base="q29:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="label" type="xs:string" />
+        <xs:attribute name="value" type="xs:string" />
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="TextAlignStrip" substitutionGroup="engine:VisualElement" xmlns:q40="Unity.UI.Builder" type="q40:TextAlignStripType" />
-  <xs:complexType name="ToggleButtonStripType">
+  <xs:element name="TextAlignStrip" xmlns:q30="UnityEngine.UIElements" substitutionGroup="q30:BindableElement" type="tns:TextAlignStripType" />
+  <xs:complexType name="CursorStyleFieldType">
     <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="true" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="" name="binding-path" type="xs:string" use="optional" />
-        <xs:attribute default="" name="label" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
+      <xs:extension xmlns:q31="UnityEngine.UIElements" base="q31:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="label" type="xs:string" />
+        <xs:attribute default=" 0 0" name="value" type="xs:string" />
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="ToggleButtonStrip" substitutionGroup="engine:VisualElement" xmlns:q41="Unity.UI.Builder" type="q41:ToggleButtonStripType" />
+  <xs:element name="CursorStyleField" xmlns:q32="UnityEngine.UIElements" substitutionGroup="q32:BindableElement" type="tns:CursorStyleFieldType" />
+  <xs:complexType name="BuilderStyleRowType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q33="UnityEngine.UIElements" base="q33:BindableElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BuilderStyleRow" xmlns:q34="UnityEngine.UIElements" substitutionGroup="q34:BindableElement" type="tns:BuilderStyleRowType" />
+  <xs:complexType name="FilterStyleFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q35="UnityEngine.UIElements" base="q35:BindableElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FilterStyleField" xmlns:q36="UnityEngine.UIElements" substitutionGroup="q36:BindableElement" type="tns:FilterStyleFieldType" />
+  <xs:complexType name="BuilderPlacementIndicatorType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q37="UnityEngine.UIElements" base="q37:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BuilderPlacementIndicator" xmlns:q38="UnityEngine.UIElements" substitutionGroup="q38:VisualElement" type="tns:BuilderPlacementIndicatorType" />
+  <xs:complexType name="PositionSectionType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q39="UnityEngine.UIElements" base="q39:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PositionSection" xmlns:q40="UnityEngine.UIElements" substitutionGroup="q40:VisualElement" type="tns:PositionSectionType" />
+  <xs:complexType name="USSVariablesStyleFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DimensionStyleFieldType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="USSVariablesStyleField" substitutionGroup="tns:DimensionStyleField" type="tns:USSVariablesStyleFieldType" />
+  <xs:complexType name="BuilderCanvasType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q41="UnityEngine.UIElements" base="q41:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BuilderCanvas" xmlns:q42="UnityEngine.UIElements" substitutionGroup="q42:VisualElement" type="tns:BuilderCanvasType" />
+  <xs:complexType name="AssetReferenceStyleFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q43="UnityEngine.UIElements" base="q43:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="label" type="xs:string" />
+        <xs:attribute name="value" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AssetReferenceStyleField" xmlns:q44="UnityEngine.UIElements" substitutionGroup="q44:BindableElement" type="tns:AssetReferenceStyleFieldType" />
+  <xs:complexType name="TextShadowStyleFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q45="UnityEngine.UIElements" base="q45:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="label" type="xs:string" />
+        <xs:attribute default="0px 0px rgba(0, 0, 0, 0)" name="value" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TextShadowStyleField" xmlns:q46="UnityEngine.UIElements" substitutionGroup="q46:BindableElement" type="tns:TextShadowStyleFieldType" />
   <xs:complexType name="TransitionsListViewType">
     <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
+      <xs:extension xmlns:q47="UnityEngine.UIElements" base="q47:BindableElementType">
+        <xs:choice />
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="TransitionsListView" substitutionGroup="engine:VisualElement" xmlns:q42="Unity.UI.Builder" type="q42:TransitionsListViewType" />
-  <xs:simpleType name="TwoPaneSplitView_orientation_Type">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Horizontal" />
-      <xs:enumeration value="Vertical" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:complexType name="TwoPaneSplitViewType">
+  <xs:element name="TransitionsListView" xmlns:q48="UnityEngine.UIElements" substitutionGroup="q48:BindableElement" type="tns:TransitionsListViewType" />
+  <xs:complexType name="ImageStyleFieldType">
     <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:attribute default="0" name="fixed-pane-index" type="xs:int" use="optional" />
-        <xs:attribute default="100" name="fixed-pane-initial-dimension" type="xs:int" use="optional" />
-        <xs:attribute default="Horizontal" name="orientation" xmlns:q43="Unity.UI.Builder" type="q43:TwoPaneSplitView_orientation_Type" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
+      <xs:extension xmlns:q49="UnityEngine.UIElements" base="q49:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="label" type="xs:string" />
+        <xs:attribute name="value" type="xs:string" />
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="TwoPaneSplitView" substitutionGroup="engine:VisualElement" xmlns:q44="Unity.UI.Builder" type="q44:TwoPaneSplitViewType" />
+  <xs:element name="ImageStyleField" xmlns:q50="UnityEngine.UIElements" substitutionGroup="q50:BindableElement" type="tns:ImageStyleFieldType" />
+  <xs:complexType name="AngleStyleFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DimensionStyleFieldType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AngleStyleField" substitutionGroup="tns:DimensionStyleField" type="tns:AngleStyleFieldType" />
+  <xs:complexType name="BorderBoxModelViewType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q51="UnityEngine.UIElements" base="q51:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BorderBoxModelView" xmlns:q52="UnityEngine.UIElements" substitutionGroup="q52:VisualElement" type="tns:BorderBoxModelViewType" />
+  <xs:complexType name="CheckerboardBackgroundType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q53="UnityEngine.UIElements" base="q53:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CheckerboardBackground" xmlns:q54="UnityEngine.UIElements" substitutionGroup="q54:VisualElement" type="tns:CheckerboardBackgroundType" />
+  <xs:complexType name="BuilderCategoryPersistedFoldoutType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PersistedFoldoutType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BuilderCategoryPersistedFoldout" substitutionGroup="tns:PersistedFoldout" type="tns:BuilderCategoryPersistedFoldoutType" />
+  <xs:complexType name="FontDefinitionStyleFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q55="UnityEngine.UIElements" base="q55:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="label" type="xs:string" />
+        <xs:attribute name="value" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FontDefinitionStyleField" xmlns:q56="UnityEngine.UIElements" substitutionGroup="q56:BindableElement" type="tns:FontDefinitionStyleFieldType" />
+  <xs:complexType name="HelpBoxType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q57="UnityEngine.UIElements" base="q57:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="text" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="HelpBox" xmlns:q58="UnityEngine.UIElements" substitutionGroup="q58:BindableElement" type="tns:HelpBoxType" />
+  <xs:complexType name="BuilderParentTrackerType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BuilderTrackerType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BuilderParentTracker" substitutionGroup="tns:BuilderTracker" type="tns:BuilderParentTrackerType" />
+  <xs:complexType name="ModalPopupType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q59="UnityEngine.UIElements" base="q59:VisualElementType">
+        <xs:choice />
+        <xs:attribute name="title" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ModalPopup" xmlns:q60="UnityEngine.UIElements" substitutionGroup="q60:VisualElement" type="tns:ModalPopupType" />
+  <xs:complexType name="RotateStyleFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q61="UnityEngine.UIElements" base="q61:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="label" type="xs:string" />
+        <xs:attribute default="0" name="value" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RotateStyleField" xmlns:q62="UnityEngine.UIElements" substitutionGroup="q62:BindableElement" type="tns:RotateStyleFieldType" />
+  <xs:complexType name="TransformOriginSelectorType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q63="UnityEngine.UIElements" base="q63:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TransformOriginSelector" xmlns:q64="UnityEngine.UIElements" substitutionGroup="q64:VisualElement" type="tns:TransformOriginSelectorType" />
+  <xs:complexType name="BackgroundPositionDimensionStyleFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q65="UnityEngine.UIElements" base="q65:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="label" type="xs:string" />
+        <xs:attribute name="value" type="xs:string" />
+        <xs:attribute default="false" name="show-options" type="xs:boolean" />
+        <xs:attribute name="min" type="xs:float" />
+        <xs:attribute name="max" type="xs:float" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BackgroundPositionDimensionStyleField" xmlns:q66="UnityEngine.UIElements" substitutionGroup="q66:BindableElement" type="tns:BackgroundPositionDimensionStyleFieldType" />
+  <xs:complexType name="BuilderResizerType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BuilderTransformerType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BuilderResizer" substitutionGroup="tns:BuilderTransformer" type="tns:BuilderResizerType" />
+  <xs:complexType name="BuilderMoverType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BuilderTransformerType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BuilderMover" substitutionGroup="tns:BuilderTransformer" type="tns:BuilderMoverType" />
+  <xs:complexType name="BuilderTooltipPreviewType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q67="UnityEngine.UIElements" base="q67:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BuilderTooltipPreview" xmlns:q68="UnityEngine.UIElements" substitutionGroup="q68:VisualElement" type="tns:BuilderTooltipPreviewType" />
+  <xs:complexType name="BuilderAnchorerType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BuilderManipulatorType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BuilderAnchorer" substitutionGroup="tns:BuilderManipulator" type="tns:BuilderAnchorerType" />
+  <xs:complexType name="FoldoutWithCheckboxType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PersistedFoldoutType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FoldoutWithCheckbox" substitutionGroup="tns:PersistedFoldout" type="tns:FoldoutWithCheckboxType" />
+  <xs:complexType name="PositionStyleFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DimensionStyleFieldType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PositionStyleField" substitutionGroup="tns:DimensionStyleField" type="tns:PositionStyleFieldType" />
+  <xs:complexType name="MaterialDefinitionStyleFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q69="UnityEngine.UIElements" base="q69:BindableElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MaterialDefinitionStyleField" xmlns:q70="UnityEngine.UIElements" substitutionGroup="q70:BindableElement" type="tns:MaterialDefinitionStyleFieldType" />
   <xs:complexType name="UnityUIBuilderSelectionMarkerType">
     <xs:complexContent mixed="false">
-      <xs:restriction base="engine:VisualElementType">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="engine:VisualElement" />
-        </xs:sequence>
-        <xs:attribute default="" name="name" type="xs:string" use="optional" />
-        <xs:attribute default="" name="view-data-key" type="xs:string" use="optional" />
-        <xs:attribute default="Position" name="picking-mode" type="engine:VisualElement_picking-mode_Type" use="optional" />
-        <xs:attribute default="" name="tooltip" type="xs:string" use="optional" />
-        <xs:attribute default="None" name="usage-hints" type="engine:VisualElement_usage-hints_Type" use="optional" />
-        <xs:attribute default="0" name="tabindex" type="xs:int" use="optional" />
-        <xs:attribute default="false" name="focusable" type="xs:boolean" use="optional" />
-        <xs:attribute default="" name="class" type="xs:string" use="optional" />
-        <xs:attribute default="" name="content-container" type="xs:string" use="optional" />
-        <xs:attribute default="" name="style" type="xs:string" use="optional" />
-        <xs:anyAttribute processContents="lax" />
-      </xs:restriction>
+      <xs:extension xmlns:q71="UnityEngine.UIElements" base="q71:VisualElementType">
+        <xs:choice />
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="UnityUIBuilderSelectionMarker" substitutionGroup="engine:VisualElement" xmlns:q45="Unity.UI.Builder" type="q45:UnityUIBuilderSelectionMarkerType" />
+  <xs:element name="UnityUIBuilderSelectionMarker" xmlns:q72="UnityEngine.UIElements" substitutionGroup="q72:VisualElement" type="tns:UnityUIBuilderSelectionMarkerType" />
+  <xs:complexType name="BuilderNewSelectorFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q73="UnityEngine.UIElements" base="q73:VisualElementType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BuilderNewSelectorField" xmlns:q74="UnityEngine.UIElements" substitutionGroup="q74:VisualElement" type="tns:BuilderNewSelectorFieldType" />
+  <xs:complexType name="FieldStatusIndicatorType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q75="UnityEngine.UIElements" base="q75:VisualElementType">
+        <xs:choice />
+        <xs:attribute name="field-name" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FieldStatusIndicator" xmlns:q76="UnityEngine.UIElements" substitutionGroup="q76:VisualElement" type="tns:FieldStatusIndicatorType" />
+  <xs:complexType name="IntegerStyleFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q77="UnityEngine.UIElements" base="q77:BindableElementType">
+        <xs:choice />
+        <xs:attribute name="label" type="xs:string" />
+        <xs:attribute name="value" type="xs:string" />
+        <xs:attribute default="false" name="show-options" type="xs:boolean" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="IntegerStyleField" xmlns:q78="UnityEngine.UIElements" substitutionGroup="q78:BindableElement" type="tns:IntegerStyleFieldType" />
+  <xs:complexType name="BuilderSelectionIndicatorType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BuilderTrackerType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BuilderSelectionIndicator" substitutionGroup="tns:BuilderTracker" type="tns:BuilderSelectionIndicatorType" />
+  <xs:complexType name="FoldoutTransitionFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:FoldoutFieldType">
+        <xs:choice />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="FoldoutTransitionField" substitutionGroup="tns:FoldoutField" type="tns:FoldoutTransitionFieldType" />
 </xs:schema>
